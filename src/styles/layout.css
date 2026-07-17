@@ -34,6 +34,18 @@ body {
   overflow-x: clip;
 }
 
+/* Anchor offset: sticky header + mobilni sticky CTA bar */
+html {
+  scroll-padding-top: 72px;
+  scroll-padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-bottom: 0;
+  }
+}
+
 /* Skip link za pristupačnost — vidljiv samo na fokusu */
 .skip-link {
   position: absolute;
@@ -42,10 +54,16 @@ body {
   z-index: 100;
   padding: var(--space-3) var(--space-4);
   background-color: var(--color-panel);
+  border: var(--border-strong);
   border-radius: var(--radius-md);
+  color: var(--color-text);
+  font-weight: 600;
+  text-decoration: none;
   transform: translateY(-200%);
 }
 
 .skip-link:focus {
   transform: none;
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
 }

@@ -100,7 +100,7 @@
       </defs>
     </svg>
 
-    <a class="skip-link" href="#pocetak">Preskoči na sadržaj</a>
+    <a class="skip-link" href="#sadrzaj">Preskoči na sadržaj</a>
 
     <header class="site-header">
       <div class="container site-header__inner">
@@ -149,7 +149,7 @@
       </div>
     </header>
 
-    <main id="sadrzaj">
+    <main id="sadrzaj" tabindex="-1">
       <!-- 2. Hero (CONTENT.md 15.2, DESIGN_SYSTEM.md 12) — „Dijagnostička tabla", statično idle stanje -->
       <section id="pocetak" class="section hero" aria-labelledby="hero-naslov">
         <div class="container container--wide hero__inner">
@@ -667,7 +667,7 @@
           <h2 id="pitanja-naslov">Česta pitanja</h2>
 
           <div class="faq-list">
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Da li je mobilni servis jednako kvalitetan kao klasičan servis?</h3>
               </summary>
@@ -677,7 +677,7 @@
                 dođete u servis, servis dolazi kod vas.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Koliko košta servis klime?</h3>
               </summary>
@@ -687,7 +687,7 @@
                 pre dolaska i pre bilo kakvog rada. Bez skrivenih troškova.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Da li ćete mi naplatiti nešto što mi ne treba?</h3>
               </summary>
@@ -697,7 +697,7 @@
                 pred vama, na vašoj adresi.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Da li dolazite u moje mesto?</h3>
               </summary>
@@ -707,7 +707,7 @@
                 odmah ćete dobiti odgovor.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Šta ako je kvar veći od dopune gasa?</h3>
               </summary>
@@ -718,7 +718,7 @@
                 koja problem ne rešava.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Da li su potrebni struja ili posebni uslovi na parkingu?</h3>
               </summary>
@@ -728,7 +728,7 @@
                 pomenite to u razgovoru prilikom zakazivanja.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Koji gas koristite? Da li to odgovara mom vozilu?</h3>
               </summary>
@@ -737,7 +737,7 @@
                 odmah ćete znati da li možemo da servisiramo vaš sistem.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Koliko traje intervencija?</h3>
               </summary>
@@ -746,7 +746,7 @@
                 zakazivanja, kada opišete problem.
               </p>
             </details>
-            <details class="faq-item">
+            <details class="faq-item" name="faq">
               <summary>
                 <h3>Kako se zakazuje?</h3>
               </summary>
@@ -849,7 +849,7 @@
       sa JS-om se prikazuje tek kada hero CTA izađe iz viewporta (navigation.js).
       Slide animacija pojavljivanja: Faza 6.
     -->
-    <div class="sticky-cta" aria-label="Brzi kontakt">
+    <nav class="sticky-cta" aria-label="Brzi kontakt">
       <a class="button button--primary sticky-cta__button" href="tel:{{PHONE_NUMBER}}">
         <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>
         Pozovi
@@ -858,7 +858,7 @@
         <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-message" /></svg>
         Poruka
       </a>
-    </div>
+    </nav>
 
     <script type="module" src="/src/js/main.js"></script>
   </body>

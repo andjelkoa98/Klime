@@ -244,12 +244,32 @@
   color: var(--color-text-muted);
 }
 
-/* Lift na hover — samo uređaji sa pointerom (responsive.css uključuje transform) */
+/* Lift na hover/fokus — samo fine pointer; keyboard koristi focus-within */
 @media (hover: hover) and (pointer: fine) {
-  .service-card:hover {
+  .service-card:hover,
+  .service-card:focus-within {
     background-color: var(--color-panel-raised);
     border: var(--border-strong);
     transform: translateY(-4px);
+  }
+
+  .step-card:hover,
+  .step-card:focus-within {
+    background-color: var(--color-panel-raised);
+    border: var(--border-strong);
+  }
+
+  .pair-card:hover {
+    border: var(--border-strong);
+  }
+}
+
+/* Touch / keyboard: ista elevacija bez lift-a (bez skakanja tap targeta) */
+@media (hover: none), (pointer: coarse) {
+  .service-card:focus-within,
+  .step-card:focus-within {
+    background-color: var(--color-panel-raised);
+    border: var(--border-strong);
   }
 }
 
@@ -408,7 +428,7 @@
   max-width: 40ch;
 }
 
-/* --- FAQ item (nativni details/summary — odluka #36) --------------------------- */
+/* --- FAQ item (nativni details/summary — odluka #36; exclusive name="faq") ---- */
 
 .faq-item {
   border-bottom: var(--border-panel);
@@ -419,8 +439,11 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 44px;
+  min-height: 52px;
   padding-block: var(--space-4);
+  padding-inline: var(--space-2);
+  margin-inline: calc(-1 * var(--space-2));
+  border-radius: var(--radius-md);
   cursor: pointer;
   list-style: none;
 }
@@ -430,6 +453,8 @@
 }
 
 .faq-item summary h3 {
+  flex: 1 1 auto;
+  min-width: 0;
   font-family: var(--font-body);
   font-weight: 600;
   font-size: var(--text-base);
@@ -437,23 +462,29 @@
   color: var(--color-text);
 }
 
-/* Indikator +/− (rotacija u Fazi 6) */
+/* Indikator +/− */
 .faq-item summary::after {
   content: '+';
   flex-shrink: 0;
   display: grid;
   place-items: center;
-  width: 28px;
-  height: 28px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-sm);
   border: var(--border-panel);
   font-family: var(--font-mono);
-  font-size: 1rem;
+  font-size: 1.125rem;
+  line-height: 1;
   color: var(--color-accent);
 }
 
 .faq-item[open] summary::after {
   content: '−';
+  background-color: var(--color-accent-tint);
+  border-color: var(--color-accent);
+}
+
+.faq-item summary:hover {
   background-color: var(--color-accent-tint);
 }
 
@@ -461,8 +492,18 @@
   color: var(--color-accent);
 }
 
+.faq-item summary:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 2px;
+  box-shadow: var(--shadow-glow);
+}
+
+.faq-item[open] summary {
+  background-color: var(--color-accent-tint);
+}
+
 .faq-item > p {
-  padding-bottom: var(--space-5);
+  padding: 0 var(--space-2) var(--space-5);
   color: var(--color-text-muted);
 }
 

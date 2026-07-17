@@ -707,5 +707,5 @@ body.nav-locked {
 
 /* Sadržaj ne sme ostati sakriven iza fiksiranog bara (mobilno; reset ≥1024px) */
 body {
-  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+  padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
 }

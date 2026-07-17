@@ -86,6 +86,15 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 52 | Scrub samo na desktopu (≥1024): `.steps__progress-fill` (`scaleX`) + blagi hero parallax (`--parallax-y` CSS var); pin zabranjen | Odluka #30; CSS var parallax čuva `--hero-scale` na laptopu | Scrub na touch; pin storytelling; Lenis |
 | 53 | Sticky CTA slide = CSS `transform` transition (350ms) na `.is-hidden`; header `has-scroll-enhance` / `is-scrolled` posle 80px | ANIMATION_SYSTEM.md §4; progressive enhancement (bez JS bara ostaje vidljiv, header solidan) | GSAP timeline za sticky bar; uvek-transparentan header |
 
+## Faza 7 (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 54 | Mobilni meni: fokus trap (Tab ciklus kroz nav + tel ikonu + toggle); `inert` na `main` / footer / sticky; wordmark `tabindex="-1"` dok je otvoren; Escape i zatvaranje linkom vraćaju fokus na toggle | CONTENT.md 15.1 + quality rules; sprečava fokus da „pobegne" u pozadinu dok je panel otvoren | Fokus trap biblioteka; dialog `role="dialog"` (meni nije modal dijalog) |
+| 55 | FAQ: nativni exclusive accordion preko `name="faq"` na svim `<details>`; veći tap target (min 52px) + hover/fokus stilovi — bez izmene copy-ja | Progressive enhancement (radi bez JS-a u modernim browserima); odluka #36 ostaje; bolji UX jednog otvorenog odgovora | Custom JS accordion; accordion bez exclusive ponašanja |
+| 56 | Sticky CTA je `<nav aria-label="Brzi kontakt">`; `body` padding-bottom 80px + `scroll-padding` na `html` (top 72 / bottom 80 mobilno) | Landmark za brzi kontakt; sticky bar ne prekriva kritičan tekst ni anchor skokove | Floating dugme van navigacionog landmarka |
+| 57 | Na ≤374px: readout traka sakrivena + kompaktniji hero ritam (manji H1 clamp, kraći lead/CTA razmaci) da oba CTA stanu above the fold | DESIGN_SYSTEM.md §12 + CONTENT.md 15.2; verifikovano na 320×568 | Sakrivanje supporting teksta ili skraćivanje copy-ja |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

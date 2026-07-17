@@ -69,6 +69,15 @@ button {
   outline-offset: 2px;
 }
 
+/* Glow budžet: fokus stanja (DESIGN_SYSTEM.md §3 / §7) */
+.button:focus-visible,
+.icon-button:focus-visible,
+.wordmark:focus-visible,
+.site-nav__link:focus-visible,
+.sticky-cta__button:focus-visible {
+  box-shadow: var(--shadow-glow);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -77,5 +86,11 @@ button {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Sticky CTA: bez slide-a — instant hide/show (ANIMATION_SYSTEM.md §7) */
+  .sticky-cta,
+  .sticky-cta.is-hidden {
+    transition: none !important;
   }
 }

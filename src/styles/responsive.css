@@ -5,6 +5,84 @@
    375 / 430 / 768 / 1024 (desktop nav) / 1280 / 1440.
    ========================================================================== */
 
+/* --- 320–374px (mali mobilni) — spreči overflow i čuvaj above-the-fold CTA -- */
+
+@media (max-width: 374px) {
+  /* DESIGN_SYSTEM.md §12: readout traka se izostavlja ako ugrožava CTA */
+  .hero__readout-strip {
+    display: none;
+  }
+
+  /* Kompaktniji hero ritam da oba CTA stanu u prvi viewport (CONTENT.md 15.2) */
+  .hero {
+    padding-block: var(--space-5) var(--space-7);
+  }
+
+  .hero__kicker {
+    margin-bottom: var(--space-2);
+  }
+
+  .hero h1 {
+    font-size: clamp(1.875rem, 8.2vw, 2.25rem);
+  }
+
+  .hero__lead {
+    margin-top: var(--space-3);
+    font-size: var(--text-base);
+  }
+
+  .hero__cta-group {
+    margin-top: var(--space-4);
+  }
+
+  .hero__micro-trust {
+    margin-top: var(--space-3);
+  }
+
+  .hero__cta-group .button,
+  .cta-row .button,
+  .final-cta__messages .button,
+  .sticky-cta__button {
+    min-height: 48px;
+    padding-inline: var(--space-4);
+  }
+
+  .hero__places,
+  .final-cta__places,
+  .site-footer__area {
+    overflow-wrap: anywhere;
+  }
+
+  .instrument-panel {
+    margin-right: 0;
+  }
+}
+
+/* Grid deca ne smeju da forsiraju horizontalni overflow */
+.hero__inner,
+.section-split,
+.services-grid,
+.compare-layout,
+.area-layout,
+.site-footer__grid,
+.pair-card,
+.compare-pair {
+  min-width: 0;
+}
+
+.hero__content,
+.service-card,
+.step-card,
+.faq-item summary h3,
+.final-cta__phone {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.final-cta__phone {
+  overflow-wrap: anywhere;
+}
+
 /* --- ≥375px (standardni mobilni) ------------------------------------------- */
 
 @media (min-width: 375px) {
@@ -293,7 +371,11 @@
     --hero-scale: 1;
   }
 
-  /* Instrument blago prelazi desnu ivicu kontejnera */
+  /* Instrument blago prelazi desnu ivicu kontejnera — clip na hero, ne na html */
+  .hero {
+    overflow-x: clip;
+  }
+
   .instrument-panel {
     max-width: 520px;
     margin-right: calc(-1 * var(--space-6));
