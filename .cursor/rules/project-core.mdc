@@ -1,0 +1,33 @@
+---
+description: Core rules for the MobilKlime mobile automotive AC website
+alwaysApply: true
+---
+
+# Project purpose
+
+One-page website for **MobilKlime** — a mobile automotive air-conditioning service.
+The technician travels to the customer's location (Beograd, Lazarevac, Obrenovac,
+Aranđelovac, Lajkovac) and performs the inspection or service there.
+Primary conversion: phone call. Secondary: WhatsApp/Viber message. No contact form.
+
+# Source of truth
+
+Before making changes, read: AGENTS.md, then docs/PROJECT_CONTEXT.md, CLIENT_DATA.md,
+CONTENT.md, DESIGN_SYSTEM.md, ANIMATION_SYSTEM.md, SEO_PERFORMANCE.md, ROADMAP.md,
+DECISIONS.md, HANDOFF.md. Repository documentation has priority over assumptions
+and chat memory.
+
+# Workflow
+
+- Work only on the current roadmap phase (docs/ROADMAP.md). Do not implement future phases.
+- Do not rebuild the whole website when asked for a focused change.
+- Do not change approved decisions (docs/DECISIONS.md) without documenting the reason.
+- Update DECISIONS.md and HANDOFF.md after every phase, then git commit.
+- Never invent business facts: phone numbers, prices, reviews, statistics, locations,
+  working hours, gas types, experience, certifications. Unknown data = `{{PLACEHOLDER}}`
+  as defined in docs/CLIENT_DATA.md.
+
+# Language
+
+All website copy is Serbian, Latin script (`lang="sr-Latn"`). Documentation is Serbian.
+Code identifiers, comments and commit messages are English.

@@ -1,0 +1,20 @@
+---
+description: Quality, accessibility, SEO and performance release requirements
+alwaysApply: true
+---
+
+# Quality rules
+
+- No console errors, broken links, missing assets, or placeholder content in production.
+- Accessibility: focus states, keyboard navigation, Escape closes the mobile menu,
+  aria-expanded/aria-label where needed, landmark structure, heading order, contrast,
+  prefers-reduced-motion, tap targets ≥ 44px.
+- Mobile menu: opens on click, locks background scroll, returns focus to trigger,
+  closes on link click and Escape, never stays open past the desktop breakpoint.
+- SEO: unique title, meta description, canonical, Open Graph, favicon, robots.txt,
+  sitemap.xml, JSON-LD (AutoRepair/LocalBusiness subtype). Structured data must match
+  visible content — never invent address, ratings, prices, or hours.
+- Performance budget (docs/SEO_PERFORMANCE.md): Lighthouse mobile 90+, initial transfer
+  ≤ 1 MB mobile / 1.5 MB desktop, hero image ~150 KB mobile / ~250 KB desktop.
+- No animation may block content, navigation, or the main CTA click.
+- Performance, accessibility and SEO are release requirements, not nice-to-haves.

@@ -1,0 +1,20 @@
+---
+description: Design and creative direction rules for the MobilKlime website
+alwaysApply: true
+---
+
+# Design rules
+
+- The approved design system lives in docs/DESIGN_SYSTEM.md. Until Phase 3 completes,
+  make no final visual decisions.
+- Working concept: "Mobilna klima laboratorija na točkovima" — technical precision,
+  cold air, mobility, local trust, modern premium look.
+- The hero must impress immediately ("wow" on first view) — owner's explicit requirement.
+  Never ship a generic auto-service template (car photo + blue button + three cards).
+- Forbidden: generic snowflake illustrations, excessive neon, stock luxury car photos,
+  animating every element, large blocking hero video, fake statistics or reviews,
+  text over important parts of photos.
+- Real photos of the technician and equipment are placeholders for now — every image
+  placeholder must describe what the real photo should show (see docs/CLIENT_DATA.md).
+- Asymmetric layout, generous whitespace, clear visual hierarchy, strong CTAs.
+- Mobile-first: the same key offer, text and CTAs must exist on mobile.

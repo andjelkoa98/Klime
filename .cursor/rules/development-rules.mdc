@@ -1,0 +1,21 @@
+---
+description: Development and technical rules for the MobilKlime website
+alwaysApply: true
+---
+
+# Development rules
+
+- Stack: Vite, semantic HTML5, modular CSS (no framework), vanilla JavaScript (ES modules),
+  GSAP + ScrollTrigger. No React/Next.js. Three.js only if approved in docs/DESIGN_SYSTEM.md.
+- Hosting target: GitHub Pages initially — Vite `base` must be set to the repo name.
+- Semantic HTML: header, nav, main, section, article, footer; correct heading hierarchy;
+  accessible links and buttons. No lorem ipsum, ever.
+- Mobile-first CSS with custom properties from DESIGN_SYSTEM.md. Modular files
+  (reset, variables, typography, layout, components, sections, animations, responsive).
+- JavaScript: small modules per concern (navigation, animations, hero-visual, utils).
+  Progressive enhancement — content must remain accessible without JS where possible.
+- GSAP: organize animations in separate functions, use gsap.matchMedia for breakpoints,
+  register ScrollTrigger once, clean up listeners, prefer transform/opacity over
+  width/height/top/left, support prefers-reduced-motion, no scroll hijacking.
+- Keep dependencies minimal. Locally hosted fonts, SVG icons, AVIF/WebP images.
+- No horizontal overflow. No layout shift from images/fonts (always set width/height).
