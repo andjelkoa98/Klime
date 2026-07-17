@@ -10,7 +10,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 | 2 | Struktura stranice i sadržaj (kompletan copy) | ✅ | Finalni copy u CONTENT.md (sekcije 14–21) |
 | 3 | Kreativni pravac i dizajn sistem (3 pravca → izbor → razrada) | ✅ | Izabran pravac „Hladna preciznost"; bez Three.js (SVG + GSAP) |
 | 4 | Tehnička arhitektura i Vite scaffold | ✅ | Vite `base: '/Klime/'` (ime repo-a potvrdio vlasnik) |
-| 5 | Statički vizuelni dizajn | ⬜ | |
+| 5 | Statički vizuelni dizajn | ✅ | Wordmark, kompletan copy, SVG HUD, sticky CTA; bez GSAP |
 | 6 | GSAP animacije i 3D efekti | ⬜ | Hero mora da "oduševi na prvu" |
 | 7 | Responsive, pristupačnost i interakcije | ⬜ | |
 | 8 | SEO i lokalna optimizacija | ⬜ | GBP preporuka, JSON-LD bez izmišljenih podataka |

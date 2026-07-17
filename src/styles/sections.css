@@ -1,7 +1,659 @@
 /* ==========================================================================
    sections.css — per-section layout and visuals
-   (hero, trust strip, problem, usluge, kako funkcioniše, prednosti,
+   (header, hero, trust strip, problem, usluge, kako funkcioniše, prednosti,
    područje, recenzije, FAQ, završni CTA, footer, sticky CTA bar)
    Spec: docs/DESIGN_SYSTEM.md sections 11–12, docs/CONTENT.md section 15.
-   Phase 4: file scaffolded. Section design is implemented in Phase 5.
+   Mobile-first: base styles target 320px+; breakpoint overrides in responsive.css.
    ========================================================================== */
+
+/* --- Zajednički elementi sekcija ------------------------------------------- */
+
+.section-kicker {
+  margin-bottom: var(--space-3);
+  color: var(--color-accent);
+}
+
+.section-lead {
+  margin-top: var(--space-4);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+/* Split: tekst + medij (photo placeholder); 7/5 na desktopu (responsive.css) */
+.section-split {
+  display: grid;
+  gap: var(--space-5);
+  margin-bottom: var(--space-7);
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.cta-row .button {
+  flex: 1 1 100%;
+}
+
+/* --- 1. Header --------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: rgba(11, 15, 20, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: var(--border-panel);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 64px;
+}
+
+.site-header__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Desktop CTA — skriven na mobilnom (prikaz ≥1024px u responsive.css) */
+.site-header__cta {
+  display: none;
+}
+
+/* --- Navigacija: mobilni panel (base) / desktop red (responsive.css) ---------- */
+
+.site-nav {
+  position: fixed;
+  inset: 64px 0 auto 0;
+  z-index: 40;
+  display: none;
+  flex-direction: column;
+  gap: var(--space-5);
+  padding: var(--space-5) var(--container-gutter) var(--space-6);
+  background-color: var(--color-bg-raised);
+  border-bottom: var(--border-strong);
+  box-shadow: var(--shadow-md);
+}
+
+.site-nav.is-open {
+  display: flex;
+}
+
+/* Zaključavanje pozadinskog skrola dok je meni otvoren (postavlja navigation.js) */
+body.nav-locked {
+  overflow: hidden;
+}
+
+.site-nav__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.site-nav__link {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding-inline: var(--space-2);
+  border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-xl);
+  text-decoration: none;
+  color: var(--color-text);
+}
+
+.site-nav__link:hover {
+  color: var(--color-accent);
+  background-color: var(--color-panel);
+}
+
+.site-nav__cta {
+  align-self: stretch;
+}
+
+/* --- 2. Hero („Dijagnostička tabla", DESIGN_SYSTEM.md section 12) -------------- */
+
+.hero {
+  position: relative;
+  padding-block: var(--space-7) var(--space-8);
+  /* Tehnička mreža — dozvoljena samo u hero-u i završnom CTA */
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+.hero__inner {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.hero__kicker {
+  margin-bottom: var(--space-4);
+  color: var(--color-accent);
+}
+
+.hero__lead {
+  margin-top: var(--space-5);
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+.hero__places {
+  display: block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--color-text);
+}
+
+.hero__cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+}
+
+.hero__cta-group .button {
+  flex: 1 1 100%;
+}
+
+.hero__micro-trust {
+  margin-top: var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+/* Kompaktna readout traka — samo mobilno (≤767px), visina ≤96px */
+.hero__readout-strip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  max-height: 96px;
+  margin-top: var(--space-5);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-panel);
+  border: var(--border-panel);
+  border-radius: var(--radius-lg);
+}
+
+.readout-strip__gauge {
+  width: 64px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.readout-strip__temp {
+  display: flex;
+  flex-direction: column;
+}
+
+.readout-strip__value {
+  font-weight: 500;
+  font-size: var(--text-2xl);
+  line-height: 1.1;
+  color: var(--color-cold);
+}
+
+.readout-strip__status {
+  display: none;
+  flex-direction: column;
+  gap: var(--space-1);
+  margin-left: auto;
+}
+
+/* Instrument kompozicija — skrivena na mobilnom (prikaz ≥768px u responsive.css) */
+.hero__visual {
+  position: relative;
+  display: none;
+}
+
+.hero__flowlines {
+  position: absolute;
+  top: 50%;
+  right: 82%;
+  width: clamp(160px, 24vw, 320px);
+  height: 220px;
+  transform: translateY(-50%);
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+  opacity: 0.22;
+}
+
+.instrument-panel {
+  position: relative;
+  max-width: 480px;
+  margin-inline: auto;
+  padding: var(--space-5);
+  background-color: var(--color-panel);
+  background-image: linear-gradient(165deg, rgba(14, 116, 144, 0.16), rgba(11, 15, 20, 0) 55%);
+  border: var(--border-strong);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md), var(--shadow-glow); /* glow budžet: SAMO hero instrument */
+}
+
+.instrument-panel__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-4);
+  border-bottom: var(--border-panel);
+}
+
+.instrument-panel__unit {
+  color: var(--color-accent);
+}
+
+.instrument-panel__body {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  align-items: center;
+  gap: var(--space-5);
+  padding-block: var(--space-5);
+}
+
+.instrument-panel__gauge svg {
+  width: 100%;
+  height: auto;
+}
+
+.instrument-panel__gauge-label {
+  display: block;
+  margin-top: var(--space-2);
+  text-align: center;
+}
+
+/* Manometar (deljeni stilovi: veliki panel + mobilna readout traka) */
+.gauge-arc {
+  fill: none;
+  stroke: var(--color-border-strong);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.gauge-zone {
+  fill: none;
+  stroke: var(--color-ok);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+
+.gauge-ticks line {
+  stroke: var(--color-text-faint);
+  stroke-width: 1.5;
+  stroke-linecap: round;
+}
+
+.gauge-needle {
+  stroke: var(--color-accent);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+}
+
+.gauge-hub {
+  fill: var(--color-panel-raised);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+/* Temperaturni readout: idle stanje 18° (count-up 41°→18° je Faza 6) */
+.instrument-panel__readout {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.instrument-readout__value {
+  font-weight: 500;
+  font-size: clamp(2.5rem, 2rem + 2vw, 3.5rem);
+  line-height: 1;
+  color: var(--color-cold);
+}
+
+.instrument-readout__value small {
+  font-size: 0.45em;
+  font-weight: 400;
+}
+
+.instrument-readout__prev {
+  color: var(--color-heat); /* semantika „pre" — jedino dozvoljeno mesto u hero-u */
+}
+
+.instrument-status {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  padding-block: var(--space-4);
+  border-top: var(--border-panel);
+}
+
+.instrument-panel__foot {
+  padding-top: var(--space-4);
+  border-top: var(--border-panel);
+}
+
+/* --- 3. Trust strip ------------------------------------------------------------ */
+
+.trust-strip {
+  padding-block: var(--space-5);
+  border-block: var(--border-panel);
+}
+
+.trust-strip__list {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* --- 4. Problem i rešenje -------------------------------------------------------- */
+
+.problem-pairs {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.problem-closing {
+  margin-top: var(--space-7);
+  color: var(--color-text-muted);
+}
+
+#problem .link-ghost {
+  margin-top: var(--space-3);
+}
+
+/* --- 5. Usluge -------------------------------------------------------------------- */
+
+.services-grid {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.services-note {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  padding: var(--space-5);
+  background-color: var(--color-panel);
+  border: var(--border-panel);
+  border-radius: var(--radius-lg);
+}
+
+.services-note p {
+  color: var(--color-text-muted);
+}
+
+/* --- 6. Kako funkcioniše (koraci; vezna linija timeline-a se iscrtava u Fazi 6) --- */
+
+.steps {
+  position: relative;
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-7);
+  padding-left: var(--space-5);
+}
+
+/* Vertikalna vezna linija (mobilno); horizontalna varijanta u responsive.css */
+.steps::before {
+  content: '';
+  position: absolute;
+  top: var(--space-5);
+  bottom: var(--space-5);
+  left: 0;
+  width: 2px;
+  background: linear-gradient(var(--color-accent-deep), var(--color-accent));
+  border-radius: 1px;
+}
+
+/* --- 7. Prednosti (poređenje) ------------------------------------------------------ */
+
+.compare-layout {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-7);
+}
+
+.compare-list {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.compare-aside {
+  display: grid;
+  gap: var(--space-5);
+  align-content: start;
+}
+
+.compare-closing {
+  font-size: var(--text-lg);
+  color: var(--color-text-muted);
+}
+
+/* --- 8. Područje dolaska ------------------------------------------------------------- */
+
+.area-layout {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.area-places {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block: var(--space-5);
+}
+
+.area-text > p:last-of-type {
+  color: var(--color-text-muted);
+}
+
+.area-map {
+  position: relative;
+  padding: var(--space-5);
+  background-color: var(--color-panel);
+  border: var(--border-panel);
+  border-radius: var(--radius-lg);
+}
+
+.area-map svg {
+  width: 100%;
+  height: auto;
+}
+
+.area-map__range {
+  fill: none;
+  stroke: var(--color-grid-line);
+  stroke-width: 1;
+}
+
+.area-map__route {
+  fill: none;
+  stroke: var(--color-accent);
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-dasharray: 6 8;
+  opacity: 0.7;
+}
+
+.area-map__node circle:first-child {
+  fill: var(--color-accent-tint);
+  stroke: var(--color-accent);
+  stroke-width: 1.5;
+}
+
+.area-map__node .area-map__dot {
+  fill: var(--color-accent);
+  stroke: none;
+}
+
+.area-map__node--primary circle:first-child {
+  stroke: var(--color-cold);
+}
+
+.area-map__labels text {
+  fill: var(--color-text-muted);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+}
+
+.area-map__caption {
+  display: block;
+  margin-top: var(--space-3);
+}
+
+/* --- 10. FAQ --------------------------------------------------------------------------- */
+
+.faq-list {
+  margin-top: var(--space-6);
+  border-top: var(--border-panel);
+}
+
+.faq-cta {
+  margin-top: var(--space-6);
+  color: var(--color-text-muted);
+}
+
+/* --- 11. Završni CTA --------------------------------------------------------------------- */
+
+.final-cta {
+  /* Tehnička mreža — drugo (i poslednje) dozvoljeno mesto */
+  background-image:
+    linear-gradient(var(--color-grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px);
+  background-size: 56px 56px;
+  border-block: var(--border-panel);
+}
+
+.final-cta__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.final-cta__lead {
+  margin-inline: auto;
+}
+
+/* Ogroman tel: link — nije dugme (DESIGN_SYSTEM.md section 8) */
+.final-cta__phone {
+  display: inline-block;
+  margin-top: var(--space-7);
+  font-weight: 500;
+  font-size: var(--text-tel);
+  line-height: 1.1;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 12px;
+}
+
+.final-cta__phone:hover {
+  color: var(--color-accent);
+}
+
+.final-cta__messages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-7);
+  width: 100%;
+}
+
+.final-cta__messages .button {
+  flex: 1 1 100%;
+}
+
+.final-cta__hours {
+  margin-top: var(--space-6);
+}
+
+.final-cta__places {
+  margin-top: var(--space-3);
+  color: var(--color-text-muted);
+}
+
+/* --- 12. Footer ----------------------------------------------------------------------------- */
+
+.site-footer {
+  padding-block: var(--space-8) var(--space-6);
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+.site-footer__grid {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.site-footer__brand p {
+  margin-top: var(--space-3);
+}
+
+.site-footer__heading {
+  margin-bottom: var(--space-3);
+}
+
+.site-footer__link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--color-text-muted);
+  text-decoration: none;
+}
+
+.site-footer__link:hover {
+  color: var(--color-accent);
+}
+
+.site-footer__copy {
+  margin-top: var(--space-7);
+  padding-top: var(--space-5);
+  border-top: var(--border-panel);
+  color: var(--color-text-faint);
+  font-size: var(--text-sm);
+}
+
+/* --- Sticky mobilni CTA bar (CONTENT.md 15.13) ------------------------------------------------ */
+
+.sticky-cta {
+  position: fixed;
+  inset: auto 0 0 0;
+  z-index: 60;
+  display: flex;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--container-gutter);
+  padding-bottom: calc(var(--space-3) + env(safe-area-inset-bottom, 0px));
+  background-color: rgba(11, 15, 20, 0.92);
+  backdrop-filter: blur(8px);
+  border-top: var(--border-panel);
+}
+
+/* JS (navigation.js) drži bar skriven dok je hero CTA u viewportu */
+.sticky-cta.is-hidden {
+  transform: translateY(100%);
+  visibility: hidden;
+}
+
+.sticky-cta__button {
+  flex: 1 1 50%;
+  min-height: 52px;
+  border-radius: var(--radius-full);
+}
+
+/* Sadržaj ne sme ostati sakriven iza fiksiranog bara (mobilno; reset ≥1024px) */
+body {
+  padding-bottom: calc(76px + env(safe-area-inset-bottom, 0px));
+}

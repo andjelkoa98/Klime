@@ -10,5 +10,6 @@
  */
 
 export function initHeroVisual() {
-  // Phase 4: hero SVG does not exist yet — intentionally a no-op.
+  // Phase 5: SVG composition is static in the DOM (idle 18°, needle in OK zone).
+  // Motion (intro, count-up, idle loops, tilt) lands in Phase 6.
 }

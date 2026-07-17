@@ -1,6 +1,43 @@
 /* ==========================================================================
-   animations.css — CSS-side motion (hover/focus transitions, accordion)
-   Spec: docs/ANIMATION_SYSTEM.md. GSAP animations are JS-driven (Phase 6);
-   this file holds only CSS transitions and reduced-motion overrides.
-   Phase 4: file scaffolded. Motion is implemented in Phase 6.
+   animations.css — CSS-side motion (hover/focus transitions only)
+   Spec: docs/ANIMATION_SYSTEM.md (dur-micro 150–200ms; no bounce/elastic).
+   GSAP animations are JS-driven (Phase 6) — this file holds only CSS
+   transitions; the global reduced-motion kill switch lives in reset.css.
    ========================================================================== */
+
+/* Hover/fokus mikro-tranzicije (dur-micro) — samo transform/boje, bez layout-a */
+
+.button,
+.icon-button,
+.link-ghost,
+.inline-tel,
+.site-nav__link,
+.site-footer__link,
+.final-cta__phone {
+  transition:
+    background-color 180ms ease-out,
+    border-color 180ms ease-out,
+    color 180ms ease-out,
+    transform 180ms ease-out;
+}
+
+.link-ghost__arrow {
+  transition: transform 180ms ease-out;
+}
+
+.service-card {
+  transition:
+    background-color 200ms ease-out,
+    border-color 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.nav-toggle__bar {
+  transition:
+    transform 200ms ease-out,
+    opacity 150ms ease-out;
+}
+
+.faq-item summary::after {
+  transition: background-color 150ms ease-out;
+}

@@ -3,5 +3,287 @@
    Mobile-first: base styles target 320px+; min-width media queries only.
    Canonical breakpoints (docs/DESIGN_SYSTEM.md section 14):
    375 / 430 / 768 / 1024 (desktop nav) / 1280 / 1440.
-   Phase 4: file scaffolded. Responsive refinement is Phase 5/7.
    ========================================================================== */
+
+/* --- ≥375px (standardni mobilni) ------------------------------------------- */
+
+@media (min-width: 375px) {
+  .hero__readout-strip .readout-strip__status {
+    display: flex;
+  }
+}
+
+/* --- ≥430px (veliki mobilni) ------------------------------------------------ */
+
+@media (min-width: 430px) {
+  .hero__cta-group .button,
+  .cta-row .button,
+  .final-cta__messages .button {
+    flex: 0 1 auto;
+  }
+
+  .trust-strip__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- ≥768px (tablet portret) -------------------------------------------------- */
+
+/* Mapa: lista mesta ima prioritet na mobilnom (CONTENT.md 15.8) */
+.area-map {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  /* Hero: tekst gore pune širine, instrument tabla ispod, centrirana ~70% */
+  .hero {
+    padding-block: var(--space-8);
+  }
+
+  .hero__readout-strip {
+    display: none;
+  }
+
+  .hero__visual {
+    display: block;
+    width: 70%;
+    margin-inline: auto;
+  }
+
+  .area-map {
+    display: block;
+  }
+
+  .section-split {
+    grid-template-columns: 7fr 5fr;
+    align-items: center;
+    gap: var(--space-6);
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+  }
+
+  .services-note {
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: var(--space-6);
+  }
+
+  .problem-pairs {
+    gap: var(--space-6);
+  }
+
+  /* Problem/rešenje par: problem levo, rešenje desno */
+  .pair-card {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+  }
+
+  .pair-card__problem {
+    border-left: none;
+    border-top: 3px solid var(--color-heat);
+  }
+
+  .pair-card__solution {
+    border-left: none;
+    border-top: 3px solid var(--color-accent);
+  }
+
+  /* Koraci: 2×2 grid */
+  .steps {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-6);
+    padding-left: 0;
+  }
+
+  .steps::before {
+    display: none;
+  }
+
+  /* Poređenje: klasično levo / mobilno desno u istom redu */
+  .compare-pair {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .compare-cell {
+    padding: var(--space-5);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* --- ≥1024px (desktop nav breakpoint) ------------------------------------------ */
+
+@media (min-width: 1024px) {
+  /* Navigacija: puna, u redu; hamburger i tel ikona nestaju */
+  .site-nav {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: var(--space-5);
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+  }
+
+  .site-nav__list {
+    flex-direction: row;
+    gap: var(--space-2);
+  }
+
+  .site-nav__link {
+    min-height: 44px;
+    padding-inline: var(--space-3);
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: var(--text-sm);
+  }
+
+  .site-nav__link:hover {
+    background: none;
+  }
+
+  /* CTA u panelu menija nije potreban — desktop CTA stoji u header-u */
+  .site-nav__cta {
+    display: none;
+  }
+
+  .site-header__cta {
+    display: inline-flex;
+  }
+
+  .site-header__tel,
+  .nav-toggle {
+    display: none;
+  }
+
+  /* Meni ne sme ostati otvoren iznad breakpointa */
+  body.nav-locked {
+    overflow: auto;
+  }
+
+  /* Sticky CTA bar ne postoji na desktopu */
+  .sticky-cta {
+    display: none;
+  }
+
+  /* Trust strip: 4 stavke u jednom redu */
+  .trust-strip__list {
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-4);
+  }
+
+  body {
+    padding-bottom: 0;
+  }
+
+  /* Hero: asimetrija 55/45, tekst levo, instrument desno; ~85vh */
+  .hero {
+    display: flex;
+    align-items: center;
+    min-height: min(85vh, 820px);
+  }
+
+  .hero__inner {
+    grid-template-columns: 55fr 45fr;
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .hero__visual {
+    width: 100%;
+    transform: scale(0.92); /* laptop: instrument ~85–92% */
+    transform-origin: center;
+  }
+
+  .hero__cta-group {
+    margin-top: var(--space-7);
+  }
+
+  /* Sekcijski ritam i kartice na desktop padding-u */
+  .service-card,
+  .step-card {
+    padding: var(--space-6);
+  }
+
+  .step-card {
+    padding-left: var(--space-6);
+  }
+
+  .services-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Koraci: horizontalna linija od 4 koraka (timeline) */
+  .steps {
+    grid-template-columns: repeat(4, 1fr);
+    position: relative;
+    padding-top: var(--space-5);
+  }
+
+  .steps::before {
+    display: block;
+    top: 0;
+    bottom: auto;
+    left: var(--space-2);
+    right: var(--space-2);
+    width: auto;
+    height: 2px;
+    background: linear-gradient(90deg, var(--color-accent-deep), var(--color-accent));
+  }
+
+  /* Poređenje: lista 7 / aside 5 */
+  .compare-layout {
+    grid-template-columns: 7fr 5fr;
+    align-items: start;
+    gap: var(--space-7);
+  }
+
+  /* Područje: tekst i mapa jedno pored drugog (5/7 u korist mape) */
+  .area-layout {
+    grid-template-columns: 6fr 6fr;
+    align-items: center;
+    gap: var(--space-7);
+  }
+
+  .site-footer__grid {
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+  }
+}
+
+/* --- ≥1280px (desktop) ------------------------------------------------------------ */
+
+@media (min-width: 1280px) {
+  .hero__inner {
+    gap: var(--space-8);
+  }
+
+  .compare-cell {
+    padding: var(--space-5) var(--space-6);
+  }
+}
+
+/* --- ≥1440px (veliki desktop) -------------------------------------------------------- */
+
+@media (min-width: 1440px) {
+  /* Puna instrument kompozicija; hero ~90vh */
+  .hero {
+    min-height: min(90vh, 900px);
+  }
+
+  .hero__visual {
+    transform: none;
+  }
+
+  /* Instrument blago prelazi desnu ivicu kontejnera */
+  .instrument-panel {
+    max-width: 520px;
+    margin-right: calc(-1 * var(--space-6));
+  }
+}

@@ -64,6 +64,18 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 40 | JS moduli (`navigation`, `animations`, `hero-visual`, `utils`) kreirani kao dokumentovani stubovi sa no-op init funkcijama | Struktura po odgovornosti postavljena sad; markup od kog zavise nastaje u Fazi 5 | Prazni fajlovi bez dokumentovanih odgovornosti |
 | 41 | Sekcija Recenzije u skeletu nosi `hidden` atribut | Sprovodi odluku #18 na nivou koda — sekcija ne sme biti vidljiva bez stvarnih recenzija | Vidljiva prazna sekcija |
 
+## Faza 5 (2026-07-17)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 42 | Wordmark: Space Grotesk 700 + akcentna SVG „strujnica" (tri horizontalne linije u `--color-accent`); bez zasebne ikonice-loga | DESIGN_SYSTEM.md sekcija 16; strujnica nosi motiv hladnog vazduha unutar pravca A bez pahuljica | Puna ikonica-logo u ovoj fazi (odloženo do potvrde vlasnika pre Faze 10) |
+| 43 | Header desktop CTA koristi `button--tint` (ne primary); hero i sticky zadržavaju primary | DESIGN_SYSTEM.md §8: u jednom viewport-u najviše jedan primary; header CTA mora ostati vidljiv ali ne konkurisati hero dugmetu | Primary i u header-u i u hero-u istovremeno |
+| 44 | SVG ikone: stroke atributi (`currentColor`, 1.75, round) na geometriji unutar `<symbol>`, ne na `<use>` | `<use>` klonovi pouzdano nasleđuju presentation atribute; CSS na `use` nije konzistentan po browserima | Icon font ili eksterna biblioteka |
+| 45 | Hero instrument: statično idle stanje (18°C, kazaljka u OK zoni, statusi); bez GSAP | Faza 5 je statički dizajn; animacije su Faza 6 (ANIMATION_SYSTEM.md) | Delimični CSS keyframes za kazaljku (duplira posao Faze 6) |
+| 46 | Stilizovana SVG mapa područja sakrivena ispod 768px; lista mesta uvek vidljiva | CONTENT.md 15.8: na mobilnom lista ima prioritet; mapa je dekorativna (`aria-hidden`) | Google Maps embed; mapa obavezna na mobilnom |
+| 47 | Sticky mobilni CTA bar: vidljiv bez JS-a; sa JS-om `IntersectionObserver` ga skriva dok je hero CTA u viewportu | Progressive enhancement + CONTENT.md 15.13; slide animacija pojavljivanja ostaje za Fazu 6 | Bar uvek vidljiv (dvostruki CTA u hero viewportu) |
+| 48 | Placeholder fotografije = tamni paneli sa mono oznakom `Foto // {{PHOTO_*}}` i opisom iz CLIENT_DATA.md | DESIGN_SYSTEM.md §11; zabranjen stock | Generičke stock fotografije |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

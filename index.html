@@ -33,94 +33,603 @@
   </head>
 
   <body>
+    <!--
+      Inline SVG sprite (DESIGN_SYSTEM.md sekcija 10):
+      mreža 24×24, stroke 1.75, round cap/join, currentColor, bez fill-a.
+    -->
+    <svg class="svg-sprite" aria-hidden="true" focusable="false">
+      <!--
+        Outline icons (DESIGN_SYSTEM.md §10): stroke attrs on geometry so
+        <use> clones paint reliably; color via currentColor from parent.
+      -->
+      <defs>
+        <symbol id="icon-pin" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 21.5s-6.5-5.6-6.5-10.7A6.5 6.5 0 0 1 12 4.3a6.5 6.5 0 0 1 6.5 6.5c0 5.1-6.5 10.7-6.5 10.7Z" />
+          <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="10.8" r="2.2" />
+        </symbol>
+        <symbol id="icon-shield" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 2.8 19 5.6v5.3c0 4.4-2.9 7.7-7 9.5-4.1-1.8-7-5.1-7-9.5V5.6L12 2.8Z" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="m8.9 11.6 2.2 2.2 4-4.4" />
+        </symbol>
+        <symbol id="icon-gauge" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4.5 16.5a8 8 0 1 1 15 0" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 15.5 16 10" />
+          <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="15.5" r="1.4" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4.5 20h15" />
+        </symbol>
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M5.2 3.5h3.2a1 1 0 0 1 1 .8l.7 3.1a1 1 0 0 1-.4 1L7.6 10a13.4 13.4 0 0 0 6.4 6.4l1.6-2.1a1 1 0 0 1 1-.4l3.1.7a1 1 0 0 1 .8 1v3.2a1.6 1.6 0 0 1-1.8 1.6C10.6 19.6 4.4 13.4 3.6 5.3a1.6 1.6 0 0 1 1.6-1.8Z" />
+        </symbol>
+        <symbol id="icon-message" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v7a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4.5V16H6.5A2.5 2.5 0 0 1 4 13.5v-7Z" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M8.5 9h7M8.5 12h4.5" />
+        </symbol>
+        <symbol id="icon-vacuum" viewBox="0 0 24 24">
+          <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="12" cy="14.5" r="5.8" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 2.5v5.5" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="m9.6 5.7 2.4 2.3 2.4-2.3" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 12.2v4.6" />
+        </symbol>
+        <symbol id="icon-refill" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M10 6.5V4.5h4v2" />
+          <rect fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" x="7" y="6.5" width="10" height="14" rx="2" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M12 11v5M9.5 13.5h5" />
+        </symbol>
+        <symbol id="icon-uv" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M11 5.2s5 5.5 5 9.2a5 5 0 1 1-10 0c0-3.7 5-9.2 5-9.2Z" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M18.5 2.5v4M16.5 4.5h4" />
+        </symbol>
+        <symbol id="icon-wind" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M3 8h8.5a2.4 2.4 0 1 0-2.4-2.4" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M3 12h13.5a2.4 2.4 0 1 1-2.4 2.4" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M3 16h6.5a2 2 0 1 1-2 2" />
+        </symbol>
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+          <rect fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" x="4" y="6" width="16" height="14.5" rx="2" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M4 11h16M8.5 3.5V8M15.5 3.5V8" />
+        </symbol>
+        <symbol id="icon-van" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M2.5 8.5a1 1 0 0 1 1-1H13v8.5H2.5V8.5Z" />
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="M13 10h3.8l3.7 3.4V16H13v-6Z" />
+          <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="7" cy="17.8" r="1.9" />
+          <circle fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" cx="16.5" cy="17.8" r="1.9" />
+        </symbol>
+        <symbol id="icon-check" viewBox="0 0 24 24">
+          <path fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5" />
+        </symbol>
+      </defs>
+    </svg>
+
     <a class="skip-link" href="#pocetak">Preskoči na sadržaj</a>
 
     <header class="site-header">
-      <div class="container">
-        <!-- Wordmark: finalni logo se gradi u Fazi 5 (DESIGN_SYSTEM.md sekcija 16) -->
-        <a class="site-header__logo" href="#pocetak">MobilKlime</a>
+      <div class="container site-header__inner">
+        <!-- Wordmark (DESIGN_SYSTEM.md sekcija 16): Space Grotesk 700 + akcentna strujnica -->
+        <a class="wordmark" href="#pocetak" aria-label="MobilKlime — mobilni servis auto-klime">
+          <svg class="wordmark__mark" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
+            <path d="M2 3.5h13M6 8h16M2 12.5h11" />
+          </svg>
+          <span class="wordmark__text" aria-hidden="true">MobilKlime</span>
+        </a>
 
-        <nav class="site-header__nav" aria-label="Glavna navigacija">
-          <ul role="list">
-            <li><a href="#usluge">Usluge</a></li>
-            <li><a href="#kako-funkcionise">Kako funkcioniše</a></li>
-            <li><a href="#podrucje">Područje dolaska</a></li>
-            <li><a href="#pitanja">Česta pitanja</a></li>
+        <nav id="glavna-navigacija" class="site-nav" aria-label="Glavna navigacija">
+          <ul role="list" class="site-nav__list">
+            <li><a class="site-nav__link" href="#usluge">Usluge</a></li>
+            <li><a class="site-nav__link" href="#kako-funkcionise">Kako funkcioniše</a></li>
+            <li><a class="site-nav__link" href="#podrucje">Područje dolaska</a></li>
+            <li><a class="site-nav__link" href="#pitanja">Česta pitanja</a></li>
           </ul>
+          <!-- CTA unutar mobilnog panela menija -->
+          <a class="button button--primary site-nav__cta" href="tel:{{PHONE_NUMBER}}">
+            Pozovite {{PHONE_NUMBER}}
+          </a>
         </nav>
 
-        <a class="site-header__cta" href="tel:{{PHONE_NUMBER}}">Pozovite {{PHONE_NUMBER}}</a>
-        <!-- Mobilni meni (hamburger + tel ikona) se gradi u Fazi 5/7 (CONTENT.md 15.1) -->
+        <div class="site-header__actions">
+          <!-- Desktop CTA (CONTENT.md 17) -->
+          <a class="button button--tint site-header__cta" href="tel:{{PHONE_NUMBER}}">
+            Pozovite {{PHONE_NUMBER}}
+          </a>
+          <!-- Mobilno: tel ikona + hamburger (CONTENT.md 15.1) -->
+          <a class="icon-button site-header__tel" href="tel:{{PHONE_NUMBER}}" aria-label="Pozovite MobilKlime">
+            <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>
+          </a>
+          <button
+            class="icon-button nav-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="glavna-navigacija"
+            aria-label="Otvori meni"
+          >
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+            <span class="nav-toggle__bar" aria-hidden="true"></span>
+          </button>
+        </div>
       </div>
     </header>
 
     <main id="sadrzaj">
-      <!-- 2. Hero (CONTENT.md 15.2) — vizual „Dijagnostička tabla" se crta u Fazi 5 -->
+      <!-- 2. Hero (CONTENT.md 15.2, DESIGN_SYSTEM.md 12) — „Dijagnostička tabla", statično idle stanje -->
       <section id="pocetak" class="section hero" aria-labelledby="hero-naslov">
-        <div class="container container--wide">
-          <p class="mono-label hero__kicker">Mobilni servis auto-klime · Beograd i okolina</p>
-          <h1 id="hero-naslov">Servis auto-klime dolazi na vašu adresu</h1>
-          <p class="hero__lead">
-            Pregled, dijagnostika i servis klime na licu mesta — kod kuće, na poslu
-            ili na parkingu. Vi radite svoje, mi rešavamo klimu.
-            Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac.
-          </p>
-          <div class="hero__cta-group">
-            <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Pozovite {{PHONE_NUMBER}}</a>
-            <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+        <div class="container container--wide hero__inner">
+          <div class="hero__content">
+            <p class="mono-label hero__kicker">Mobilni servis auto-klime · Beograd i okolina</p>
+            <h1 id="hero-naslov">Servis auto-klime dolazi na vašu adresu</h1>
+            <p class="hero__lead">
+              Pregled, dijagnostika i servis klime na licu mesta — kod kuće, na poslu
+              ili na parkingu. Vi radite svoje, mi rešavamo klimu.
+              <span class="hero__places">Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac.</span>
+            </p>
+            <div class="hero__cta-group">
+              <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Pozovite {{PHONE_NUMBER}}</a>
+              <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+            </div>
+            <p class="hero__micro-trust">
+              Prvo pregled, pa dogovor — ništa se ne radi bez vaše saglasnosti.
+            </p>
+
+            <!-- Mobilna kompaktna readout traka (DESIGN_SYSTEM.md 12, ≤767px) -->
+            <div class="hero__readout-strip" aria-hidden="true">
+              <svg class="readout-strip__gauge" viewBox="0 0 64 40" focusable="false">
+                <path class="gauge-arc" d="M8 36a24 24 0 0 1 48 0" />
+                <path class="gauge-zone" d="M46.8 17.7a24 24 0 0 1 8.9 15" />
+                <line class="gauge-needle" x1="32" y1="36" x2="46.5" y2="24.5" />
+                <circle class="gauge-hub" cx="32" cy="36" r="2.5" />
+              </svg>
+              <div class="readout-strip__temp">
+                <span class="mono-label readout-strip__label">Temp. vazduha</span>
+                <span class="readout-number readout-strip__value">18°C</span>
+              </div>
+              <div class="readout-strip__status">
+                <span class="mono-label"><span class="status-dot status-dot--ok"></span>Pritisak: OK</span>
+                <span class="mono-label"><span class="status-dot status-dot--accent"></span>Sistem: hladi</span>
+              </div>
+            </div>
           </div>
-          <p class="hero__micro-trust">
-            Prvo pregled, pa dogovor — ništa se ne radi bez vaše saglasnosti.
-          </p>
-          <!-- SVG instrument kompozicija (manometar, readout 41°→18°, strujnice): Faza 5 -->
+
+          <!-- Instrument kompozicija (≥768px) — statično idle stanje; animacije: Faza 6 -->
+          <div class="hero__visual" aria-hidden="true">
+            <svg class="hero__flowlines" viewBox="0 0 320 220" focusable="false" preserveAspectRatio="none">
+              <path d="M320 40 C 230 55, 140 20, 0 52" />
+              <path d="M320 110 C 220 130, 130 95, 0 122" />
+              <path d="M320 180 C 240 195, 120 165, 0 188" />
+            </svg>
+            <div class="instrument-panel">
+              <div class="instrument-panel__head">
+                <span class="mono-label">Dijagnostika klime</span>
+                <span class="mono-label instrument-panel__unit">Jedinica MK-01</span>
+              </div>
+              <div class="instrument-panel__body">
+                <div class="instrument-panel__gauge">
+                  <svg viewBox="0 0 200 120" focusable="false">
+                    <path class="gauge-arc" d="M20 100 A 80 80 0 0 1 180 100" />
+                    <path class="gauge-zone" d="M153.5 40.5 A 80 80 0 0 1 179.2 88.9" />
+                    <g class="gauge-ticks">
+                      <line x1="30" y1="100" x2="21" y2="100" />
+                      <line x1="39.4" y1="65" x2="31.6" y2="60.5" />
+                      <line x1="65" y1="39.4" x2="60.5" y2="31.6" />
+                      <line x1="100" y1="30" x2="100" y2="21" />
+                      <line x1="135" y1="39.4" x2="139.5" y2="31.6" />
+                      <line x1="160.6" y1="65" x2="168.4" y2="60.5" />
+                      <line x1="170" y1="100" x2="179" y2="100" />
+                    </g>
+                    <line class="gauge-needle" x1="91" y1="104.4" x2="153.9" y2="73.7" />
+                    <circle class="gauge-hub" cx="100" cy="100" r="4" />
+                  </svg>
+                  <span class="mono-label instrument-panel__gauge-label">Pritisak · bar</span>
+                </div>
+                <div class="instrument-panel__readout">
+                  <span class="mono-label">Temperatura vazduha</span>
+                  <span class="readout-number instrument-readout__value">18<small>°C</small></span>
+                  <span class="mono-label instrument-readout__prev">Pre // 41°C</span>
+                </div>
+              </div>
+              <ul role="list" class="instrument-status">
+                <li class="mono-label"><span class="status-dot status-dot--ok"></span>Pritisak: OK</li>
+                <li class="mono-label"><span class="status-dot status-dot--accent"></span>Sistem: hladi</li>
+              </ul>
+              <p class="mono-label instrument-panel__foot">Mobilna jedinica · servis na adresi</p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- 3. Trust strip (CONTENT.md 15.3) — traka bez naslova; SVG ikone: Faza 5 -->
+      <!-- 3. Trust strip (CONTENT.md 15.3) — traka bez naslova -->
       <div class="trust-strip section--raised">
         <div class="container">
-          <ul role="list" aria-label="Zašto MobilKlime">
-            <li><strong>Dolazak na adresu</strong> — kod kuće, na poslu ili na parkingu</li>
-            <li><strong>Prvo pregled, pa dogovor</strong> — ništa bez vaše saglasnosti</li>
-            <li><strong>Profesionalna oprema na terenu</strong> — ista tehnologija kao u servisu</li>
-            <li><strong>Zakazivanje jednim pozivom</strong> — bez formi i čekanja</li>
+          <ul role="list" class="trust-strip__list" aria-label="Zašto MobilKlime">
+            <li class="trust-pill">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+              <span><strong>Dolazak na adresu</strong> — kod kuće, na poslu ili na parkingu</span>
+            </li>
+            <li class="trust-pill">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-shield" /></svg>
+              <span><strong>Prvo pregled, pa dogovor</strong> — ništa bez vaše saglasnosti</span>
+            </li>
+            <li class="trust-pill">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-gauge" /></svg>
+              <span><strong>Profesionalna oprema na terenu</strong> — ista tehnologija kao u servisu</span>
+            </li>
+            <li class="trust-pill">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>
+              <span><strong>Zakazivanje jednim pozivom</strong> — bez formi i čekanja</span>
+            </li>
           </ul>
         </div>
       </div>
 
-      <!-- 4. Problem i rešenje (CONTENT.md 15.4) — sadržaj i dizajn: Faza 5 -->
+      <!-- 4. Problem i rešenje (CONTENT.md 15.4) -->
       <section id="problem" class="section" aria-labelledby="problem-naslov">
         <div class="container">
-          <h2 id="problem-naslov">Klima duva, ali ne hladi?</h2>
+          <div class="section-split">
+            <div class="section-split__text">
+              <p class="mono-label section-kicker">01 // Problem i rešenje</p>
+              <h2 id="problem-naslov">Klima duva, ali ne hladi?</h2>
+              <p class="section-lead">
+                Najčešći problemi sa auto-klimom ne zahtevaju odlazak u radionicu.
+                Zahtevaju majstora sa pravom opremom — a on može da dođe kod vas.
+              </p>
+            </div>
+            <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_WORK_2}}) -->
+            <div class="photo-placeholder section-split__media">
+              <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_WORK_2}}</span>
+              <p class="photo-placeholder__desc">
+                Merenje pritiska / očitavanje dijagnostike tokom rada
+              </p>
+            </div>
+          </div>
+
+          <ul role="list" class="problem-pairs">
+            <li class="pair-card">
+              <div class="pair-card__problem">
+                <span class="mono-label pair-card__tag pair-card__tag--heat">Problem</span>
+                <h3>Slabo hladi ili duva topao vazduh</h3>
+              </div>
+              <div class="pair-card__solution">
+                <span class="mono-label pair-card__tag pair-card__tag--cold">Rešenje</span>
+                <p>
+                  Najčešće nedostaje gas. Merimo pritisak, vakuumiramo sistem i
+                  dopunjavamo gas na licu mesta.
+                </p>
+              </div>
+            </li>
+            <li class="pair-card">
+              <div class="pair-card__problem">
+                <span class="mono-label pair-card__tag pair-card__tag--heat">Problem</span>
+                <h3>Klima „ne drži" punjenje</h3>
+              </div>
+              <div class="pair-card__solution">
+                <span class="mono-label pair-card__tag pair-card__tag--cold">Rešenje</span>
+                <p>
+                  Sumnja na curenje. Dodajemo UV boju u sistem i otkrivamo gde gas
+                  izlazi — da problem rešite jednom, a ne svake sezone.
+                </p>
+              </div>
+            </li>
+            <li class="pair-card">
+              <div class="pair-card__problem">
+                <span class="mono-label pair-card__tag pair-card__tag--heat">Problem</span>
+                <h3>Neprijatan miris iz ventilacije</h3>
+              </div>
+              <div class="pair-card__solution">
+                <span class="mono-label pair-card__tag pair-card__tag--cold">Rešenje</span>
+                <p>Bakterije i buđ u sistemu. Radimo dezinfekciju i tretman mirisa.</p>
+              </div>
+            </li>
+          </ul>
+
+          <p class="problem-closing">
+            Sve ovo rešavamo na vašoj adresi. Ako pregled pokaže nešto što se ne rešava
+            na terenu, iskreno vam kažemo i posavetujemo šta dalje — ništa se ne radi
+            bez vašeg dogovora.
+          </p>
+          <a class="link-ghost" href="#kako-funkcionise">
+            Pogledajte kako funkcioniše <span class="link-ghost__arrow" aria-hidden="true">→</span>
+          </a>
         </div>
       </section>
 
-      <!-- 5. Usluge (CONTENT.md 15.5) — kartice 5 usluga: Faza 5 -->
+      <!-- 5. Usluge (CONTENT.md 15.5) -->
       <section id="usluge" class="section section--raised" aria-labelledby="usluge-naslov">
         <div class="container">
-          <h2 id="usluge-naslov">Šta radimo na licu mesta</h2>
+          <div class="section-split">
+            <div class="section-split__text">
+              <p class="mono-label section-kicker">02 // Usluge</p>
+              <h2 id="usluge-naslov">Šta radimo na licu mesta</h2>
+              <p class="section-lead">
+                Sve usluge obavljamo na vašoj adresi, profesionalnom servisnom opremom.
+              </p>
+            </div>
+            <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_EQUIPMENT}}) -->
+            <div class="photo-placeholder section-split__media">
+              <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_EQUIPMENT}}</span>
+              <p class="photo-placeholder__desc">
+                Krupan kadar profesionalne mašine za servis klime (manometri, creva, displej)
+              </p>
+            </div>
+          </div>
+
+          <ul role="list" class="services-grid">
+            <li class="service-card">
+              <div class="service-card__top">
+                <svg class="service-card__icon" width="32" height="32" aria-hidden="true" focusable="false">
+                  <use href="#icon-gauge" />
+                </svg>
+                <span class="mono-label service-card__num">01</span>
+              </div>
+              <h3>Dijagnostika auto-klime</h3>
+              <p>
+                Merenje pritiska i provera rada sistema. Prvo utvrdimo šta se dešava,
+                pa vam kažemo šta predlažemo — pre bilo kakvog rada.
+              </p>
+            </li>
+            <li class="service-card">
+              <div class="service-card__top">
+                <svg class="service-card__icon" width="32" height="32" aria-hidden="true" focusable="false">
+                  <use href="#icon-vacuum" />
+                </svg>
+                <span class="mono-label service-card__num">02</span>
+              </div>
+              <h3>Vakuumiranje sistema</h3>
+              <p>
+                Izvlačenje vazduha i vlage iz sistema pre punjenja. Obavezan korak za
+                ispravno punjenje koje traje.
+              </p>
+            </li>
+            <li class="service-card">
+              <div class="service-card__top">
+                <svg class="service-card__icon" width="32" height="32" aria-hidden="true" focusable="false">
+                  <use href="#icon-refill" />
+                </svg>
+                <span class="mono-label service-card__num">03</span>
+              </div>
+              <h3>Dopuna gasa</h3>
+              <p>Punjenje sistema tačnom količinom gasa prema specifikaciji vašeg vozila.</p>
+            </li>
+            <li class="service-card">
+              <div class="service-card__top">
+                <svg class="service-card__icon" width="32" height="32" aria-hidden="true" focusable="false">
+                  <use href="#icon-uv" />
+                </svg>
+                <span class="mono-label service-card__num">04</span>
+              </div>
+              <h3>Provera curenja UV bojom</h3>
+              <p>Ako sistem gubi gas, dodajemo UV boju koja otkriva mesto curenja.</p>
+            </li>
+            <li class="service-card">
+              <div class="service-card__top">
+                <svg class="service-card__icon" width="32" height="32" aria-hidden="true" focusable="false">
+                  <use href="#icon-wind" />
+                </svg>
+                <span class="mono-label service-card__num">05</span>
+              </div>
+              <h3>Dezinfekcija i uklanjanje mirisa</h3>
+              <p>
+                Tretman sistema ventilacije protiv bakterija i buđi — vazduh iz klime
+                bez neprijatnog mirisa.
+              </p>
+            </li>
+          </ul>
+
+          <div class="services-note">
+            <p>
+              Cena zavisi od vozila i vrste intervencije, zato ne objavljujemo fiksni cenovnik.
+              O svemu se dogovarate direktno sa majstorom — pre bilo kakvog rada.
+            </p>
+            <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Pozovite i opišite problem</a>
+          </div>
         </div>
       </section>
 
-      <!-- 6. Kako funkcioniše (CONTENT.md 15.6) — 4 koraka (timeline): Faza 5 -->
+      <!-- 6. Kako funkcioniše (CONTENT.md 15.6) — 4 koraka (timeline) -->
       <section id="kako-funkcionise" class="section" aria-labelledby="kako-naslov">
         <div class="container">
+          <p class="mono-label section-kicker">03 // Proces</p>
           <h2 id="kako-naslov">Kako funkcioniše</h2>
+
+          <ol role="list" class="steps">
+            <li class="step-card">
+              <span class="readout-number step-card__num" aria-hidden="true">01</span>
+              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                <use href="#icon-phone" />
+              </svg>
+              <h3>Javite se</h3>
+              <p>
+                Pozovite <a class="inline-tel" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+                ili pošaljite WhatsApp/Viber poruku. Recite gde se nalazite, koje je
+                vozilo i šta klima radi (ili ne radi).
+              </p>
+            </li>
+            <li class="step-card">
+              <span class="readout-number step-card__num" aria-hidden="true">02</span>
+              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                <use href="#icon-calendar" />
+              </svg>
+              <h3>Dogovorimo termin</h3>
+              <p>
+                Nađemo vreme i mesto koje vama odgovara — kod kuće, na poslu ili gde
+                je vozilo parkirano.
+              </p>
+            </li>
+            <li class="step-card">
+              <span class="readout-number step-card__num" aria-hidden="true">03</span>
+              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                <use href="#icon-van" />
+              </svg>
+              <h3>Dolazimo sa opremom</h3>
+              <p>
+                Majstor stiže na vašu adresu sa profesionalnom servisnom opremom i
+                pregleda klima sistem.
+              </p>
+            </li>
+            <li class="step-card">
+              <span class="readout-number step-card__num" aria-hidden="true">04</span>
+              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                <use href="#icon-shield" />
+              </svg>
+              <h3>Pregled, dogovor, rešenje</h3>
+              <p>
+                Posle pregleda znate šta je problem i šta predlažemo. Radimo tek kad
+                se dogovorimo — i klima ponovo hladi.
+              </p>
+            </li>
+          </ol>
+
+          <div class="cta-row">
+            <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Zakažite dolazak</a>
+            <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+          </div>
         </div>
       </section>
 
-      <!-- 7. Prednosti mobilnog servisa (CONTENT.md 15.7) — poređenje: Faza 5 -->
+      <!-- 7. Prednosti mobilnog servisa (CONTENT.md 15.7) — poređenje -->
       <section id="prednosti" class="section section--raised" aria-labelledby="prednosti-naslov">
         <div class="container">
+          <p class="mono-label section-kicker">04 // Poređenje</p>
           <h2 id="prednosti-naslov">Zašto mobilni servis</h2>
+
+          <div class="compare-layout">
+            <ul role="list" class="compare-list">
+              <li class="compare-pair">
+                <div class="compare-cell compare-cell--classic">
+                  <span class="mono-label compare-cell__tag">Klasičan servis</span>
+                  <p>Vozite auto sa neispravnom klimom po vrućini</p>
+                </div>
+                <div class="compare-cell compare-cell--mobil">
+                  <span class="mono-label compare-cell__tag">MobilKlime</span>
+                  <p>Majstor dolazi kod vas</p>
+                </div>
+              </li>
+              <li class="compare-pair">
+                <div class="compare-cell compare-cell--classic">
+                  <span class="mono-label compare-cell__tag">Klasičan servis</span>
+                  <p>Čekate u servisu ili ostavljate auto</p>
+                </div>
+                <div class="compare-cell compare-cell--mobil">
+                  <span class="mono-label compare-cell__tag">MobilKlime</span>
+                  <p>Radite svoje dok mi radimo</p>
+                </div>
+              </li>
+              <li class="compare-pair">
+                <div class="compare-cell compare-cell--classic">
+                  <span class="mono-label compare-cell__tag">Klasičan servis</span>
+                  <p>Problem vam prepričavaju naknadno</p>
+                </div>
+                <div class="compare-cell compare-cell--mobil">
+                  <span class="mono-label compare-cell__tag">MobilKlime</span>
+                  <p>Pregled i dogovor uz vas, na licu mesta</p>
+                </div>
+              </li>
+              <li class="compare-pair">
+                <div class="compare-cell compare-cell--classic">
+                  <span class="mono-label compare-cell__tag">Klasičan servis</span>
+                  <p>Profesionalna servisna oprema</p>
+                </div>
+                <div class="compare-cell compare-cell--mobil">
+                  <span class="mono-label compare-cell__tag">MobilKlime</span>
+                  <p>Ista takva oprema — dovezena na vašu adresu</p>
+                </div>
+              </li>
+            </ul>
+
+            <div class="compare-aside">
+              <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_VEHICLE}}) -->
+              <div class="photo-placeholder">
+                <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_VEHICLE}}</span>
+                <p class="photo-placeholder__desc">
+                  Servisno vozilo brenda na terenu, prepoznatljivo ali bez tablica
+                </p>
+              </div>
+              <p class="compare-closing">
+                Mobilni servis nije improvizacija — ista servisna tehnologija, samo
+                na vašoj adresi.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
-      <!-- 8. Područje dolaska (CONTENT.md 15.8) — SVG mapa: Faza 5 -->
+      <!-- 8. Područje dolaska (CONTENT.md 15.8) — stilizovana SVG mapa, ne Google Maps embed -->
       <section id="podrucje" class="section" aria-labelledby="podrucje-naslov">
         <div class="container">
-          <h2 id="podrucje-naslov">Gde dolazimo</h2>
-          <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+          <div class="area-layout">
+            <div class="area-text">
+              <p class="mono-label section-kicker">05 // Područje dolaska</p>
+              <h2 id="podrucje-naslov">Gde dolazimo</h2>
+              <p class="section-lead">Dolazimo na adresu u ovim mestima:</p>
+              <ul role="list" class="area-places">
+                <li class="place-pill">
+                  <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+                  Beograd
+                </li>
+                <li class="place-pill">
+                  <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+                  Lazarevac
+                </li>
+                <li class="place-pill">
+                  <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+                  Obrenovac
+                </li>
+                <li class="place-pill">
+                  <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+                  Aranđelovac
+                </li>
+                <li class="place-pill">
+                  <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-pin" /></svg>
+                  Lajkovac
+                </li>
+              </ul>
+              <p>
+                Niste na spisku ili ste negde između? Pozovite ili pošaljite poruku sa
+                lokacijom — odmah ćete znati da li dolazimo.
+              </p>
+              <div class="cta-row">
+                <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Proverite da li dolazimo kod vas</a>
+                <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+              </div>
+            </div>
+
+            <!-- Stilizovana mapa (dekorativna — sva mesta postoje kao tekst levo) -->
+            <div class="area-map" aria-hidden="true">
+              <svg viewBox="0 0 400 320" focusable="false">
+                <circle class="area-map__range" cx="262" cy="48" r="70" />
+                <circle class="area-map__range" cx="262" cy="48" r="150" />
+                <path
+                  class="area-map__route"
+                  d="M262 48 C 200 60, 120 80, 89 113 C 70 160, 55 200, 62 244 C 85 248, 108 244, 131 239 C 200 255, 280 262, 338 277"
+                />
+                <g class="area-map__node area-map__node--primary">
+                  <circle cx="262" cy="48" r="6" />
+                  <circle class="area-map__dot" cx="262" cy="48" r="2" />
+                </g>
+                <g class="area-map__node">
+                  <circle cx="89" cy="113" r="5" />
+                  <circle class="area-map__dot" cx="89" cy="113" r="1.8" />
+                </g>
+                <g class="area-map__node">
+                  <circle cx="62" cy="244" r="5" />
+                  <circle class="area-map__dot" cx="62" cy="244" r="1.8" />
+                </g>
+                <g class="area-map__node">
+                  <circle cx="131" cy="239" r="5" />
+                  <circle class="area-map__dot" cx="131" cy="239" r="1.8" />
+                </g>
+                <g class="area-map__node">
+                  <circle cx="338" cy="277" r="5" />
+                  <circle class="area-map__dot" cx="338" cy="277" r="1.8" />
+                </g>
+                <g class="area-map__labels">
+                  <text x="276" y="44">Beograd</text>
+                  <text x="101" y="105">Obrenovac</text>
+                  <text x="74" y="262">Lajkovac</text>
+                  <text x="143" y="228">Lazarevac</text>
+                  <text x="352" y="262" text-anchor="end">Aranđelovac</text>
+                </g>
+              </svg>
+              <span class="mono-label area-map__caption">Područje dolaska // 5 mesta</span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -131,55 +640,209 @@
       -->
       <section id="recenzije" class="section section--raised" aria-labelledby="recenzije-naslov" hidden>
         <div class="container">
+          <p class="mono-label section-kicker">Recenzije</p>
           <h2 id="recenzije-naslov">Šta kažu vozači</h2>
+          <!-- Kartice recenzija: {{GOOGLE_REVIEWS}} (ime, ocena, tekst — tačno kako stoji na Google-u) -->
+          <!-- Link: „Pogledajte sve recenzije na Google-u" → {{GOOGLE_REVIEWS_URL}} -->
         </div>
       </section>
 
-      <!-- 10. FAQ (CONTENT.md 15.10, 18) — nativni details/summary accordion (odluka Faze 4) -->
+      <!-- 10. FAQ (CONTENT.md 15.10, 18) — nativni details/summary accordion (odluka #36) -->
       <section id="pitanja" class="section" aria-labelledby="pitanja-naslov">
         <div class="container container--narrow">
+          <p class="mono-label section-kicker">06 // Pitanja</p>
           <h2 id="pitanja-naslov">Česta pitanja</h2>
-          <!-- Obrazac accordion-a; preostalih 8 pitanja iz CONTENT.md sekcije 18 se popunjava u Fazi 5 -->
-          <details class="faq-item">
-            <summary>
-              <h3>Da li je mobilni servis jednako kvalitetan kao klasičan servis?</h3>
-            </summary>
-            <p>
-              Da. Donosimo profesionalnu servisnu opremu — istu tehnologiju koja se koristi
-              u radionicama. Razlika je samo u tome gde se posao obavlja: umesto da vi
-              dođete u servis, servis dolazi kod vas.
-            </p>
-          </details>
+
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>
+                <h3>Da li je mobilni servis jednako kvalitetan kao klasičan servis?</h3>
+              </summary>
+              <p>
+                Da. Donosimo profesionalnu servisnu opremu — istu tehnologiju koja se koristi
+                u radionicama. Razlika je samo u tome gde se posao obavlja: umesto da vi
+                dođete u servis, servis dolazi kod vas.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Koliko košta servis klime?</h3>
+              </summary>
+              <p>
+                Cena zavisi od vozila i vrste intervencije, zato ne objavljujemo fiksni cenovnik.
+                Kada se javite, opišite problem — o ceni se dogovarate direktno sa majstorom,
+                pre dolaska i pre bilo kakvog rada. Bez skrivenih troškova.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Da li ćete mi naplatiti nešto što mi ne treba?</h3>
+              </summary>
+              <p>
+                Ne. Pravilo je jednostavno: prvo pregled, pa dogovor. Posle pregleda vam kažemo
+                šta smo našli i šta predlažemo — vi odlučujete da li se radi. Sve se dešava
+                pred vama, na vašoj adresi.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Da li dolazite u moje mesto?</h3>
+              </summary>
+              <p>
+                Dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Ako ste
+                u blizini nekog od ovih mesta, pozovite ili pošaljite poruku sa lokacijom —
+                odmah ćete dobiti odgovor.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Šta ako je kvar veći od dopune gasa?</h3>
+              </summary>
+              <p>
+                Na licu mesta radimo dijagnostiku, vakuumiranje, dopunu gasa, proveru curenja
+                UV bojom i dezinfekciju. Ako pregled pokaže problem koji se ne rešava na terenu,
+                iskreno vam to kažemo i posavetujemo šta dalje — nećete platiti intervenciju
+                koja problem ne rešava.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Da li su potrebni struja ili posebni uslovi na parkingu?</h3>
+              </summary>
+              <p>
+                Dovoljno je da vozilo bude parkirano tako da majstor može bezbedno da priđe
+                i radi. {{POWER_REQUIREMENT}} Ako niste sigurni za svoju lokaciju,
+                pomenite to u razgovoru prilikom zakazivanja.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Koji gas koristite? Da li to odgovara mom vozilu?</h3>
+              </summary>
+              <p>
+                {{GAS_TYPES}} Recite nam marku, model i godište vozila kada se javite —
+                odmah ćete znati da li možemo da servisiramo vaš sistem.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Koliko traje intervencija?</h3>
+              </summary>
+              <p>
+                Zavisi od vrste intervencije. Okvirno vreme dobijate u razgovoru prilikom
+                zakazivanja, kada opišete problem.
+              </p>
+            </details>
+            <details class="faq-item">
+              <summary>
+                <h3>Kako se zakazuje?</h3>
+              </summary>
+              <p>
+                Bez formi i naloga: pozovite
+                <a class="inline-tel" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+                ili pošaljite WhatsApp/Viber poruku. Javite gde se nalazite, koje je vozilo
+                i šta se dešava sa klimom — i dogovorite termin koji vam odgovara.
+              </p>
+            </details>
+          </div>
+
+          <p class="faq-cta">
+            Imate drugo pitanje? Pozovite
+            <a class="inline-tel" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a> ili
+            <a class="inline-tel" href="#kontakt">pošaljite poruku</a>.
+          </p>
         </div>
       </section>
 
-      <!-- 11. Završni CTA (CONTENT.md 15.11) — vizuelno najistaknutija sekcija: Faza 5 -->
-      <section id="kontakt" class="section section--raised" aria-labelledby="kontakt-naslov">
-        <div class="container container--wide">
+      <!-- 11. Završni CTA (CONTENT.md 15.11) — vizuelno najistaknutija sekcija -->
+      <section id="kontakt" class="section section--raised final-cta" aria-labelledby="kontakt-naslov">
+        <div class="container container--wide final-cta__inner">
+          <p class="mono-label section-kicker">07 // Kontakt</p>
           <h2 id="kontakt-naslov">Zakažite dolazak</h2>
-          <p>
+          <p class="section-lead final-cta__lead">
             Jedan poziv ili poruka — i klima je rešena na vašoj adresi.
             Recite gde ste, koje je vozilo i šta se dešava sa klimom.
           </p>
-          <a class="final-cta__phone readout-number" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
-          <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+
+          <a class="readout-number final-cta__phone" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+
+          <div class="final-cta__messages">
+            <a class="button button--secondary" href="https://wa.me/{{WHATSAPP_NUMBER}}">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-message" /></svg>
+              WhatsApp poruka
+            </a>
+            <a class="button button--secondary" href="viber://chat?number={{VIBER_NUMBER}}">
+              <svg width="24" height="24" aria-hidden="true" focusable="false"><use href="#icon-message" /></svg>
+              Viber poruka
+            </a>
+          </div>
+
+          <p class="mono-label final-cta__hours">Radno vreme // {{WORKING_HOURS}}</p>
+          <p class="mono-label final-cta__places">Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
         </div>
       </section>
     </main>
 
-    <!-- 12. Footer (CONTENT.md 15.12) — kolone i sadržaj: Faza 5 -->
+    <!-- 12. Footer (CONTENT.md 15.12) -->
     <footer class="site-footer">
       <div class="container">
-        <p><strong>MobilKlime</strong> — Mobilni servis auto-klime — dolazak na adresu.</p>
-        <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
-        <p>© <span id="footer-year">2026</span> MobilKlime</p>
+        <div class="site-footer__grid">
+          <div class="site-footer__brand">
+            <a class="wordmark" href="#pocetak" aria-label="MobilKlime — mobilni servis auto-klime">
+              <svg class="wordmark__mark" viewBox="0 0 22 16" aria-hidden="true" focusable="false">
+                <path d="M2 3.5h13M6 8h16M2 12.5h11" />
+              </svg>
+              <span class="wordmark__text" aria-hidden="true">MobilKlime</span>
+            </a>
+            <p>Mobilni servis auto-klime — dolazak na adresu.</p>
+          </div>
+
+          <nav class="site-footer__col" aria-label="Navigacija u podnožju">
+            <p class="mono-label site-footer__heading">Navigacija</p>
+            <ul role="list">
+              <li><a class="site-footer__link" href="#usluge">Usluge</a></li>
+              <li><a class="site-footer__link" href="#kako-funkcionise">Kako funkcioniše</a></li>
+              <li><a class="site-footer__link" href="#podrucje">Područje dolaska</a></li>
+              <li><a class="site-footer__link" href="#pitanja">Česta pitanja</a></li>
+            </ul>
+          </nav>
+
+          <div class="site-footer__col">
+            <p class="mono-label site-footer__heading">Kontakt</p>
+            <ul role="list">
+              <li><a class="site-footer__link" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a></li>
+              <li><a class="site-footer__link" href="https://wa.me/{{WHATSAPP_NUMBER}}">WhatsApp</a></li>
+              <li><a class="site-footer__link" href="viber://chat?number={{VIBER_NUMBER}}">Viber</a></li>
+              <li><a class="site-footer__link" href="mailto:{{EMAIL}}">{{EMAIL}}</a></li>
+            </ul>
+            <!-- Društvene mreže ({{INSTAGRAM_URL}}, {{FACEBOOK_URL}}): dodati samo ako postoje pre objave -->
+          </div>
+
+          <div class="site-footer__col">
+            <p class="mono-label site-footer__heading">Područje</p>
+            <p class="site-footer__area">Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+          </div>
+        </div>
+
+        <p class="site-footer__copy">© <span id="footer-year">2026</span> MobilKlime</p>
       </div>
     </footer>
 
     <!--
-      Sticky mobilni CTA bar (CONTENT.md 15.13): gradi se u Fazi 5,
-      ponašanje (pojavljivanje kad hero izađe iz viewporta) u Fazi 6/7.
+      Sticky mobilni CTA bar (CONTENT.md 15.13): vidljiv bez JS-a (fallback);
+      sa JS-om se prikazuje tek kada hero CTA izađe iz viewporta (navigation.js).
+      Slide animacija pojavljivanja: Faza 6.
     -->
+    <div class="sticky-cta" aria-label="Brzi kontakt">
+      <a class="button button--primary sticky-cta__button" href="tel:{{PHONE_NUMBER}}">
+        <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-phone" /></svg>
+        Pozovi
+      </a>
+      <a class="button button--secondary sticky-cta__button" href="#kontakt">
+        <svg width="20" height="20" aria-hidden="true" focusable="false"><use href="#icon-message" /></svg>
+        Poruka
+      </a>
+    </div>
 
     <script type="module" src="/src/js/main.js"></script>
   </body>
