@@ -13,7 +13,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 | 5 | Statički vizuelni dizajn | ✅ | Wordmark, kompletan copy, SVG HUD, sticky CTA; bez GSAP |
 | 6 | GSAP animacije i 3D efekti | ✅ | Hero intro + surgical scroll; bez pin/Three.js |
 | 7 | Responsive, pristupačnost i interakcije | ✅ | Fokus trap, sticky spacing, FAQ exclusive accordion |
-| 8 | SEO i lokalna optimizacija | ⬜ | GBP preporuka, JSON-LD bez izmišljenih podataka |
+| 8 | SEO i lokalna optimizacija | ✅ | Meta/OG/JSON-LD/robots/sitemap/cookie; GBP samo kao preporuka u docs |
 | 9 | Performance optimizacija | ⬜ | Lighthouse mobile 90+, budžeti u SEO_PERFORMANCE.md |
 | 10 | Finalni QA i priprema za objavljivanje | ⬜ | FINAL_QA.md, deploy na GitHub Pages |
 

@@ -1,0 +1,7 @@
+# GitHub Pages project site — path base /Klime/
+# Replace {{GITHUB_USERNAME}} before publish (see docs/CLIENT_DATA.md).
+
+User-agent: *
+Allow: /
+
+Sitemap: https://{{GITHUB_USERNAME}}.github.io/Klime/sitemap.xml

@@ -5,76 +5,76 @@
 
 ---
 
-## Poslednji chat: Faza 7 (2026-07-18)
+## Poslednji chat: Faza 8 (2026-07-18)
 
 ### Šta je završeno
 
-- Responsive audit 320–1920: bez horizontalnog overflow-a; grid `min-width: 0`;
-  instrument overflow clip na hero ≥1440
-- Mali mobilni (≤374px): readout sakriven + kompaktniji hero — oba CTA above the fold
-  na 320×568; tap targeti ≥44px (CTA/dugmad 48–52px)
-- Sticky CTA: `body` padding-bottom 80px + safe-area; `scroll-padding` na `html`;
-  sticky je `<nav aria-label="Brzi kontakt">`; ne postoji ≥1024
-- Fokus trap u mobilnom meniju: Tab ciklus (nav linkovi → tel → toggle);
-  `inert` na main/footer/sticky; wordmark van tab reda dok je otvoren;
-  Escape / klik linka / desktop breakpoint zatvaraju meni; fokus nazad na toggle
-- Focus ring: globalni `:focus-visible` + glow na dugmadima/nav/sticky;
-  FAQ summary focus-visible
-- Landmarki i naslovi: skip → `#sadrzaj` (`tabindex="-1"`); H1 + 8× H2 redosled;
-  sticky kao nav landmark
-- Interakcije: hover/focus-within na service/step/pair karticama; FAQ hover +
-  exclusive accordion (`name="faq"`); veći FAQ tap target (52px)
-- `prefers-reduced-motion`: sticky bez slide tranzicije (globalni kill + eksplicitno);
-  motion sistem Faze 6 netaknut
-- Copy (Faza 2) i kreativni pravac (Faza 3/5) nisu menjani; SEO nije dirao
+- Title + meta description (već iz Faze 2/4) potvrđeni; dodat canonical
+  `https://{{GITHUB_USERNAME}}.github.io/Klime/`
+- Open Graph + Twitter `summary_large_image` (CONTENT.md §19)
+- Favicon SVG „MK" (`public/favicon.svg`); OG image 1200×630 (`public/og-image.png`)
+- `public/robots.txt` + `public/sitemap.xml` za GitHub Pages putanju `/Klime/`
+- JSON-LD `@graph`: `AutoRepair` (areaServed = 5 mesta, makesOffer = 5 usluga)
+  + `FAQPage` (9 pitanja = vidljivi FAQ); bez address / ratings / priceRange / hours
+- Cookie consent banner (odluka #8): `cookie-consent.js` + stilovi; bez politike privatnosti;
+  analytics se ne učitava (`{{ANALYTICS_TOOL}}` neizabran)
+- GBP: dokumentovana preporuka u `docs/SEO_PERFORMANCE.md` (odluka #9) — bez izmišljenih podataka
+- Copy stranice nije menjan (samo SEO meta / JSON-LD); performance Faze 9 nije dirao
 
 ### Fajlovi kreirani
 
-- (nema)
+- `public/favicon.svg`
+- `public/og-image.png`
+- `public/robots.txt`
+- `public/sitemap.xml`
+- `src/js/modules/cookie-consent.js`
+- `scripts/generate-og-image.ps1` (util za regeneraciju OG slike)
 
 ### Fajlovi izmenjeni
 
-- `index.html` — skip → `#sadrzaj`, main `tabindex="-1"`, FAQ `name="faq"`,
-  sticky kao `<nav>`
-- `src/js/modules/navigation.js` — fokus trap, inert, restore focus
-- `src/styles/reset.css` — focus glow; reduced-motion sticky
-- `src/styles/layout.css` — scroll-padding; skip-link stil
-- `src/styles/components.css` — kartice hover/focus; FAQ UX
-- `src/styles/animations.css` — tranzicije za kartice/FAQ
-- `src/styles/sections.css` — sticky body padding 80px
-- `src/styles/responsive.css` — ≤374px hero kompaktnost; overflow guardovi
-- `package.json` — verzija `0.7.0`
-- `docs/DECISIONS.md` — odluke Faze 7 (#54–57)
-- `docs/ROADMAP.md` — Faza 7 ✅
+- `index.html` — canonical, OG/Twitter, favicon, JSON-LD, cookie banner markup
+- `src/js/main.js` — init cookie consent
+- `src/styles/components.css` — cookie consent stilovi
+- `package.json` — verzija `0.8.0`
+- `docs/CLIENT_DATA.md` — `{{GITHUB_USERNAME}}`; GBP napomena
+- `docs/SEO_PERFORMANCE.md` — SEO status + GBP preporuka
+- `docs/DECISIONS.md` — odluke Faze 8 (#58–62)
+- `docs/ROADMAP.md` — Faza 8 ✅
 - `docs/HANDOFF.md` — ovaj dokument
 
-### Ključne odluke Faze 7
+### Ključne odluke Faze 8
 
-- Fokus trap + inert bez dialog role (odluka #54)
-- FAQ exclusive preko `name="faq"` (odluka #55)
-- Sticky kao nav + scroll-padding (odluka #56)
-- ≤374px kompaktniji hero radi above-the-fold CTA (odluka #57)
+- GitHub Pages URL placeholder sa `{{GITHUB_USERNAME}}` (odluka #58)
+- AutoRepair + FAQPage bez izmišljenih schema polja (odluka #59)
+- MK favicon + minimal OG PNG (odluka #60)
+- Cookie banner bez privacy page / bez analytics skripte (odluka #61)
+- GBP samo kao docs preporuka (odluka #62)
 
 ### Šta NIJE završeno (namerno — pripada narednim fazama)
 
-- Canonical, Open Graph, favicon, robots.txt, sitemap, JSON-LD, cookie consent (Faza 8)
 - Performance finom podešavanje / Lighthouse (Faza 9)
-- Prave fotografije, brojevi, recenzije — i dalje placeholderi
+- Zamena svih `{{PLACEHOLDER}}` (telefon, gas, radno vreme, GitHub username, …)
+- Prave fotografije i OG image od `{{PHOTO_HERO_TECHNICIAN}}` kad stigne
+- Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
 - Finalni QA i deploy (Faza 10)
+- Ručno kreiranje Google Business Profile (van koda)
 
 ### Poznati problemi / otvorena pitanja
 
 - Fontovi zbirno ~186 KB — cilj ≤160 KB; rešava se u Fazi 9 ako Lighthouse traži
 - Svi `{{PLACEHOLDER}}` čekaju stvarne vrednosti (CONTENT.md sekcija 21)
+- `{{GITHUB_USERNAME}}` mora biti zamenjen u HTML + robots + sitemap pre objave
 - Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
 - GitHub repo još nije kreiran/povezan — ime mora biti **Klime** (`base: '/Klime/'`)
 - Service-card ikone: scale/fade umesto pravog SVG stroke line-draw (sprite `<use>` ograničenje)
 - Konačan logo potvrditi sa vlasnikom pre Faze 10
 - FAQ `name` exclusive: stariji browseri zadržavaju multi-open (prihvatljiv fallback)
+- Cookie banner zahteva JS za dismiss; bez JS ostaje sakriven (`hidden` default) —
+  prihvatljivo jer analytics ionako zahteva JS
 
 ### Sledeća faza
 
-**Faza 8 — SEO i lokalna optimizacija**
+**Faza 9 — Performance optimizacija**
 
 ### Prompt za sledeći chat
 
@@ -92,19 +92,18 @@ Pročitaj sledeće fajlove pre bilo kakve izmene:
 - docs/DECISIONS.md
 - docs/HANDOFF.md
 
-Trenutna faza je Faza 8: SEO i lokalna optimizacija.
+Trenutna faza je Faza 9: Performance optimizacija.
 
 Zadaci:
-1. Title, meta description, canonical (GitHub Pages URL placeholder), Open Graph,
-   Twitter card, favicon (MK inicijali po DESIGN_SYSTEM.md §16).
-2. robots.txt + sitemap.xml za GitHub Pages putanju `/Klime/`.
-3. JSON-LD: LocalBusiness / AutoRepair podtip — serviceArea (5 mesta), bez address,
-   bez izmišljenih aggregateRating / priceRange / openingHoursSpecification.
-   Opciono FAQPage od FAQ copy-ja. Structured data mora da odgovara vidljivom sadržaju.
-4. Cookie consent (odluka #8: DA, bez stranice politike privatnosti).
-5. GBP preporuka kao napomena u dokumentaciji (odluka #9) — ne izmišljati podatke.
-6. Ne diraj copy osim SEO meta/JSON-LD; ne radi performance Faze 9.
+1. Lighthouse mobile cilj 90+ (Performance); Accessibility / Best Practices / SEO 95+
+   gde je u okviru ove faze.
+2. Poštuj budžete iz docs/SEO_PERFORMANCE.md (initial transfer, fontovi, slike).
+3. Optimizuj fontove, JS (GSAP), CSS, slike/asset pipeline — bez menjanja copy-ja
+   i bez redizajna.
+4. Proveri CLS (width/height, font-display), lazy-load ispod fold-a, bez blokirajućih
+   eksternih resursa.
+5. Ne započinji Fazu 10 (finalni QA / deploy).
 
 Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
-git commit -am "phase 08: SEO and local optimization"
+git commit -am "phase 09: performance optimization"
 ```

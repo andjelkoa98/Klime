@@ -84,7 +84,8 @@ Nepotvrđeno (⬜ — ne navoditi kao činjenicu dok se ne potvrdi):
 | Garancija/reklamacija | `{{WARRANTY_TERMS}}` | ⬜ |
 | Google recenzije | POSTOJE (klijent ih ima) — tekstovi: `{{GOOGLE_REVIEWS}}` | 🟡 postojanje potvrđeno, sadržaj nepoznat |
 | Link na Google recenzije | `{{GOOGLE_REVIEWS_URL}}` | ⬜ |
-| Google Business Profile | preskočeno za sad, razmatra se u Fazi 8 | 🟡 |
+| Google Business Profile | nema potvrđenih podataka za unos — vidi preporuku u `docs/SEO_PERFORMANCE.md` § GBP | 🟡 |
+| GitHub username (Pages) | `{{GITHUB_USERNAME}}` — za canonical, OG, robots, sitemap (`https://{{GITHUB_USERNAME}}.github.io/Klime/`) | ⬜ |
 
 ## Fotografije
 

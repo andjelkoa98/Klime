@@ -95,6 +95,16 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 56 | Sticky CTA je `<nav aria-label="Brzi kontakt">`; `body` padding-bottom 80px + `scroll-padding` na `html` (top 72 / bottom 80 mobilno) | Landmark za brzi kontakt; sticky bar ne prekriva kritičan tekst ni anchor skokove | Floating dugme van navigacionog landmarka |
 | 57 | Na ≤374px: readout traka sakrivena + kompaktniji hero ritam (manji H1 clamp, kraći lead/CTA razmaci) da oba CTA stanu above the fold | DESIGN_SYSTEM.md §12 + CONTENT.md 15.2; verifikovano na 320×568 | Sakrivanje supporting teksta ili skraćivanje copy-ja |
 
+## Faza 8 (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 58 | Canonical / OG / Twitter / robots / sitemap koriste placeholder `https://{{GITHUB_USERNAME}}.github.io/Klime/` | Repo još nije povezan; base `/Klime/` je potvrđen (odluka #35); zabranjeno izmišljanje username-a | Hardkodovan lažni github.io nalog |
+| 59 | JSON-LD `@graph`: `AutoRepair` + `FAQPage`; `areaServed` = 5 gradova; `makesOffer` = 5 potvrđenih usluga; telefon i FAQ placeholderi kao na stranici | Structured data mora da odgovara vidljivom sadržaju (SEO_PERFORMANCE.md); AutoRepair je LocalBusiness podtip | `address` / `aggregateRating` / `priceRange` / `openingHoursSpecification` (podaci nepostoje) |
+| 60 | Favicon = SVG „MK" na `--color-bg` sa akcentom; OG image = 1200×630 PNG (wordmark + „Dolazak na adresu") | DESIGN_SYSTEM.md §16 + CONTENT.md §19 | Stock fotografija; tekstualno nabijanje ključnih reči na OG slici |
+| 61 | Cookie consent: fiksni banner + `localStorage` (`mobilklime-cookie-consent`); bez linka na politiku privatnosti; bez učitavanja analytics skripte | Odluka #8; `{{ANALYTICS_TOOL}}` još nije izabran — banner samo beleži pristanak za buduće povezivanje | Stranica politike privatnosti; cookie biblioteka treće strane |
+| 62 | GBP: samo dokumentovana preporuka u `SEO_PERFORMANCE.md` (bez koda, bez izmišljenih podataka) | Odluka #9 — vlasnik nije siguran; profil se radi ručno kad stignu stvarni podaci | Schema.org polja ili UI blokovi za nepostojeći GBP |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

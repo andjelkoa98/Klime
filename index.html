@@ -10,7 +10,163 @@
       content="Mobilni servis auto-klime — dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Pregled i dogovor na licu mesta. Pozovite ili pošaljite poruku."
     />
     <meta name="theme-color" content="#0B0F14" />
-    <!-- Canonical, Open Graph, favicon, JSON-LD: Faza 8 (docs/CONTENT.md 16, 19) -->
+
+    <!-- Canonical + social (CONTENT.md §16, §19). Replace {{GITHUB_USERNAME}} before publish. -->
+    <link rel="canonical" href="https://{{GITHUB_USERNAME}}.github.io/Klime/" />
+    <link rel="icon" href="/Klime/favicon.svg" type="image/svg+xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="sr_RS" />
+    <meta property="og:site_name" content="MobilKlime" />
+    <meta property="og:title" content="MobilKlime — servis auto-klime na vašoj adresi" />
+    <meta
+      property="og:description"
+      content="Dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Pregled i dogovor na licu mesta — zakazivanje jednim pozivom ili porukom."
+    />
+    <meta property="og:url" content="https://{{GITHUB_USERNAME}}.github.io/Klime/" />
+    <meta property="og:image" content="https://{{GITHUB_USERNAME}}.github.io/Klime/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="Majstor MobilKlime servisira auto-klimu na adresi korisnika"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="MobilKlime — servis auto-klime na vašoj adresi" />
+    <meta
+      name="twitter:description"
+      content="Dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Pregled i dogovor na licu mesta — zakazivanje jednim pozivom ili porukom."
+    />
+    <meta name="twitter:image" content="https://{{GITHUB_USERNAME}}.github.io/Klime/og-image.png" />
+    <meta
+      name="twitter:image:alt"
+      content="Majstor MobilKlime servisira auto-klimu na adresi korisnika"
+    />
+
+    <!-- JSON-LD: AutoRepair + FAQPage — only facts that match visible content; no address / ratings / hours / priceRange -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "AutoRepair",
+            "@id": "https://{{GITHUB_USERNAME}}.github.io/Klime/#business",
+            "name": "MobilKlime",
+            "description": "Mobilni servis auto-klime — dolazak na adresu",
+            "url": "https://{{GITHUB_USERNAME}}.github.io/Klime/",
+            "telephone": "{{PHONE_NUMBER}}",
+            "areaServed": [
+              { "@type": "City", "name": "Beograd" },
+              { "@type": "City", "name": "Lazarevac" },
+              { "@type": "City", "name": "Obrenovac" },
+              { "@type": "City", "name": "Aranđelovac" },
+              { "@type": "City", "name": "Lajkovac" }
+            ],
+            "makesOffer": [
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Dijagnostika auto-klime" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Vakuumiranje sistema" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Dopuna gasa" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Provera curenja UV bojom" }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": { "@type": "Service", "name": "Dezinfekcija i uklanjanje mirisa" }
+              }
+            ]
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://{{GITHUB_USERNAME}}.github.io/Klime/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Da li je mobilni servis jednako kvalitetan kao klasičan servis?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Da. Donosimo profesionalnu servisnu opremu — istu tehnologiju koja se koristi u radionicama. Razlika je samo u tome gde se posao obavlja: umesto da vi dođete u servis, servis dolazi kod vas."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Koliko košta servis klime?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Cena zavisi od vozila i vrste intervencije, zato ne objavljujemo fiksni cenovnik. Kada se javite, opišite problem — o ceni se dogovarate direktno sa majstorom, pre dolaska i pre bilo kakvog rada. Bez skrivenih troškova."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Da li ćete mi naplatiti nešto što mi ne treba?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Ne. Pravilo je jednostavno: prvo pregled, pa dogovor. Posle pregleda vam kažemo šta smo našli i šta predlažemo — vi odlučujete da li se radi. Sve se dešava pred vama, na vašoj adresi."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Da li dolazite u moje mesto?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Ako ste u blizini nekog od ovih mesta, pozovite ili pošaljite poruku sa lokacijom — odmah ćete dobiti odgovor."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Šta ako je kvar veći od dopune gasa?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Na licu mesta radimo dijagnostiku, vakuumiranje, dopunu gasa, proveru curenja UV bojom i dezinfekciju. Ako pregled pokaže problem koji se ne rešava na terenu, iskreno vam to kažemo i posavetujemo šta dalje — nećete platiti intervenciju koja problem ne rešava."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Da li su potrebni struja ili posebni uslovi na parkingu?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Dovoljno je da vozilo bude parkirano tako da majstor može bezbedno da priđe i radi. {{POWER_REQUIREMENT}} Ako niste sigurni za svoju lokaciju, pomenite to u razgovoru prilikom zakazivanja."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Koji gas koristite? Da li to odgovara mom vozilu?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "{{GAS_TYPES}} Recite nam marku, model i godište vozila kada se javite — odmah ćete znati da li možemo da servisiramo vaš sistem."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Koliko traje intervencija?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Zavisi od vrste intervencije. Okvirno vreme dobijate u razgovoru prilikom zakazivanja, kada opišete problem."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Kako se zakazuje?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Bez formi i naloga: pozovite {{PHONE_NUMBER}} ili pošaljite WhatsApp/Viber poruku. Javite gde se nalazite, koje je vozilo i šta se dešava sa klimom — i dogovorite termin koji vam odgovara."
+                }
+              }
+            ]
+          }
+        ]
+      }
+    </script>
 
     <!-- Kritični fontovi above the fold (docs/DESIGN_SYSTEM.md sekcija 4) -->
     <link
@@ -859,6 +1015,31 @@
         Poruka
       </a>
     </nav>
+
+    <!--
+      Cookie consent (odluka #8): DA, bez linka na politiku privatnosti.
+      Preference se čuva u localStorage; analytics alat još nije izabran ({{ANALYTICS_TOOL}}).
+    -->
+    <div
+      class="cookie-consent"
+      id="cookie-consent"
+      role="dialog"
+      aria-labelledby="cookie-consent-title"
+      aria-describedby="cookie-consent-desc"
+      hidden
+    >
+      <div class="cookie-consent__inner">
+        <div class="cookie-consent__copy">
+          <p id="cookie-consent-title" class="cookie-consent__title">Kolačići</p>
+          <p id="cookie-consent-desc" class="cookie-consent__text">
+            Ovaj sajt može da koristi kolačiće radi analitike kada se alat poveže.
+          </p>
+        </div>
+        <button type="button" class="button button--primary cookie-consent__accept" id="cookie-consent-accept">
+          Prihvatam
+        </button>
+      </div>
+    </div>
 
     <script type="module" src="/src/js/main.js"></script>
   </body>
