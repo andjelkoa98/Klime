@@ -1,6 +1,7 @@
 /* ==========================================================================
-   typography.css — @font-face (local woff2, latin + latin-ext subset)
+   typography.css — @font-face (local woff2, site-glyph subset)
    and base type rules. Spec: docs/DESIGN_SYSTEM.md section 4.
+   Fonts rebuilt via `npm run fonts:subset` (≤160 KB total).
    Preload for Space Grotesk 700 and Inter 400 lives in index.html.
    ========================================================================== */
 

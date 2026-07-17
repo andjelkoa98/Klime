@@ -14,7 +14,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 | 6 | GSAP animacije i 3D efekti | ✅ | Hero intro + surgical scroll; bez pin/Three.js |
 | 7 | Responsive, pristupačnost i interakcije | ✅ | Fokus trap, sticky spacing, FAQ exclusive accordion |
 | 8 | SEO i lokalna optimizacija | ✅ | Meta/OG/JSON-LD/robots/sitemap/cookie; GBP samo kao preporuka u docs |
-| 9 | Performance optimizacija | ⬜ | Lighthouse mobile 90+, budžeti u SEO_PERFORMANCE.md |
+| 9 | Performance optimizacija | ✅ | Lighthouse mobile 98 / A11y 96 / BP 100 / SEO 100; font subset + GSAP chunk |
 | 10 | Finalni QA i priprema za objavljivanje | ⬜ | FINAL_QA.md, deploy na GitHub Pages |
 
 ## Šta blokira koje faze

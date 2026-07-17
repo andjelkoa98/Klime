@@ -5,76 +5,73 @@
 
 ---
 
-## Poslednji chat: Faza 8 (2026-07-18)
+## Poslednji chat: Faza 9 (2026-07-18)
 
 ### Šta je završeno
 
-- Title + meta description (već iz Faze 2/4) potvrđeni; dodat canonical
-  `https://{{GITHUB_USERNAME}}.github.io/Klime/`
-- Open Graph + Twitter `summary_large_image` (CONTENT.md §19)
-- Favicon SVG „MK" (`public/favicon.svg`); OG image 1200×630 (`public/og-image.png`)
-- `public/robots.txt` + `public/sitemap.xml` za GitHub Pages putanju `/Klime/`
-- JSON-LD `@graph`: `AutoRepair` (areaServed = 5 mesta, makesOffer = 5 usluga)
-  + `FAQPage` (9 pitanja = vidljivi FAQ); bez address / ratings / priceRange / hours
-- Cookie consent banner (odluka #8): `cookie-consent.js` + stilovi; bez politike privatnosti;
-  analytics se ne učitava (`{{ANALYTICS_TOOL}}` neizabran)
-- GBP: dokumentovana preporuka u `docs/SEO_PERFORMANCE.md` (odluka #9) — bez izmišljenih podataka
-- Copy stranice nije menjan (samo SEO meta / JSON-LD); performance Faze 9 nije dirao
+- Font glyph subset (`scripts/subset-fonts.mjs`, `npm run fonts:subset`):
+  6 woff2 → ~63 KB zbirno (cilj ≤160 KB); `font-display: swap` + preload ATF fontova
+- GSAP/motion code-split: entry JS ~4 KB; `gsap` + `motion` async chunk-ovi
+- Vite build: `cssCodeSplit: false`, bez modulepreload polyfill-a, manualChunks
+- CLS provera: photo placeholderi sa `aspect-ratio` + `width: 100%`; pipeline napomena
+  za buduće slike (`width`/`height`, `loading="lazy"` ispod fold-a)
+- Bez blokirajućih eksternih resursa (sve lokalno)
+- Lighthouse mobile (`vite preview` `/Klime/`): Performance **98**, Accessibility **96**,
+  Best Practices **100**, SEO **100**; network ~132 KiB
+- Copy i vizuelni dizajn nisu menjani
 
 ### Fajlovi kreirani
 
-- `public/favicon.svg`
-- `public/og-image.png`
-- `public/robots.txt`
-- `public/sitemap.xml`
-- `src/js/modules/cookie-consent.js`
-- `scripts/generate-og-image.ps1` (util za regeneraciju OG slike)
+- `scripts/subset-fonts.mjs`
 
 ### Fajlovi izmenjeni
 
-- `index.html` — canonical, OG/Twitter, favicon, JSON-LD, cookie banner markup
-- `src/js/main.js` — init cookie consent
-- `src/styles/components.css` — cookie consent stilovi
-- `package.json` — verzija `0.8.0`
-- `docs/CLIENT_DATA.md` — `{{GITHUB_USERNAME}}`; GBP napomena
-- `docs/SEO_PERFORMANCE.md` — SEO status + GBP preporuka
-- `docs/DECISIONS.md` — odluke Faze 8 (#58–62)
-- `docs/ROADMAP.md` — Faza 8 ✅
+- `src/assets/fonts/*.woff2` — glyph subset
+- `src/js/main.js` — dinamički import motion/GSAP
+- `vite.config.js` — chunking + build opcije
+- `src/styles/typography.css` — napomena o subset pipeline-u
+- `src/styles/components.css` — CLS napomena na photo placeholder
+- `index.html` — komentari (preload / bez CDN)
+- `package.json` — `0.9.0`, skripta `fonts:subset`, devDep `subset-font`
+- `package-lock.json`
+- `docs/SEO_PERFORMANCE.md` — status + mereni rezultati
+- `docs/DECISIONS.md` — odluke Faze 9 (#63–66)
+- `docs/ROADMAP.md` — Faza 9 ✅
 - `docs/HANDOFF.md` — ovaj dokument
 
-### Ključne odluke Faze 8
+### Ključne odluke Faze 9
 
-- GitHub Pages URL placeholder sa `{{GITHUB_USERNAME}}` (odluka #58)
-- AutoRepair + FAQPage bez izmišljenih schema polja (odluka #59)
-- MK favicon + minimal OG PNG (odluka #60)
-- Cookie banner bez privacy page / bez analytics skripte (odluka #61)
-- GBP samo kao docs preporuka (odluka #62)
+- Glyph subset umesto skidanja težina fontova (odluka #63)
+- Dinamički import GSAP/motion, bez idle odlaganja intro-a (odluka #64)
+- Vite chunk/CSS/modulePreload podešavanja (odluka #65)
+- Bez `content-visibility` zbog ScrollTrigger (odluka #66)
 
 ### Šta NIJE završeno (namerno — pripada narednim fazama)
 
-- Performance finom podešavanje / Lighthouse (Faza 9)
+- Finalni QA, `FINAL_QA.md`, deploy na GitHub Pages (Faza 10)
 - Zamena svih `{{PLACEHOLDER}}` (telefon, gas, radno vreme, GitHub username, …)
-- Prave fotografije i OG image od `{{PHOTO_HERO_TECHNICIAN}}` kad stigne
+- Prave fotografije (AVIF/WebP + `srcset`) i OG od `{{PHOTO_HERO_TECHNICIAN}}`
 - Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
-- Finalni QA i deploy (Faza 10)
 - Ručno kreiranje Google Business Profile (van koda)
 
 ### Poznati problemi / otvorena pitanja
 
-- Fontovi zbirno ~186 KB — cilj ≤160 KB; rešava se u Fazi 9 ako Lighthouse traži
+- Lighthouse color-contrast na dekorativnim `aria-hidden` mono oznakama u readout
+  traci (`--color-text-faint` na panel pozadini, 4.21:1); A11y skor i dalje 96+
+- Posle izmene copy-ja / novih karaktera: ponovo `npm run fonts:subset`
+  (izvor za pun re-subset: `tmp-fonts/` gwfh zip-ovi ako treba restore)
 - Svi `{{PLACEHOLDER}}` čekaju stvarne vrednosti (CONTENT.md sekcija 21)
 - `{{GITHUB_USERNAME}}` mora biti zamenjen u HTML + robots + sitemap pre objave
 - Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
 - GitHub repo još nije kreiran/povezan — ime mora biti **Klime** (`base: '/Klime/'`)
-- Service-card ikone: scale/fade umesto pravog SVG stroke line-draw (sprite `<use>` ograničenje)
+- Service-card ikone: scale/fade umesto pravog SVG stroke line-draw (sprite `<use>`)
 - Konačan logo potvrditi sa vlasnikom pre Faze 10
 - FAQ `name` exclusive: stariji browseri zadržavaju multi-open (prihvatljiv fallback)
-- Cookie banner zahteva JS za dismiss; bez JS ostaje sakriven (`hidden` default) —
-  prihvatljivo jer analytics ionako zahteva JS
+- Cookie banner zahteva JS za dismiss; bez JS ostaje sakriven — prihvatljivo
 
 ### Sledeća faza
 
-**Faza 9 — Performance optimizacija**
+**Faza 10 — Finalni QA i priprema za objavljivanje**
 
 ### Prompt za sledeći chat
 
@@ -92,18 +89,16 @@ Pročitaj sledeće fajlove pre bilo kakve izmene:
 - docs/DECISIONS.md
 - docs/HANDOFF.md
 
-Trenutna faza je Faza 9: Performance optimizacija.
+Trenutna faza je Faza 10: Finalni QA i priprema za objavljivanje.
 
 Zadaci:
-1. Lighthouse mobile cilj 90+ (Performance); Accessibility / Best Practices / SEO 95+
-   gde je u okviru ove faze.
-2. Poštuj budžete iz docs/SEO_PERFORMANCE.md (initial transfer, fontovi, slike).
-3. Optimizuj fontove, JS (GSAP), CSS, slike/asset pipeline — bez menjanja copy-ja
-   i bez redizajna.
-4. Proveri CLS (width/height, font-display), lazy-load ispod fold-a, bez blokirajućih
-   eksternih resursa.
-5. Ne započinji Fazu 10 (finalni QA / deploy).
-
-Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
-git commit -am "phase 09: performance optimization"
+1. Napravi docs/FINAL_QA.md sa checklistom (funkcionalnost, a11y, SEO, performance,
+   placeholderi, pregled na breakpointima).
+2. Prođi QA checklistu na build/preview verziji; zabeleži prolaze i otvorene stavke.
+3. Pripremi deploy na GitHub Pages (Vite base '/Klime/' već podešen) — bez forsiranja
+   push-a ako repo/remote još nije spreman; dokumentuj tačne korake.
+4. Ne zamenjuj {{PLACEHOLDER}} izmišljenim podacima; nabroji šta klijent mora da
+   popuni pre javnog objavljivanja.
+5. Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
+   git commit -am "phase 10: final QA and publish prep"
 ```

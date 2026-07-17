@@ -4,6 +4,10 @@
  * CSS is linked directly from index.html (not imported here) so the page
  * stays styled and readable without JavaScript (progressive enhancement).
  *
+ * Critical path: navigation + cookie consent (no GSAP).
+ * Motion (GSAP + ScrollTrigger + hero intro) loads as a deferred chunk so
+ * initial JS stays small — Phase 9 performance budget.
+ *
  * Module responsibilities:
  *  - navigation.js     → mobile menu, header scroll state, sticky CTA
  *  - animations.js     → GSAP + ScrollTrigger registration (once) + scroll motion
@@ -13,11 +17,23 @@
  */
 
 import { initNavigation } from './modules/navigation.js';
-import { initAnimations } from './modules/animations.js';
-import { initHeroVisual } from './modules/hero-visual.js';
 import { initCookieConsent } from './modules/cookie-consent.js';
 
 initNavigation();
-initAnimations();
-initHeroVisual();
 initCookieConsent();
+
+/**
+ * Start GSAP chunk immediately (async) so hero intro still runs near first paint,
+ * without blocking parse/eval of the critical entry bundle.
+ */
+function initMotion() {
+  return Promise.all([
+    import('./modules/animations.js'),
+    import('./modules/hero-visual.js'),
+  ]).then(([{ initAnimations }, { initHeroVisual }]) => {
+    initAnimations();
+    initHeroVisual();
+  });
+}
+
+void initMotion();

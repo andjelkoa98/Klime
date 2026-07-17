@@ -1,22 +1,32 @@
 # SEO_PERFORMANCE.md — SEO i performance
 
-> **Status: SEO IMPLEMENTIRAN u Fazi 8 (2026-07-18). Performance = Faza 9.**
+> **Status: SEO + PERFORMANCE IMPLEMENTIRANI (Faza 8 + 9, 2026-07-18).**
 
 ## Performance budžet (ciljevi projekta, ne garancije)
 
-| Metrika | Cilj |
-|---|---|
-| Lighthouse Performance (mobile) | 90+ |
-| Lighthouse Accessibility | 95+ |
-| Lighthouse Best Practices | 95+ |
-| Lighthouse SEO | 95+ |
-| Initial transfer (desktop) | ≤ 1.5 MB |
-| Initial transfer (mobile) | ≤ 1 MB |
-| Hero slika (desktop) | ~250 KB |
-| Hero slika (mobile) | ~150 KB |
+| Metrika | Cilj | Faza 9 (mereno) |
+|---|---|---|
+| Lighthouse Performance (mobile) | 90+ | **98** |
+| Lighthouse Accessibility | 95+ | **96** |
+| Lighthouse Best Practices | 95+ | **100** |
+| Lighthouse SEO | 95+ | **100** |
+| Initial transfer (desktop) | ≤ 1.5 MB | ~0.3 MB dist ukupno |
+| Initial transfer (mobile) | ≤ 1 MB | ~132 KiB network (Lighthouse) |
+| Hero slika (desktop) | ~250 KB | N/A — SVG HUD, bez hero fotografije |
+| Hero slika (mobile) | ~150 KB | N/A — kompaktna readout traka |
 
 Bez: autoplay videa, blokirajućih eksternih fontova, nepotrebnih JS biblioteka,
 CLS-a izazvanog slikama i fontovima.
+
+### Performance mere (Faza 9)
+
+- Fontovi: lokalni woff2, `font-display: swap`, preload Space Grotesk 700 + Inter 400;
+  glyph subset (`npm run fonts:subset`) → ~63 KB zbirno (cilj ≤160 KB)
+- JS: kritični bundle (nav + cookie) ~4 KB; GSAP + motion u async chunk-ovima
+- CSS: jedan hashed fajl, bez frameworka; bez eksternih CDN resursa
+- CLS: `aspect-ratio` na photo placeholderima; buduće `<img>` moraju `width`/`height`
+  + `loading="lazy"` ispod fold-a
+- Mereno: Lighthouse mobile na `vite preview` (`/Klime/`), 2026-07-18
 
 ## SEO — implementirano (Faza 8)
 

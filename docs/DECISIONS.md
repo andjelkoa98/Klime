@@ -105,6 +105,15 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 61 | Cookie consent: fiksni banner + `localStorage` (`mobilklime-cookie-consent`); bez linka na politiku privatnosti; bez učitavanja analytics skripte | Odluka #8; `{{ANALYTICS_TOOL}}` još nije izabran — banner samo beleži pristanak za buduće povezivanje | Stranica politike privatnosti; cookie biblioteka treće strane |
 | 62 | GBP: samo dokumentovana preporuka u `SEO_PERFORMANCE.md` (bez koda, bez izmišljenih podataka) | Odluka #9 — vlasnik nije siguran; profil se radi ručno kad stignu stvarni podaci | Schema.org polja ili UI blokovi za nepostojeći GBP |
 
+## Faza 9 (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 63 | Fontovi: glyph subset preko `subset-font` (`npm run fonts:subset`) na osnovu `index.html` + srpska latinica; zadržanih 6 woff2 fajlova | DESIGN_SYSTEM.md ≤160 KB; pre subset-a ~186 KB → posle ~63 KB; latin+latin-ext gwfh bio preširok za sajt | Uklanjanje težina (Space Grotesk 500 / IBM Plex Mono 400); Google Fonts CDN |
+| 64 | GSAP + motion moduli (`animations.js`, `hero-visual.js`) učitavaju se dinamičkim `import()` u posebnim chunk-ovima; entry (`main.js`) ostaje nav + cookie | Odluka #49; kritični JS ~4 KB; hero intro i dalje startuje odmah nakon async učitavanja, bez idle odlaganja | Zadržavanje GSAP-a u glavnom bundle-u; `requestIdleCallback` odlaganje intro-a (škodi „wow na prvu") |
+| 65 | Vite: `cssCodeSplit: false`, `modulePreload.polyfill: false`, `manualChunks` za `gsap` + `motion` | Manji entry, jedan CSS fajl, bez polyfill bajtova na es2020 targetu | Dodatne biblioteke za compress/image pipeline (nema pravih fotografija još) |
+| 66 | Bez `content-visibility` na sekcijama sa ScrollTrigger reveal-ima | Rizik od pogrešnih trigger/visina merenja; budžet već ispunjen font+JS optimizacijom | `content-visibility: auto` na svim below-fold sekcijama |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)
