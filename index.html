@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="sr-Latn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Servis auto-klime na vašoj adresi — Beograd i okolina | MobilKlime</title>
+    <meta
+      name="description"
+      content="Mobilni servis auto-klime — dolazimo u Beograd, Lazarevac, Obrenovac, Aranđelovac i Lajkovac. Pregled i dogovor na licu mesta. Pozovite ili pošaljite poruku."
+    />
+    <meta name="theme-color" content="#0B0F14" />
+    <!-- Canonical, Open Graph, favicon, JSON-LD: Faza 8 (docs/CONTENT.md 16, 19) -->
+
+    <!-- Kritični fontovi above the fold (docs/DESIGN_SYSTEM.md sekcija 4) -->
+    <link
+      rel="preload"
+      href="/src/assets/fonts/space-grotesk-700.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/src/assets/fonts/inter-400.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <!-- CSS linkovan direktno (ne kroz JS) — sadržaj ostaje stilizovan i bez JavaScript-a -->
+    <link rel="stylesheet" href="/src/styles/main.css" />
+  </head>
+
+  <body>
+    <a class="skip-link" href="#pocetak">Preskoči na sadržaj</a>
+
+    <header class="site-header">
+      <div class="container">
+        <!-- Wordmark: finalni logo se gradi u Fazi 5 (DESIGN_SYSTEM.md sekcija 16) -->
+        <a class="site-header__logo" href="#pocetak">MobilKlime</a>
+
+        <nav class="site-header__nav" aria-label="Glavna navigacija">
+          <ul role="list">
+            <li><a href="#usluge">Usluge</a></li>
+            <li><a href="#kako-funkcionise">Kako funkcioniše</a></li>
+            <li><a href="#podrucje">Područje dolaska</a></li>
+            <li><a href="#pitanja">Česta pitanja</a></li>
+          </ul>
+        </nav>
+
+        <a class="site-header__cta" href="tel:{{PHONE_NUMBER}}">Pozovite {{PHONE_NUMBER}}</a>
+        <!-- Mobilni meni (hamburger + tel ikona) se gradi u Fazi 5/7 (CONTENT.md 15.1) -->
+      </div>
+    </header>
+
+    <main id="sadrzaj">
+      <!-- 2. Hero (CONTENT.md 15.2) — vizual „Dijagnostička tabla" se crta u Fazi 5 -->
+      <section id="pocetak" class="section hero" aria-labelledby="hero-naslov">
+        <div class="container container--wide">
+          <p class="mono-label hero__kicker">Mobilni servis auto-klime · Beograd i okolina</p>
+          <h1 id="hero-naslov">Servis auto-klime dolazi na vašu adresu</h1>
+          <p class="hero__lead">
+            Pregled, dijagnostika i servis klime na licu mesta — kod kuće, na poslu
+            ili na parkingu. Vi radite svoje, mi rešavamo klimu.
+            Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac.
+          </p>
+          <div class="hero__cta-group">
+            <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Pozovite {{PHONE_NUMBER}}</a>
+            <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+          </div>
+          <p class="hero__micro-trust">
+            Prvo pregled, pa dogovor — ništa se ne radi bez vaše saglasnosti.
+          </p>
+          <!-- SVG instrument kompozicija (manometar, readout 41°→18°, strujnice): Faza 5 -->
+        </div>
+      </section>
+
+      <!-- 3. Trust strip (CONTENT.md 15.3) — traka bez naslova; SVG ikone: Faza 5 -->
+      <div class="trust-strip section--raised">
+        <div class="container">
+          <ul role="list" aria-label="Zašto MobilKlime">
+            <li><strong>Dolazak na adresu</strong> — kod kuće, na poslu ili na parkingu</li>
+            <li><strong>Prvo pregled, pa dogovor</strong> — ništa bez vaše saglasnosti</li>
+            <li><strong>Profesionalna oprema na terenu</strong> — ista tehnologija kao u servisu</li>
+            <li><strong>Zakazivanje jednim pozivom</strong> — bez formi i čekanja</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. Problem i rešenje (CONTENT.md 15.4) — sadržaj i dizajn: Faza 5 -->
+      <section id="problem" class="section" aria-labelledby="problem-naslov">
+        <div class="container">
+          <h2 id="problem-naslov">Klima duva, ali ne hladi?</h2>
+        </div>
+      </section>
+
+      <!-- 5. Usluge (CONTENT.md 15.5) — kartice 5 usluga: Faza 5 -->
+      <section id="usluge" class="section section--raised" aria-labelledby="usluge-naslov">
+        <div class="container">
+          <h2 id="usluge-naslov">Šta radimo na licu mesta</h2>
+        </div>
+      </section>
+
+      <!-- 6. Kako funkcioniše (CONTENT.md 15.6) — 4 koraka (timeline): Faza 5 -->
+      <section id="kako-funkcionise" class="section" aria-labelledby="kako-naslov">
+        <div class="container">
+          <h2 id="kako-naslov">Kako funkcioniše</h2>
+        </div>
+      </section>
+
+      <!-- 7. Prednosti mobilnog servisa (CONTENT.md 15.7) — poređenje: Faza 5 -->
+      <section id="prednosti" class="section section--raised" aria-labelledby="prednosti-naslov">
+        <div class="container">
+          <h2 id="prednosti-naslov">Zašto mobilni servis</h2>
+        </div>
+      </section>
+
+      <!-- 8. Područje dolaska (CONTENT.md 15.8) — SVG mapa: Faza 5 -->
+      <section id="podrucje" class="section" aria-labelledby="podrucje-naslov">
+        <div class="container">
+          <h2 id="podrucje-naslov">Gde dolazimo</h2>
+          <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+        </div>
+      </section>
+
+      <!--
+        9. Recenzije (CONTENT.md 15.9) — USLOVNA SEKCIJA (odluka #18):
+        objavljuje se isključivo sa stvarnim Google recenzijama {{GOOGLE_REVIEWS}}.
+        `hidden` ostaje dok klijent ne dostavi tekstove (najkasnije Faza 10).
+      -->
+      <section id="recenzije" class="section section--raised" aria-labelledby="recenzije-naslov" hidden>
+        <div class="container">
+          <h2 id="recenzije-naslov">Šta kažu vozači</h2>
+        </div>
+      </section>
+
+      <!-- 10. FAQ (CONTENT.md 15.10, 18) — nativni details/summary accordion (odluka Faze 4) -->
+      <section id="pitanja" class="section" aria-labelledby="pitanja-naslov">
+        <div class="container container--narrow">
+          <h2 id="pitanja-naslov">Česta pitanja</h2>
+          <!-- Obrazac accordion-a; preostalih 8 pitanja iz CONTENT.md sekcije 18 se popunjava u Fazi 5 -->
+          <details class="faq-item">
+            <summary>
+              <h3>Da li je mobilni servis jednako kvalitetan kao klasičan servis?</h3>
+            </summary>
+            <p>
+              Da. Donosimo profesionalnu servisnu opremu — istu tehnologiju koja se koristi
+              u radionicama. Razlika je samo u tome gde se posao obavlja: umesto da vi
+              dođete u servis, servis dolazi kod vas.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- 11. Završni CTA (CONTENT.md 15.11) — vizuelno najistaknutija sekcija: Faza 5 -->
+      <section id="kontakt" class="section section--raised" aria-labelledby="kontakt-naslov">
+        <div class="container container--wide">
+          <h2 id="kontakt-naslov">Zakažite dolazak</h2>
+          <p>
+            Jedan poziv ili poruka — i klima je rešena na vašoj adresi.
+            Recite gde ste, koje je vozilo i šta se dešava sa klimom.
+          </p>
+          <a class="final-cta__phone readout-number" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+          <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- 12. Footer (CONTENT.md 15.12) — kolone i sadržaj: Faza 5 -->
+    <footer class="site-footer">
+      <div class="container">
+        <p><strong>MobilKlime</strong> — Mobilni servis auto-klime — dolazak na adresu.</p>
+        <p>Beograd · Lazarevac · Obrenovac · Aranđelovac · Lajkovac</p>
+        <p>© <span id="footer-year">2026</span> MobilKlime</p>
+      </div>
+    </footer>
+
+    <!--
+      Sticky mobilni CTA bar (CONTENT.md 15.13): gradi se u Fazi 5,
+      ponašanje (pojavljivanje kad hero izađe iz viewporta) u Fazi 6/7.
+    -->
+
+    <script type="module" src="/src/js/main.js"></script>
+  </body>
+</html>

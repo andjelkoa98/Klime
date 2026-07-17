@@ -9,7 +9,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 | 1 | Poslovna strategija i pozicioniranje | ✅ | Spojena sa Fazom 0 u istom chatu |
 | 2 | Struktura stranice i sadržaj (kompletan copy) | ✅ | Finalni copy u CONTENT.md (sekcije 14–21) |
 | 3 | Kreativni pravac i dizajn sistem (3 pravca → izbor → razrada) | ✅ | Izabran pravac „Hladna preciznost"; bez Three.js (SVG + GSAP) |
-| 4 | Tehnička arhitektura i Vite scaffold | ⬜ | Vite `base` za GitHub Pages |
+| 4 | Tehnička arhitektura i Vite scaffold | ✅ | Vite `base: '/Klime/'` (ime repo-a potvrdio vlasnik) |
 | 5 | Statički vizuelni dizajn | ⬜ | |
 | 6 | GSAP animacije i 3D efekti | ⬜ | Hero mora da "oduševi na prvu" |
 | 7 | Responsive, pristupačnost i interakcije | ⬜ | |

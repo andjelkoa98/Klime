@@ -1,0 +1,15 @@
+/* ==========================================================================
+   main.css — single CSS entry point (linked from index.html so content
+   is styled without JavaScript). Import order matters:
+   tokens → reset → base type → layout → components → sections →
+   animations → responsive overrides.
+   ========================================================================== */
+
+@import './variables.css';
+@import './reset.css';
+@import './typography.css';
+@import './layout.css';
+@import './components.css';
+@import './sections.css';
+@import './animations.css';
+@import './responsive.css';

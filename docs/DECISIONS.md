@@ -52,6 +52,18 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 33 | Zabranjen gejmerski HUD kliše: radar sweep, crosshair, glitch tekst, terminal kucanje, matrix efekti; glow budžet: samo hero instrument + fokus stanja, max blur 24px, nikad na tekstu | HUD estetika bez ovih granica sklizne u kič i ruši premium/trust utisak | — |
 | 34 | Motion standardi: easing familija `power*` (bez bounce/elastic); trajanja 150ms–1.4s po tipovima; reduced-motion = identičan sadržaj bez kretanja; idle petlje se pauzuju van viewporta i na skrivenom tabu | Precizan, smiren karakter pokreta u skladu sa pravcem; pristupačnost i baterija | Playful/bouncy motion |
 
+## Faza 4 (2026-07-17)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 35 | Ime GitHub repozitorijuma: **Klime** → Vite `base: '/Klime/'` | Vlasnik potvrdio ime repozitorijuma na direktno pitanje; obavezno za GitHub Pages putanje | Pretpostavljanje imena bez potvrde |
+| 36 | FAQ accordion: nativni `<details>/<summary>` (tehnička odluka najavljena u CONTENT.md 15.10) | Radi bez JavaScript-a (progressive enhancement); pristupačan po default-u; animacija otvaranja se dodaje u Fazi 6 kao poboljšanje | Custom JS accordion (nepotrebna JS zavisnost za osnovnu funkciju) |
+| 37 | CSS se učitava direktno iz `index.html` (`<link rel="stylesheet">`), ne kroz JS import | Sadržaj ostaje stilizovan i čitljiv bez JavaScript-a; Vite svejedno bundluje i hešira CSS pri build-u | CSS import u `main.js` (Vite default — bez JS-a stranica ostaje nestilizovana) |
+| 38 | Font pipeline: gotovi subset woff2 fajlovi (latin + latin-ext kombinovano) preko google-webfonts-helper API-ja; 6 fajlova, ~186 KB zbirno | Tačno traženi subset bez lokalnog Python/fonttools pipeline-a; jedan fajl po težini (ne dva po subsetu) | Google Fonts CDN (odluka #27); ručno subsetovanje fonttools-om (dodatni alat bez dobitka — gwfh daje identican Google subset) |
+| 39 | GSAP 3.15 instaliran kao dependency, ali se **ne importuje** ni u jednom modulu do Faze 6 | Zadatak Faze 4 je samo dependency; bundle ostaje minimalan (0.7 KB JS) dok animacije ne počnu | Import + registracija ScrollTrigger-a odmah (mrtav kod u bundle-u) |
+| 40 | JS moduli (`navigation`, `animations`, `hero-visual`, `utils`) kreirani kao dokumentovani stubovi sa no-op init funkcijama | Struktura po odgovornosti postavljena sad; markup od kog zavise nastaje u Fazi 5 | Prazni fajlovi bez dokumentovanih odgovornosti |
+| 41 | Sekcija Recenzije u skeletu nosi `hidden` atribut | Sprovodi odluku #18 na nivou koda — sekcija ne sme biti vidljiva bez stvarnih recenzija | Vidljiva prazna sekcija |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

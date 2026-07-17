@@ -1,0 +1,123 @@
+/* ==========================================================================
+   variables.css — design tokens
+   Source of truth: docs/DESIGN_SYSTEM.md (Phase 3, direction "Hladna preciznost")
+   Do not add ad-hoc values in other files — extend tokens here with a
+   DECISIONS.md entry.
+   ========================================================================== */
+
+:root {
+  /* --- Colors (DESIGN_SYSTEM.md section 3) --------------------------------
+     Semantics: cold = MobilKlime/solution, warm = problem (heat in the car).
+     --color-heat is allowed only in problem context, never for brand or CTA. */
+
+  /* Pozadine (tamni grafit sistem) */
+  --color-bg:            #0B0F14;  /* osnovna pozadina stranice */
+  --color-bg-raised:     #101720;  /* alternativne sekcije */
+  --color-panel:         #131C26;  /* kartice, paneli */
+  --color-panel-raised:  #18232F;  /* hover/istaknuti panel */
+
+  /* Tekst */
+  --color-text:          #E9EFF4;  /* primarni tekst — kontrast ~15:1 na --color-bg */
+  --color-text-muted:    #A7B7C4;  /* sekundarni tekst — kontrast ~8:1 */
+  --color-text-faint:    #6E8090;  /* mono oznake, caption — kontrast ~4.6:1, samo ≥14px */
+
+  /* Akcenat — ledeno plava (brend) */
+  --color-accent:        #4CC9F0;  /* linkovi, ikone, akcenti, glow */
+  --color-accent-strong: #22B8E6;  /* hover/aktivna stanja akcenta */
+  --color-accent-deep:   #0E7490;  /* tamnija podloga akcentnih zona */
+  --color-accent-tint:   rgba(76, 201, 240, 0.12);  /* pozadine badge-eva, tint paneli */
+
+  /* CTA — poziv (najvažnija akcija na sajtu) */
+  --color-cta:           #4CC9F0;  /* pozadina primarnog CTA */
+  --color-cta-text:      #06171F;  /* tekst na CTA — kontrast ~12:1 */
+
+  /* Semantika toplo/hladno (storytelling problema) */
+  --color-heat:          #FF6B4A;  /* vrelina/problem — samo u problem kontekstu */
+  --color-heat-tint:     rgba(255, 107, 74, 0.12);
+  --color-cold:          #7DE3F7;  /* svetlija hladna za readout „posle" */
+
+  /* Statusi instrumenata (SVG) */
+  --color-ok:            #34D399;  /* zona „sistem ispravan" na manometru */
+
+  /* Linije i ivice */
+  --color-border:        rgba(167, 183, 196, 0.14);  /* standardna ivica panela */
+  --color-border-strong: rgba(167, 183, 196, 0.28);  /* ivica na hover/fokusu */
+  --color-grid-line:     rgba(76, 201, 240, 0.06);   /* tehnička mreža u pozadini */
+
+  /* Fokus (pristupačnost) */
+  --color-focus-ring:    #7DE3F7;  /* 2px outline + 2px offset, vidljiv na svim podlogama */
+
+  /* --- Typography (DESIGN_SYSTEM.md section 4) --------------------------- */
+
+  --font-display: 'Space Grotesk', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-mono:    'IBM Plex Mono', 'Consolas', monospace;
+
+  --text-xs:   0.8125rem;                          /* 13px — mono caption oznake */
+  --text-sm:   0.875rem;                           /* 14px — sitni UI tekst, footer */
+  --text-base: clamp(1rem, 0.95rem + 0.25vw, 1.0625rem);   /* 16–17px — body */
+  --text-lg:   clamp(1.125rem, 1.05rem + 0.4vw, 1.25rem);  /* 18–20px — lead pasusi */
+  --text-xl:   clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);     /* 20–24px — H3, kartice */
+  --text-2xl:  clamp(1.5rem, 1.25rem + 1.2vw, 2rem);       /* 24–32px — manji H2 */
+  --text-3xl:  clamp(1.875rem, 1.5rem + 1.9vw, 2.625rem);  /* 30–42px — H2 sekcija */
+  --text-4xl:  clamp(2.375rem, 1.8rem + 2.9vw, 3.5rem);    /* 38–56px — H1 hero */
+  --text-tel:  clamp(1.75rem, 1.3rem + 2.3vw, 2.75rem);    /* 28–44px — broj u završnom CTA */
+
+  --leading-tight: 1.1;    /* H1/H2 */
+  --leading-snug:  1.3;    /* H3, kartice */
+  --leading-body:  1.6;    /* pasusi */
+
+  --tracking-tight: -0.02em;  /* display naslovi */
+  --tracking-mono:  0.08em;   /* mono oznake, uppercase */
+
+  /* --- Spacing (DESIGN_SYSTEM.md section 5) — base 4px ------------------- */
+
+  --space-1:  0.25rem;   /*   4px — ikona ↔ tekst */
+  --space-2:  0.5rem;    /*   8px — unutrašnji razmaci malih elemenata */
+  --space-3:  0.75rem;   /*  12px — gap u badge/label grupama */
+  --space-4:  1rem;      /*  16px — osnovni unutrašnji padding */
+  --space-5:  1.5rem;    /*  24px — padding kartica, gap grid-a mobilno */
+  --space-6:  2rem;      /*  32px — gap grid-a desktop, veći unutrašnji razmaci */
+  --space-7:  3rem;      /*  48px — razmak podsekcija */
+  --space-8:  4rem;      /*  64px — vertikalni ritam sekcija (mobilno) */
+  --space-9:  6rem;      /*  96px — vertikalni ritam sekcija (desktop) */
+  --space-10: 8rem;      /* 128px — hero prostor, završni CTA */
+
+  --section-padding: clamp(var(--space-8), 6vw + 2rem, var(--space-9));
+
+  /* --- Container and grid (DESIGN_SYSTEM.md section 6) ------------------- */
+
+  --container-max:    1200px;  /* standardne sekcije */
+  --container-wide:   1360px;  /* hero i završni CTA */
+  --container-narrow: 760px;   /* FAQ, tekstualni blokovi (≈65ch) */
+  --container-gutter: clamp(1rem, 4vw, 2rem);  /* bočni padding */
+
+  /* --- Radius, shadow, border (DESIGN_SYSTEM.md section 7) --------------- */
+
+  --radius-sm:   6px;    /* badge, mono oznake, inputi */
+  --radius-md:   10px;   /* dugmad */
+  --radius-lg:   16px;   /* kartice, paneli, slike */
+  --radius-full: 999px;  /* pill elementi (trust strip stavke, sticky bar dugmad) */
+
+  --border-panel:  1px solid var(--color-border);
+  --border-strong: 1px solid var(--color-border-strong);
+
+  /* Senke — tamna tema: senka je suptilna, „elevaciju" primarno nosi svetlija podloga */
+  --shadow-sm:   0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md:   0 8px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow: 0 0 24px rgba(76, 201, 240, 0.18);  /* SAMO hero instrument i fokus */
+}
+
+/* --- Breakpoints (DESIGN_SYSTEM.md section 14) — reference only ----------
+   Custom properties cannot be used inside media queries; these values are
+   the canonical min-width breakpoints for all responsive CSS in this project:
+
+   (base)       320px+   najmanji mobilni
+   --bp-sm      375px    standardni mobilni
+   --bp-md      430px    veliki mobilni
+   --bp-tablet  768px    tablet portret
+   --bp-lg     1024px    tablet pejzaž / mali laptop; DESKTOP NAV BREAKPOINT
+   --bp-xl     1280px    desktop
+   --bp-2xl    1440px    veliki desktop
+   (cap)       1920px+   sadržaj ograničen kontejnerima, pozadina se širi
+   -------------------------------------------------------------------------- */

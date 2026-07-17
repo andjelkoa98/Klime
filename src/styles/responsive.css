@@ -1,0 +1,7 @@
+/* ==========================================================================
+   responsive.css — cross-section responsive overrides
+   Mobile-first: base styles target 320px+; min-width media queries only.
+   Canonical breakpoints (docs/DESIGN_SYSTEM.md section 14):
+   375 / 430 / 768 / 1024 (desktop nav) / 1280 / 1440.
+   Phase 4: file scaffolded. Responsive refinement is Phase 5/7.
+   ========================================================================== */

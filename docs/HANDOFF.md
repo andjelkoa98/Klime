@@ -5,77 +5,93 @@
 
 ---
 
-## Poslednji chat: Faza 3 (2026-07-17)
+## Poslednji chat: Faza 4 (2026-07-17)
 
 ### Šta je završeno
 
-- Istraženi najbolji sajtovi iz auto/tehničke sfere (Awwwards SOTD: Longbow,
-  Ford M-Sport Raptor T1+, Radian, Scout Motors), trend analize premium landing
-  stranica 2025/26 i case study-ji mobilnih mehaničara — 10 izvučenih obrazaca
-  zapisano u `DESIGN_SYSTEM.md` sekcija 1
-- Predložena 3 kreativna pravca (A „Hladna preciznost" — dijagnostički HUD,
-  B „Ledeni talas" — svetla atmosfera hladnog vazduha, C „Ruta 5" — mapa/ruta),
-  sa atmosferom, paletom, tipografijom, hero konceptom, motion konceptom,
-  prednostima i rizicima za svaki
-- **Izabran pravac A „Hladna preciznost"** + zadržani elementi B (strujnice
-  vazduha kao sekundarni motiv) i C (line-draw ruta u sekciji Područje)
-- Kompletan dizajn sistem u `docs/DESIGN_SYSTEM.md`: CSS varijable za boje
-  (semantika hladno=rešenje / toplo=problem), tipografija (Space Grotesk +
-  Inter + IBM Plex Mono, lokalno, latin-ext), fluid type skala, spacing skala,
-  container/grid, radius/shadow/border, 5 button varijanti, 5 card varijanti,
-  SVG icon pravila, image treatment, hero kompozicija za 5 breakpoint opsega,
-  odluka bez Three.js, responsive breakpoint-i, odobreni i zabranjeni obrasci,
-  logo/wordmark smernica
-- Konceptualni motion sistem u `docs/ANIMATION_SYSTEM.md`: principi, trajanja i
-  easing standardi, hero intro choreografija (~1.4s, readout 41°→18°), animacije
-  po svih 13 sekcija, ScrollTrigger pravila (pin zabranjen, scrub samo 2 mesta),
-  mobilno ponašanje, prefers-reduced-motion tabela po tipu animacije, pravila
-  za 3D/idle petlje, definicija uspeha
-- 10 novih odluka upisano u `docs/DECISIONS.md` (#25–34)
+- Vite projekat inicijalizovan u korenu repozitorijuma (vanilla JS, bez framework-a);
+  `vite.config.js` sa `base: '/Klime/'` — ime GitHub repozitorijuma **Klime**
+  potvrdio vlasnik
+- Struktura foldera postavljena:
+  - `src/styles/` — modularni CSS: `variables`, `reset`, `typography`, `layout`,
+    `components`, `sections`, `animations`, `responsive` + `main.css` (entry sa
+    @import redosledom); fajlovi za Fazu 5/6 su skelet sa opisom odgovornosti
+  - `src/js/` — `main.js` + `modules/`: `navigation.js`, `animations.js`,
+    `hero-visual.js`, `utils.js` (dokumentovani stubovi; utils ima breakpoint
+    i reduced-motion helpere)
+  - `src/assets/` — `fonts/` (6 woff2), `icons/`, `images/` (prazni do Faze 5)
+- Svi dizajn tokeni iz `DESIGN_SYSTEM.md` (sekcije 3–7) preneti u
+  `src/styles/variables.css` tačno kako su specificirani; breakpoint vrednosti
+  dokumentovane kao referentni komentar (custom properties ne rade u media query)
+- Fontovi preuzeti kao subset woff2 (latin + latin-ext kombinovano, preko
+  google-webfonts-helper API-ja): Space Grotesk 500/700, Inter 400/600,
+  IBM Plex Mono 400/500 — 6 fajlova, ~186 KB zbirno; `@font-face` sa
+  `font-display: swap` u `typography.css`; preload za Space Grotesk 700 i
+  Inter 400 u `index.html`
+- GSAP 3.15 instaliran kao dependency (bez ijednog importa — Faza 6);
+  Vite 8.1 kao devDependency
+- `index.html` semantički skelet: `lang="sr-Latn"`, title + meta description iz
+  CONTENT.md sekcije 16, sve sekcije iz sekcije 14 sa ispravnim anchor ID-jevima
+  (`#pocetak`, `#problem`, `#usluge`, `#kako-funkcionise`, `#prednosti`,
+  `#podrucje`, `#recenzije` (hidden), `#pitanja`, `#kontakt`), skip link,
+  hero sa finalnim copy-jem i oba CTA, trust strip `ul`, FAQ obrazac sa
+  nativnim `details/summary`, footer; placeholderi `{{PHONE_NUMBER}}` u tel: linkovima
+- Provereno: `npm run build` prolazi (base putanje `/Klime/...` ispravne u dist-u),
+  preview u browseru — fontovi se učitavaju (sve 3 familije), recenzije sekcija
+  `display: none`, tamna tema i tokeni aktivni; bez linter grešaka
+- README.md sa uputstvom za pokretanje
+- 7 novih odluka u `DECISIONS.md` (#35–41)
+
+### Fajlovi kreirani
+
+- `package.json`, `package-lock.json`, `vite.config.js`, `.gitignore`, `README.md`
+- `index.html`
+- `src/styles/`: `main.css`, `variables.css`, `reset.css`, `typography.css`,
+  `layout.css`, `components.css`, `sections.css`, `animations.css`, `responsive.css`
+- `src/js/main.js`, `src/js/modules/`: `navigation.js`, `animations.js`,
+  `hero-visual.js`, `utils.js`
+- `src/assets/fonts/`: 6 woff2 fajlova
 
 ### Fajlovi izmenjeni
 
-- `docs/DESIGN_SYSTEM.md` — kompletno popunjen (bio prazan skelet)
-- `docs/ANIMATION_SYSTEM.md` — kompletno popunjen (bio prazan skelet)
-- `docs/DECISIONS.md` — odluke Faze 3 (#25–34) + prošireno „ne menja se" poglavlje
-- `docs/ROADMAP.md` — Faza 3 označena kao završena
+- `docs/DECISIONS.md` — odluke Faze 4 (#35–41)
+- `docs/ROADMAP.md` — Faza 4 označena kao završena
 - `docs/HANDOFF.md` — ovaj dokument
 
-### Ključne odluke Faze 3
+### Ključne odluke Faze 4
 
-- Pravac: „Hladna preciznost" — tamni grafit `#0B0F14`, ledeno-plavi akcenat
-  `#4CC9F0`, mono tehničke oznake; toplo-crvena samo kao semantika problema
-- Hero: „Dijagnostička tabla" — SVG manometar + temperaturni readout 41°→18° +
-  strujnice; na mobilnom kompaktna readout traka, H1/CTA prioritet above the fold
-- **Bez Three.js/WebGL** — SVG + GSAP + CSS 3D tilt (≤4°, samo desktop)
-- Pin zabranjen na celom sajtu; scrub samo za timeline liniju i hero parallax;
-  bez smooth-scroll biblioteka
-- Fontovi: Space Grotesk / Inter / IBM Plex Mono — lokalno hostovani woff2
+- GitHub repo: **Klime** → `base: '/Klime/'` (odluka #35)
+- FAQ: nativni `details/summary` accordion (odluka #36)
+- CSS linkovan iz HTML-a, ne importovan u JS — sadržaj radi bez JS-a (odluka #37)
+- GSAP instaliran ali se ne importuje do Faze 6 — bundle trenutno 0.7 KB JS (odluka #39)
+- Recenzije sekcija nosi `hidden` dok ne stignu stvarne recenzije (odluka #41)
 
 ### Šta NIJE završeno (namerno — pripada narednim fazama)
 
-- Nema HTML/CSS/JS koda ni Vite scaffold-a (Faza 4)
-- Font fajlovi još nisu preuzeti/subsetovani (Faza 4)
-- Logo/wordmark se gradi u Fazi 5 (smernica postoji u DESIGN_SYSTEM.md sekcija 16)
-- SVG instrument kompozicija, ikone i mapa se crtaju u Fazi 5
-- GSAP implementacija motion sistema je Faza 6
+- Vizuelni dizajn sekcija, logo/wordmark, SVG instrument kompozicija, ikone,
+  mapa područja, kompletan sadržaj sekcija 4–11, sticky mobilni CTA bar,
+  mobilni meni markup (Faza 5)
+- GSAP/ScrollTrigger implementacija, hero intro, scroll reveal-i (Faza 6)
+- Responsive fino podešavanje, pristupačnost interakcija (Faza 7)
+- Canonical, Open Graph, favicon, robots.txt, sitemap, JSON-LD, cookie consent (Faza 8)
 
 ### Poznati problemi / otvorena pitanja
 
+- Fontovi zbirno ~186 KB — cilj iz DESIGN_SYSTEM.md je ≤160 KB. Ako Faza 9
+  pokaže da je bitno, dodatno subsetovanje (uklanjanje neiskorišćenih glifova
+  fonttools-om) može spustiti ispod cilja; nije blokirajuće za Lighthouse cilj
 - Svi `{{PLACEHOLDER}}` podaci i dalje čekaju stvarne vrednosti
-  (`docs/CONTENT.md` sekcija 21)
-- Prave fotografije ne postoje — dizajn sistem definiše placeholder tretman
-  (tamni panel sa mono opisom); hero namerno ne zavisi od fotografije
-- Ime GitHub repozitorijuma još nije određeno (bitno za Vite `base` u Fazi 4)
-- Kontrastne vrednosti u DESIGN_SYSTEM.md su računate za navedene parove —
-  pri implementaciji (Faza 5/7) svaku kombinaciju proveriti alatom
+  (`docs/CONTENT.md` sekcija 21); `{{PHONE_NUMBER}}` je sada i u tel: linkovima
+  u `index.html` — zameniti pre objave
+- GitHub repo još nije kreiran/povezan (`git remote` ne postoji) — pri prvom
+  push-u ime mora biti tačno **Klime** ili se `base` menja uz novi zapis u DECISIONS.md
+- Footer godina je statična „2026" — pre objave proveriti (ili rešiti u Fazi 8)
 
 ### Sledeća faza
 
-**Faza 4 — Tehnička arhitektura i Vite scaffold** (struktura projekta, Vite
-config sa `base` za GitHub Pages, modularni CSS fajlovi sa tokenima iz
-DESIGN_SYSTEM.md, JS moduli, font pipeline; bez vizuelnog dizajna sekcija —
-to je Faza 5)
+**Faza 5 — Statički vizuelni dizajn** (logo/wordmark, kompletan sadržaj svih
+sekcija iz CONTENT.md, SVG instrument kompozicija hero-a, ikone, mapa područja,
+sticky mobilni CTA bar, mobilni meni markup — bez animacija, to je Faza 6)
 
 ### Prompt za sledeći chat
 
@@ -93,29 +109,28 @@ Pročitaj sledeće fajlove pre bilo kakve izmene:
 - docs/DECISIONS.md
 - docs/HANDOFF.md
 
-Trenutna faza je Faza 4: tehnička arhitektura i Vite scaffold.
+Trenutna faza je Faza 5: statički vizuelni dizajn.
 
 Zadaci:
-1. Inicijalizuj Vite projekat (vanilla JS, bez framework-a) u korenu repozitorijuma.
-   Podesi `base` opciju za GitHub Pages (ime repozitorijuma potvrdi sa vlasnikom
-   pre podešavanja).
-2. Postavi strukturu foldera: modularni CSS (reset, variables, typography, layout,
-   components, sections, animations, responsive), JS moduli po odgovornosti
-   (navigation, animations, hero-visual, utils), assets (fonts, icons, images).
-3. Prenesi dizajn tokene iz docs/DESIGN_SYSTEM.md u CSS custom properties
-   (variables fajl) — tačno kako su specificirani.
-4. Preuzmi i subsetuj fontove (Space Grotesk 500/700, Inter 400/600,
-   IBM Plex Mono 400/500) kao lokalne woff2 fajlove sa latin + latin-ext;
-   podesi @font-face sa font-display: swap i preload za kritične fajlove.
-5. Instaliraj GSAP + ScrollTrigger kao dependency (bez implementacije animacija —
-   to je Faza 6).
-6. Napravi osnovni index.html skelet sa semantičkom strukturom svih sekcija iz
-   docs/CONTENT.md (sekcija 14) — prazne ili minimalno popunjene sekcije sa
-   ispravnim ID-jevima, lang="sr-Latn", meta osnovama; bez finalnog vizuelnog
-   dizajna (Faza 5) i bez animacija (Faza 6).
+1. Popuni sve sekcije index.html kompletnim finalnim copy-jem iz docs/CONTENT.md
+   (sekcije 15, 17, 18) — uključujući svih 9 FAQ pitanja (details/summary),
+   kartice usluga, korake procesa, poređenje, završni CTA i footer.
+   Placeholderi {{NAZIV}} ostaju gde stvarni podaci ne postoje.
+2. Izgradi wordmark MobilKlime (DESIGN_SYSTEM.md sekcija 16) i mobilni meni
+   markup (hamburger + tel ikona; ponašanje po CONTENT.md 15.1).
+3. Nacrtaj SVG elemente u stilu pravca „Hladna preciznost": instrument
+   kompoziciju hero-a (statično idle stanje — animacije su Faza 6), inline SVG
+   sprite ikona (DESIGN_SYSTEM.md sekcija 10), stilizovanu mapu područja.
+4. Implementiraj kompletan statički CSS: komponente (dugmad, kartice, pill-ovi),
+   sekcije po specifikaciji (DESIGN_SYSTEM.md sekcije 8–12), sticky mobilni CTA
+   bar, responsive po breakpoint tabeli — mobile-first.
+5. Placeholder fotografije kao tamni paneli sa mono opisom sadržaja
+   (DESIGN_SYSTEM.md sekcija 11, CLIENT_DATA.md fotografije).
+6. Proveri kontrast svih kombinacija boja (AA), tap targete ≥44px i da nema
+   horizontalnog overflow-a ni CLS-a.
 
-Ne radi vizuelni dizajn sekcija, ne crtaj SVG instrumente i ne piši animacije.
+Ne piši GSAP animacije (Faza 6). Hero mora izgledati impresivno i statično.
 
 Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
-git commit -am "phase 04: technical architecture and vite scaffold"
+git commit -am "phase 05: static visual design"
 ```

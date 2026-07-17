@@ -1,0 +1,6 @@
+/* ==========================================================================
+   animations.css — CSS-side motion (hover/focus transitions, accordion)
+   Spec: docs/ANIMATION_SYSTEM.md. GSAP animations are JS-driven (Phase 6);
+   this file holds only CSS transitions and reduced-motion overrides.
+   Phase 4: file scaffolded. Motion is implemented in Phase 6.
+   ========================================================================== */
