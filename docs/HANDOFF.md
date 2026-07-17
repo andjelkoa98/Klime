@@ -5,59 +5,77 @@
 
 ---
 
-## Poslednji chat: Faza 2 (2026-07-17)
+## Poslednji chat: Faza 3 (2026-07-17)
 
 ### Šta je završeno
 
-- Finalni redosled sekcija one-page sajta (12 sekcija + sticky mobilni CTA bar)
-  sa obrazloženjem izmena u odnosu na polaznu strukturu
-- Kompletna specifikacija svake sekcije: cilj, glavna poruka, naslov, supporting
-  tekst, CTA, elementi poverenja, potrebni vizuali, desktop sadržaj i mobilno ponašanje
-- Finalni copy: hero (kicker, H1, supporting, mikro-poverenje), trust strip stavke,
-  3 para problem→rešenje, 5 kartica usluga, 4 koraka procesa, poređenje klasičan/mobilni,
-  područje dolaska, završni CTA, footer
-- SEO paket: ciljna fraza, title tag, meta description, H1/H2/H3 struktura
-- Kompletan spisak CTA tekstova sa pravilima
-- 9 FAQ pitanja i odgovora (pokrivaju svih 6 prigovora iz Faze 1)
-- Open Graph tekstovi + alt text smernice sa finalnim alt tekstovima za sve foto placeholdere
-- Spisak otvorenih pitanja za klijenta pre objavljivanja (CONTENT.md sekcija 21)
-- 9 novih odluka upisano u `docs/DECISIONS.md` (#16–24)
+- Istraženi najbolji sajtovi iz auto/tehničke sfere (Awwwards SOTD: Longbow,
+  Ford M-Sport Raptor T1+, Radian, Scout Motors), trend analize premium landing
+  stranica 2025/26 i case study-ji mobilnih mehaničara — 10 izvučenih obrazaca
+  zapisano u `DESIGN_SYSTEM.md` sekcija 1
+- Predložena 3 kreativna pravca (A „Hladna preciznost" — dijagnostički HUD,
+  B „Ledeni talas" — svetla atmosfera hladnog vazduha, C „Ruta 5" — mapa/ruta),
+  sa atmosferom, paletom, tipografijom, hero konceptom, motion konceptom,
+  prednostima i rizicima za svaki
+- **Izabran pravac A „Hladna preciznost"** + zadržani elementi B (strujnice
+  vazduha kao sekundarni motiv) i C (line-draw ruta u sekciji Područje)
+- Kompletan dizajn sistem u `docs/DESIGN_SYSTEM.md`: CSS varijable za boje
+  (semantika hladno=rešenje / toplo=problem), tipografija (Space Grotesk +
+  Inter + IBM Plex Mono, lokalno, latin-ext), fluid type skala, spacing skala,
+  container/grid, radius/shadow/border, 5 button varijanti, 5 card varijanti,
+  SVG icon pravila, image treatment, hero kompozicija za 5 breakpoint opsega,
+  odluka bez Three.js, responsive breakpoint-i, odobreni i zabranjeni obrasci,
+  logo/wordmark smernica
+- Konceptualni motion sistem u `docs/ANIMATION_SYSTEM.md`: principi, trajanja i
+  easing standardi, hero intro choreografija (~1.4s, readout 41°→18°), animacije
+  po svih 13 sekcija, ScrollTrigger pravila (pin zabranjen, scrub samo 2 mesta),
+  mobilno ponašanje, prefers-reduced-motion tabela po tipu animacije, pravila
+  za 3D/idle petlje, definicija uspeha
+- 10 novih odluka upisano u `docs/DECISIONS.md` (#25–34)
 
 ### Fajlovi izmenjeni
 
-- `docs/CONTENT.md` — dodate sekcije 14–21 (arhitektura + finalni copy)
-- `docs/DECISIONS.md` — odluke Faze 2 (#16–24)
-- `docs/ROADMAP.md` — Faza 2 označena kao završena
+- `docs/DESIGN_SYSTEM.md` — kompletno popunjen (bio prazan skelet)
+- `docs/ANIMATION_SYSTEM.md` — kompletno popunjen (bio prazan skelet)
+- `docs/DECISIONS.md` — odluke Faze 3 (#25–34) + prošireno „ne menja se" poglavlje
+- `docs/ROADMAP.md` — Faza 3 označena kao završena
 - `docs/HANDOFF.md` — ovaj dokument
 
-### Ključne odluke Faze 2
+### Ključne odluke Faze 3
 
-- Sticky mobilni CTA bar („Pozovi" + „Poruka") dodat u strukturu
-- Recenzije su uslovna sekcija — ide uživo samo sa stvarnim Google recenzijama
-- H1: „Servis auto-klime dolazi na vašu adresu"
-- Stilizovana SVG mapa umesto Google Maps embeda (performance)
-- Anchor ID-jevi na srpskom (`#usluge`, `#kako-funkcionise`, `#podrucje`…)
+- Pravac: „Hladna preciznost" — tamni grafit `#0B0F14`, ledeno-plavi akcenat
+  `#4CC9F0`, mono tehničke oznake; toplo-crvena samo kao semantika problema
+- Hero: „Dijagnostička tabla" — SVG manometar + temperaturni readout 41°→18° +
+  strujnice; na mobilnom kompaktna readout traka, H1/CTA prioritet above the fold
+- **Bez Three.js/WebGL** — SVG + GSAP + CSS 3D tilt (≤4°, samo desktop)
+- Pin zabranjen na celom sajtu; scrub samo za timeline liniju i hero parallax;
+  bez smooth-scroll biblioteka
+- Fontovi: Space Grotesk / Inter / IBM Plex Mono — lokalno hostovani woff2
 
 ### Šta NIJE završeno (namerno — pripada narednim fazama)
 
 - Nema HTML/CSS/JS koda ni Vite scaffold-a (Faza 4)
-- Nema dizajn sistema, boja, tipografije ni hero koncepta (Faza 3)
-- Nema logoa (Faza 3)
-- SEO copy (title, meta, OG) se potvrđuje u Fazi 8
+- Font fajlovi još nisu preuzeti/subsetovani (Faza 4)
+- Logo/wordmark se gradi u Fazi 5 (smernica postoji u DESIGN_SYSTEM.md sekcija 16)
+- SVG instrument kompozicija, ikone i mapa se crtaju u Fazi 5
+- GSAP implementacija motion sistema je Faza 6
 
 ### Poznati problemi / otvorena pitanja
 
-- Svi `{{PLACEHOLDER}}` podaci čekaju stvarne vrednosti — spisak pitanja za
-  klijenta je u `docs/CONTENT.md`, sekcija 21
-- FAQ odgovori 6 (struja na lokaciji) i 7 (tipovi gasa) zavise od potvrde klijenta
-- Recenzije: tekstovi i Google link još nisu dostavljeni — sekcija je uslovna
+- Svi `{{PLACEHOLDER}}` podaci i dalje čekaju stvarne vrednosti
+  (`docs/CONTENT.md` sekcija 21)
+- Prave fotografije ne postoje — dizajn sistem definiše placeholder tretman
+  (tamni panel sa mono opisom); hero namerno ne zavisi od fotografije
 - Ime GitHub repozitorijuma još nije određeno (bitno za Vite `base` u Fazi 4)
+- Kontrastne vrednosti u DESIGN_SYSTEM.md su računate za navedene parove —
+  pri implementaciji (Faza 5/7) svaku kombinaciju proveriti alatom
 
 ### Sledeća faza
 
-**Faza 3 — Kreativni pravac i dizajn sistem** (3 pravca → izbor → razrada;
-uključuje istraživanje najboljih sajtova iz auto/servisne/tehničke sfere;
-bez HTML/CSS/JS produkcionog koda)
+**Faza 4 — Tehnička arhitektura i Vite scaffold** (struktura projekta, Vite
+config sa `base` za GitHub Pages, modularni CSS fajlovi sa tokenima iz
+DESIGN_SYSTEM.md, JS moduli, font pipeline; bez vizuelnog dizajna sekcija —
+to je Faza 5)
 
 ### Prompt za sledeći chat
 
@@ -75,29 +93,29 @@ Pročitaj sledeće fajlove pre bilo kakve izmene:
 - docs/DECISIONS.md
 - docs/HANDOFF.md
 
-Trenutna faza je Faza 3: kreativni pravac i dizajn sistem.
+Trenutna faza je Faza 4: tehnička arhitektura i Vite scaffold.
 
-Ne piši produkcioni HTML, CSS ili JavaScript.
+Zadaci:
+1. Inicijalizuj Vite projekat (vanilla JS, bez framework-a) u korenu repozitorijuma.
+   Podesi `base` opciju za GitHub Pages (ime repozitorijuma potvrdi sa vlasnikom
+   pre podešavanja).
+2. Postavi strukturu foldera: modularni CSS (reset, variables, typography, layout,
+   components, sections, animations, responsive), JS moduli po odgovornosti
+   (navigation, animations, hero-visual, utils), assets (fonts, icons, images).
+3. Prenesi dizajn tokene iz docs/DESIGN_SYSTEM.md u CSS custom properties
+   (variables fajl) — tačno kako su specificirani.
+4. Preuzmi i subsetuj fontove (Space Grotesk 500/700, Inter 400/600,
+   IBM Plex Mono 400/500) kao lokalne woff2 fajlove sa latin + latin-ext;
+   podesi @font-face sa font-display: swap i preload za kritične fajlove.
+5. Instaliraj GSAP + ScrollTrigger kao dependency (bez implementacije animacija —
+   to je Faza 6).
+6. Napravi osnovni index.html skelet sa semantičkom strukturom svih sekcija iz
+   docs/CONTENT.md (sekcija 14) — prazne ili minimalno popunjene sekcije sa
+   ispravnim ID-jevima, lang="sr-Latn", meta osnovama; bez finalnog vizuelnog
+   dizajna (Faza 5) i bez animacija (Faza 6).
 
-Prvo istraži najbolje sajtove iz auto-servisne, tehničke i srodnih sfera
-(premium landing stranice, hero efekti, motion) i izvuci obrasce koji rade.
-
-Zatim predloži 3 različita kreativna pravca za MobilKlime, u skladu sa konceptom
-„Mobilna klima laboratorija na točkovima" i zabranama iz DESIGN_SYSTEM.md.
-Za svaki pravac: naziv, opis atmosfere, paleta boja, tipografija, hero koncept
-(mora da „oduševi na prvu"), motion koncept, prednosti i rizici.
-
-Preporuči najjači pravac i obrazloži. Nakon izbora razradi kompletan dizajn
-sistem u docs/DESIGN_SYSTEM.md: CSS varijable za boje, tipografska skala i
-fontovi (lokalno hostovani), spacing skala, container/grid, radius/shadow/border,
-button i card varijante, icon pravila, image treatment, hero kompozicija za sve
-breakpoint-e, odluka o Three.js/WebGL vs CSS 3D + SVG + GSAP, responsive
-breakpoint-i, odobreni i zabranjeni obrasci.
-
-Konceptualno definiši motion sistem u docs/ANIMATION_SYSTEM.md (tipovi animacija
-po sekcijama, trajanja, easing, ScrollTrigger pravila, mobilno ponašanje,
-prefers-reduced-motion) — bez produkcionog koda.
+Ne radi vizuelni dizajn sekcija, ne crtaj SVG instrumente i ne piši animacije.
 
 Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
-git commit -am "phase 03: creative direction and design system"
+git commit -am "phase 04: technical architecture and vite scaffold"
 ```

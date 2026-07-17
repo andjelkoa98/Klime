@@ -37,9 +37,26 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 23 | Anchor ID-jevi na srpskom: `#pocetak`, `#problem`, `#usluge`, `#kako-funkcionise`, `#prednosti`, `#podrucje`, `#recenzije`, `#pitanja`, `#kontakt` | Sajt je na srpskom; čitljivi URL fragmenti | Engleski ID-jevi |
 | 24 | FAQ odgovori 6 i 7 sadrže placeholdere `{{POWER_REQUIREMENT}}` i `{{GAS_TYPES}}` | Podaci nepotvrđeni — klijent mora potvrditi pre objave | Izmišljanje tehničkih uslova i tipova gasa |
 
+## Faza 3 (2026-07-17)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 25 | Izabran kreativni pravac A: **„Hladna preciznost"** (dijagnostički HUD — tamni grafit + ledeno-plavi akcenat + mono tehničke oznake) | Jedini od 3 pravca pokriva ceo koncept „mobilna klima laboratorija na točkovima"; tamni automotive izgled dokazano konvertuje (istraživanje Faze 3); najveći wow potencijal u okviru performance budžeta | Pravac B „Ledeni talas" (svetla tema — slab wow, klizi ka zabranjenim pahuljicama); Pravac C „Ruta 5" (mapa u hero-u — duplira sekciju Područje, generičan) |
+| 26 | Semantika boja: hladno = MobilKlime/rešenje, toplo (`--color-heat`) = isključivo problem/vrelina; topla boja zabranjena u CTA, header-u, footer-u i brend elementima | Unikatan storytelling (readout 41°→18°) koji direktno prikazuje uslugu; sprečava razvodnjavanje jedne akcentne boje | Dvobojni akcenat sistem |
+| 27 | Fontovi (lokalno hostovani woff2, latin + latin-ext subset): **Space Grotesk** (naslovi), **Inter** (tekst), **IBM Plex Mono** (tehničke oznake/brojevi) | Tehnički geometrijski karakter pravca; puna podrška š đ č ć ž; 6 fajlova ≤160 KB u budžetu | Google Fonts CDN (blokirajući, privatnost); variable fontovi (veći fajlovi za 2 potrebne težine) |
+| 28 | Hero koncept: **„Dijagnostička tabla"** — asimetrija, levo H1+CTA, desno animirana SVG instrument kompozicija (manometar + temperaturni readout 41°→18° + strujnice); na mobilnom svedena na kompaktnu readout traku, H1 i CTA imaju prioritet above the fold | Wow kroz zanatsku preciznost umesto teškog 3D; mobilna verzija čuva konverziju (poziv na jedan tap u prvih 5s) | Hero fotografija (prave fotke još ne postoje); full-screen WebGL scena |
+| 29 | **Bez Three.js/WebGL** — SVG + GSAP + suptilni CSS 3D tilt (≤4°, samo desktop) | Hero koncept je 2D/2.5D; SVG ga izvodi u ~10–30 KB vs ~150 KB+ za Three.js; performance budžet (Lighthouse mobile 90+) ostaje komotan | Three.js/React Three Fiber |
+| 30 | ScrollTrigger pravila: **pin zabranjen na celom sajtu**; scrub samo za veznu liniju u „Kako funkcioniše" (desktop) i blagi hero parallax; reveal-i se izvode jednom (`top 80%`), bez reverse | Konverzioni one-page sajt ne sme zadržavati posetioca na putu do broja; pin pravi jank na mobilnim browserima | Pinned storytelling sekcije (premium obrazac, ali pogrešan za ovaj cilj) |
+| 31 | Bez smooth-scroll biblioteka (Lenis i sl.) — native scroll ostaje netaknut | Zabrana scroll-jackinga; pristupačnost; jedan dependency manje | Lenis (deo premium stack-a iz istraživanja) |
+| 32 | Breakpoint sistem (mobile-first, min-width): 320 bazno / 375 / 430 / 768 / 1024 (desktop nav) / 1280 / 1440 / cap 1920+ | Pokriva tražene širine iz ulaznih smernica; 1024 kao nav breakpoint odgovara tablet pejzažu | — |
+| 33 | Zabranjen gejmerski HUD kliše: radar sweep, crosshair, glitch tekst, terminal kucanje, matrix efekti; glow budžet: samo hero instrument + fokus stanja, max blur 24px, nikad na tekstu | HUD estetika bez ovih granica sklizne u kič i ruši premium/trust utisak | — |
+| 34 | Motion standardi: easing familija `power*` (bez bounce/elastic); trajanja 150ms–1.4s po tipovima; reduced-motion = identičan sadržaj bez kretanja; idle petlje se pauzuju van viewporta i na skrivenom tabu | Precizan, smiren karakter pokreta u skladu sa pravcem; pristupačnost i baterija | Playful/bouncy motion |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)
 - Struktura placeholder sistema u CLIENT_DATA.md
 - Odluke iz tabela iznad
 - Finalni copy iz `docs/CONTENT.md` (sekcije 14–21) — izmene zahtevaju novi zapis ovde
+- Dizajn sistem iz `docs/DESIGN_SYSTEM.md` (tokeni, hero koncept, zabranjeni obrasci)
+  i motion sistem iz `docs/ANIMATION_SYSTEM.md` — izmene zahtevaju novi zapis ovde
