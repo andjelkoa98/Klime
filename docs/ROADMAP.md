@@ -7,7 +7,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 |---|---|---|---|
 | 0 | Projektna memorija (dokumentacija + Cursor pravila) | ✅ | Spojena sa Fazom 1 u istom chatu |
 | 1 | Poslovna strategija i pozicioniranje | ✅ | Spojena sa Fazom 0 u istom chatu |
-| 2 | Struktura stranice i sadržaj (kompletan copy) | ⬜ | |
+| 2 | Struktura stranice i sadržaj (kompletan copy) | ✅ | Finalni copy u CONTENT.md (sekcije 14–21) |
 | 3 | Kreativni pravac i dizajn sistem (3 pravca → izbor → razrada) | ⬜ | Uključuje istraživanje najboljih sajtova iz sfere |
 | 4 | Tehnička arhitektura i Vite scaffold | ⬜ | Vite `base` za GitHub Pages |
 | 5 | Statički vizuelni dizajn | ⬜ | |

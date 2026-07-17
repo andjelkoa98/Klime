@@ -5,43 +5,59 @@
 
 ---
 
-## Poslednji chat: Faza 0 + Faza 1 (2026-07-17)
+## Poslednji chat: Faza 2 (2026-07-17)
 
 ### Šta je završeno
 
-- Kreiran novi projekat `C:\Users\PC\Projects\mobil-klime` sa git repozitorijumom
-- Kompletan dokumentacioni sistem (AGENTS.md + 9 docs fajlova)
-- 4 Cursor pravila u `.cursor/rules/`
-- Faza 1: ciljna publika, problemi, prigovori i odgovori, vrednosna ponuda,
-  conversion ciljevi, ključne poruke, ton komunikacije, zabranjene tvrdnje,
-  radna pozicionirajuća rečenica — sve u `docs/CONTENT.md`
-- Odluke vlasnika iz uvodnog razgovora upisane u `docs/DECISIONS.md` (15 odluka)
+- Finalni redosled sekcija one-page sajta (12 sekcija + sticky mobilni CTA bar)
+  sa obrazloženjem izmena u odnosu na polaznu strukturu
+- Kompletna specifikacija svake sekcije: cilj, glavna poruka, naslov, supporting
+  tekst, CTA, elementi poverenja, potrebni vizuali, desktop sadržaj i mobilno ponašanje
+- Finalni copy: hero (kicker, H1, supporting, mikro-poverenje), trust strip stavke,
+  3 para problem→rešenje, 5 kartica usluga, 4 koraka procesa, poređenje klasičan/mobilni,
+  područje dolaska, završni CTA, footer
+- SEO paket: ciljna fraza, title tag, meta description, H1/H2/H3 struktura
+- Kompletan spisak CTA tekstova sa pravilima
+- 9 FAQ pitanja i odgovora (pokrivaju svih 6 prigovora iz Faze 1)
+- Open Graph tekstovi + alt text smernice sa finalnim alt tekstovima za sve foto placeholdere
+- Spisak otvorenih pitanja za klijenta pre objavljivanja (CONTENT.md sekcija 21)
+- 9 novih odluka upisano u `docs/DECISIONS.md` (#16–24)
 
-### Fajlovi kreirani
+### Fajlovi izmenjeni
 
-- `AGENTS.md`
-- `docs/PROJECT_CONTEXT.md`, `docs/CLIENT_DATA.md`, `docs/CONTENT.md`,
-  `docs/DESIGN_SYSTEM.md`, `docs/ANIMATION_SYSTEM.md`, `docs/SEO_PERFORMANCE.md`,
-  `docs/ROADMAP.md`, `docs/DECISIONS.md`, `docs/HANDOFF.md`
-- `.cursor/rules/project-core.mdc`, `design-rules.mdc`, `development-rules.mdc`,
-  `quality-rules.mdc`
+- `docs/CONTENT.md` — dodate sekcije 14–21 (arhitektura + finalni copy)
+- `docs/DECISIONS.md` — odluke Faze 2 (#16–24)
+- `docs/ROADMAP.md` — Faza 2 označena kao završena
+- `docs/HANDOFF.md` — ovaj dokument
+
+### Ključne odluke Faze 2
+
+- Sticky mobilni CTA bar („Pozovi" + „Poruka") dodat u strukturu
+- Recenzije su uslovna sekcija — ide uživo samo sa stvarnim Google recenzijama
+- H1: „Servis auto-klime dolazi na vašu adresu"
+- Stilizovana SVG mapa umesto Google Maps embeda (performance)
+- Anchor ID-jevi na srpskom (`#usluge`, `#kako-funkcionise`, `#podrucje`…)
 
 ### Šta NIJE završeno (namerno — pripada narednim fazama)
 
-- Nema index.html, nema koda, nema instaliranih paketa (Faza 4)
-- Nema finalnog copy-ja (Faza 2)
-- Nema dizajn sistema ni kreativnih pravaca (Faza 3)
+- Nema HTML/CSS/JS koda ni Vite scaffold-a (Faza 4)
+- Nema dizajn sistema, boja, tipografije ni hero koncepta (Faza 3)
+- Nema logoa (Faza 3)
+- SEO copy (title, meta, OG) se potvrđuje u Fazi 8
 
 ### Poznati problemi / otvorena pitanja
 
-- Svi `{{PLACEHOLDER}}` podaci u `CLIENT_DATA.md` čekaju stvarne vrednosti
-  (telefon, WhatsApp/Viber brojevi, radno vreme, tipovi gasa, recenzije, fotografije)
-- Tipovi gasa nepoznati — ne pominjati R134a/R1234yf kao činjenicu
+- Svi `{{PLACEHOLDER}}` podaci čekaju stvarne vrednosti — spisak pitanja za
+  klijenta je u `docs/CONTENT.md`, sekcija 21
+- FAQ odgovori 6 (struja na lokaciji) i 7 (tipovi gasa) zavise od potvrde klijenta
+- Recenzije: tekstovi i Google link još nisu dostavljeni — sekcija je uslovna
 - Ime GitHub repozitorijuma još nije određeno (bitno za Vite `base` u Fazi 4)
 
 ### Sledeća faza
 
-**Faza 2 — Struktura stranice i sadržaj** (kompletan copy, bez HTML/CSS/JS)
+**Faza 3 — Kreativni pravac i dizajn sistem** (3 pravca → izbor → razrada;
+uključuje istraživanje najboljih sajtova iz auto/servisne/tehničke sfere;
+bez HTML/CSS/JS produkcionog koda)
 
 ### Prompt za sledeći chat
 
@@ -59,26 +75,29 @@ Pročitaj sledeće fajlove pre bilo kakve izmene:
 - docs/DECISIONS.md
 - docs/HANDOFF.md
 
-Trenutna faza je Faza 2: information architecture i sadržaj.
+Trenutna faza je Faza 3: kreativni pravac i dizajn sistem.
 
-Ne piši HTML, CSS ili JavaScript.
+Ne piši produkcioni HTML, CSS ili JavaScript.
 
-Definiši finalni redosled sekcija one-page sajta. Za svaku sekciju napiši:
-cilj, glavnu poruku, naslov, supporting tekst, CTA, elemente poverenja,
-potrebne fotografije/vizuale, sadržaj za desktop i ponašanje na mobilnom.
+Prvo istraži najbolje sajtove iz auto-servisne, tehničke i srodnih sfera
+(premium landing stranice, hero efekti, motion) i izvuci obrasce koji rade.
 
-Polazna struktura (proveri i unapredi): Header, Hero, Trust strip,
-Problem i rešenje, Usluge, Kako funkcioniše, Prednosti mobilnog servisa,
-Područje dolaska, Recenzije, FAQ, Završni CTA, Footer.
+Zatim predloži 3 različita kreativna pravca za MobilKlime, u skladu sa konceptom
+„Mobilna klima laboratorija na točkovima" i zabranama iz DESIGN_SYSTEM.md.
+Za svaki pravac: naziv, opis atmosfere, paleta boja, tipografija, hero koncept
+(mora da „oduševi na prvu"), motion koncept, prednosti i rizici.
 
-Copy mora biti jasan, direktan, lokalno relevantan, bez generičkih fraza,
-bez izmišljenih podataka (koristi placeholdere iz CLIENT_DATA.md),
-fokusiran na dolazak na adresu i jednostavno zakazivanje pozivom/porukom.
+Preporuči najjači pravac i obrazloži. Nakon izbora razradi kompletan dizajn
+sistem u docs/DESIGN_SYSTEM.md: CSS varijable za boje, tipografska skala i
+fontovi (lokalno hostovani), spacing skala, container/grid, radius/shadow/border,
+button i card varijante, icon pravila, image treatment, hero kompozicija za sve
+breakpoint-e, odluka o Three.js/WebGL vs CSS 3D + SVG + GSAP, responsive
+breakpoint-i, odobreni i zabranjeni obrasci.
 
-Pripremi i: title tag, meta description, H1, H2 strukturu, CTA tekstove,
-FAQ pitanja i odgovore, Open Graph tekst, alt text smernice.
+Konceptualno definiši motion sistem u docs/ANIMATION_SYSTEM.md (tipovi animacija
+po sekcijama, trajanja, easing, ScrollTrigger pravila, mobilno ponašanje,
+prefers-reduced-motion) — bez produkcionog koda.
 
-Sve upiši u docs/CONTENT.md. Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md.
-Nemoj još razvijati sajt. Na kraju git commit:
-git commit -am "phase 02: define page architecture and content"
+Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
+git commit -am "phase 03: creative direction and design system"
 ```
