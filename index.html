@@ -155,7 +155,10 @@
         <div class="container container--wide hero__inner">
           <div class="hero__content">
             <p class="mono-label hero__kicker">Mobilni servis auto-klime · Beograd i okolina</p>
-            <h1 id="hero-naslov">Servis auto-klime dolazi na vašu adresu</h1>
+            <h1 id="hero-naslov">
+              <span class="hero__title-line">Servis auto-klime</span>
+              <span class="hero__title-line">dolazi na vašu adresu</span>
+            </h1>
             <p class="hero__lead">
               Pregled, dijagnostika i servis klime na licu mesta — kod kuće, na poslu
               ili na parkingu. Vi radite svoje, mi rešavamo klimu.
@@ -174,7 +177,9 @@
               <svg class="readout-strip__gauge" viewBox="0 0 64 40" focusable="false">
                 <path class="gauge-arc" d="M8 36a24 24 0 0 1 48 0" />
                 <path class="gauge-zone" d="M46.8 17.7a24 24 0 0 1 8.9 15" />
-                <line class="gauge-needle" x1="32" y1="36" x2="46.5" y2="24.5" />
+                <g class="gauge-needle-group">
+                  <line class="gauge-needle" x1="32" y1="36" x2="46.5" y2="24.5" />
+                </g>
                 <circle class="gauge-hub" cx="32" cy="36" r="2.5" />
               </svg>
               <div class="readout-strip__temp">
@@ -188,12 +193,12 @@
             </div>
           </div>
 
-          <!-- Instrument kompozicija (≥768px) — statično idle stanje; animacije: Faza 6 -->
+          <!-- Instrument kompozicija (≥768px) — motion: hero-visual.js (Faza 6) -->
           <div class="hero__visual" aria-hidden="true">
             <svg class="hero__flowlines" viewBox="0 0 320 220" focusable="false" preserveAspectRatio="none">
-              <path d="M320 40 C 230 55, 140 20, 0 52" />
-              <path d="M320 110 C 220 130, 130 95, 0 122" />
-              <path d="M320 180 C 240 195, 120 165, 0 188" />
+              <path class="hero__flowline" d="M320 40 C 230 55, 140 20, 0 52" />
+              <path class="hero__flowline" d="M320 110 C 220 130, 130 95, 0 122" />
+              <path class="hero__flowline" d="M320 180 C 240 195, 120 165, 0 188" />
             </svg>
             <div class="instrument-panel">
               <div class="instrument-panel__head">
@@ -214,7 +219,9 @@
                       <line x1="160.6" y1="65" x2="168.4" y2="60.5" />
                       <line x1="170" y1="100" x2="179" y2="100" />
                     </g>
-                    <line class="gauge-needle" x1="91" y1="104.4" x2="153.9" y2="73.7" />
+                    <g class="gauge-needle-group">
+                      <line class="gauge-needle" x1="100" y1="100" x2="162" y2="69" />
+                    </g>
                     <circle class="gauge-hub" cx="100" cy="100" r="4" />
                   </svg>
                   <span class="mono-label instrument-panel__gauge-label">Pritisak · bar</span>
@@ -428,53 +435,59 @@
           <p class="mono-label section-kicker">03 // Proces</p>
           <h2 id="kako-naslov">Kako funkcioniše</h2>
 
-          <ol role="list" class="steps">
-            <li class="step-card">
-              <span class="readout-number step-card__num" aria-hidden="true">01</span>
-              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
-                <use href="#icon-phone" />
-              </svg>
-              <h3>Javite se</h3>
-              <p>
-                Pozovite <a class="inline-tel" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
-                ili pošaljite WhatsApp/Viber poruku. Recite gde se nalazite, koje je
-                vozilo i šta klima radi (ili ne radi).
-              </p>
-            </li>
-            <li class="step-card">
-              <span class="readout-number step-card__num" aria-hidden="true">02</span>
-              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
-                <use href="#icon-calendar" />
-              </svg>
-              <h3>Dogovorimo termin</h3>
-              <p>
-                Nađemo vreme i mesto koje vama odgovara — kod kuće, na poslu ili gde
-                je vozilo parkirano.
-              </p>
-            </li>
-            <li class="step-card">
-              <span class="readout-number step-card__num" aria-hidden="true">03</span>
-              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
-                <use href="#icon-van" />
-              </svg>
-              <h3>Dolazimo sa opremom</h3>
-              <p>
-                Majstor stiže na vašu adresu sa profesionalnom servisnom opremom i
-                pregleda klima sistem.
-              </p>
-            </li>
-            <li class="step-card">
-              <span class="readout-number step-card__num" aria-hidden="true">04</span>
-              <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
-                <use href="#icon-shield" />
-              </svg>
-              <h3>Pregled, dogovor, rešenje</h3>
-              <p>
-                Posle pregleda znate šta je problem i šta predlažemo. Radimo tek kad
-                se dogovorimo — i klima ponovo hladi.
-              </p>
-            </li>
-          </ol>
+          <div class="steps-wrap">
+            <!-- Progress fill for desktop scrub (ANIMATION_SYSTEM.md §4); track = .steps::before -->
+            <div class="steps__progress" aria-hidden="true">
+              <span class="steps__progress-fill"></span>
+            </div>
+            <ol role="list" class="steps">
+              <li class="step-card">
+                <span class="readout-number step-card__num" aria-hidden="true">01</span>
+                <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                  <use href="#icon-phone" />
+                </svg>
+                <h3>Javite se</h3>
+                <p>
+                  Pozovite <a class="inline-tel" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+                  ili pošaljite WhatsApp/Viber poruku. Recite gde se nalazite, koje je
+                  vozilo i šta klima radi (ili ne radi).
+                </p>
+              </li>
+              <li class="step-card">
+                <span class="readout-number step-card__num" aria-hidden="true">02</span>
+                <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                  <use href="#icon-calendar" />
+                </svg>
+                <h3>Dogovorimo termin</h3>
+                <p>
+                  Nađemo vreme i mesto koje vama odgovara — kod kuće, na poslu ili gde
+                  je vozilo parkirano.
+                </p>
+              </li>
+              <li class="step-card">
+                <span class="readout-number step-card__num" aria-hidden="true">03</span>
+                <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                  <use href="#icon-van" />
+                </svg>
+                <h3>Dolazimo sa opremom</h3>
+                <p>
+                  Majstor stiže na vašu adresu sa profesionalnom servisnom opremom i
+                  pregleda klima sistem.
+                </p>
+              </li>
+              <li class="step-card">
+                <span class="readout-number step-card__num" aria-hidden="true">04</span>
+                <svg class="step-card__icon" width="24" height="24" aria-hidden="true" focusable="false">
+                  <use href="#icon-shield" />
+                </svg>
+                <h3>Pregled, dogovor, rešenje</h3>
+                <p>
+                  Posle pregleda znate šta je problem i šta predlažemo. Radimo tek kad
+                  se dogovorimo — i klima ponovo hladi.
+                </p>
+              </li>
+            </ol>
+          </div>
 
           <div class="cta-row">
             <a class="button button--primary" href="tel:{{PHONE_NUMBER}}">Zakažite dolazak</a>
@@ -764,7 +777,10 @@
             Recite gde ste, koje je vozilo i šta se dešava sa klimom.
           </p>
 
-          <a class="readout-number final-cta__phone" href="tel:{{PHONE_NUMBER}}">{{PHONE_NUMBER}}</a>
+          <a class="readout-number final-cta__phone" href="tel:{{PHONE_NUMBER}}">
+            {{PHONE_NUMBER}}
+            <span class="final-cta__phone-line" aria-hidden="true"></span>
+          </a>
 
           <div class="final-cta__messages">
             <a class="button button--secondary" href="https://wa.me/{{WHATSAPP_NUMBER}}">

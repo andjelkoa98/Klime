@@ -46,6 +46,17 @@
   background-color: rgba(11, 15, 20, 0.92);
   backdrop-filter: blur(8px);
   border-bottom: var(--border-panel);
+  transition:
+    background-color 180ms ease-out,
+    border-color 180ms ease-out,
+    backdrop-filter 180ms ease-out;
+}
+
+/* JS (navigation.js): transparent at top of page; solid after ~80px scroll */
+.site-header.has-scroll-enhance:not(.is-scrolled) {
+  background-color: transparent;
+  border-bottom-color: transparent;
+  backdrop-filter: none;
 }
 
 .site-header__inner {
@@ -139,6 +150,10 @@ body.nav-locked {
 .hero__kicker {
   margin-bottom: var(--space-4);
   color: var(--color-accent);
+}
+
+.hero__title-line {
+  display: block;
 }
 
 .hero__lead {
@@ -392,13 +407,17 @@ body.nav-locked {
   color: var(--color-text-muted);
 }
 
-/* --- 6. Kako funkcioniše (koraci; vezna linija timeline-a se iscrtava u Fazi 6) --- */
+/* --- 6. Kako funkcioniše (koraci; scrub fill na desktopu — Faza 6) --- */
+
+.steps-wrap {
+  position: relative;
+  margin-top: var(--space-7);
+}
 
 .steps {
   position: relative;
   display: grid;
   gap: var(--space-5);
-  margin-top: var(--space-7);
   padding-left: var(--space-5);
 }
 
@@ -412,6 +431,23 @@ body.nav-locked {
   width: 2px;
   background: linear-gradient(var(--color-accent-deep), var(--color-accent));
   border-radius: 1px;
+  opacity: 0.35;
+}
+
+/* Scrub progress — vidljiv samo na desktop timeline-u (≥1024px) */
+.steps__progress {
+  display: none;
+  pointer-events: none;
+}
+
+.steps__progress-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-deep), var(--color-accent));
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
 }
 
 /* --- 7. Prednosti (poređenje) ------------------------------------------------------ */
@@ -547,16 +583,26 @@ body.nav-locked {
 
 /* Ogroman tel: link — nije dugme (DESIGN_SYSTEM.md section 8) */
 .final-cta__phone {
+  position: relative;
   display: inline-block;
   margin-top: var(--space-7);
   font-weight: 500;
   font-size: var(--text-tel);
   line-height: 1.1;
   color: var(--color-text);
-  text-decoration: underline;
-  text-decoration-color: var(--color-accent);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 12px;
+  text-decoration: none;
+}
+
+.final-cta__phone-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 3px;
+  background-color: var(--color-accent);
+  border-radius: 1px;
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
 .final-cta__phone:hover {
@@ -639,12 +685,18 @@ body.nav-locked {
   background-color: rgba(11, 15, 20, 0.92);
   backdrop-filter: blur(8px);
   border-top: var(--border-panel);
+  transition:
+    transform 350ms ease-out,
+    visibility 350ms step-end;
 }
 
 /* JS (navigation.js) drži bar skriven dok je hero CTA u viewportu */
 .sticky-cta.is-hidden {
   transform: translateY(100%);
   visibility: hidden;
+  transition:
+    transform 350ms ease-out,
+    visibility 350ms step-start;
 }
 
 .sticky-cta__button {

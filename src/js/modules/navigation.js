@@ -1,21 +1,15 @@
 /**
  * navigation.js — header and mobile menu behavior (CONTENT.md 15.1, 15.13).
  *
- * Implemented (Phase 5):
- *  - mobile menu open/close, background scroll lock, focus return to trigger
- *  - close on Escape, on link click, and automatically at ≥1024px
- *  - aria-expanded state on the trigger
- *  - sticky mobile CTA bar: hidden while the hero CTA group is in the
- *    viewport (IntersectionObserver); without JS the bar stays visible
- *
- * Phase 6 adds: header background change after ~80px of scroll,
- * slide animation for the sticky bar.
+ * Phase 5: mobile menu, sticky CTA IntersectionObserver.
+ * Phase 6: header background after ~80px scroll; sticky bar slide via CSS transition.
  */
 
 import { minWidth } from './utils.js';
 
 export function initNavigation() {
   initMobileMenu();
+  initHeaderScroll();
   initStickyCtaBar();
 }
 
@@ -40,12 +34,10 @@ function initMobileMenu() {
 
   toggle.addEventListener('click', () => setOpen(!isOpen()));
 
-  // Zatvaranje na klik linka ili CTA unutar menija
   nav.addEventListener('click', (event) => {
     if (event.target.closest('a')) setOpen(false);
   });
 
-  // Escape zatvara meni i vraća fokus na trigger
   document.addEventListener('keydown', (event) => {
     if (event.key === 'Escape' && isOpen()) {
       setOpen(false);
@@ -53,10 +45,23 @@ function initMobileMenu() {
     }
   });
 
-  // Meni se automatski zatvara pri prelasku na desktop breakpoint
   desktopQuery.addEventListener('change', (event) => {
     if (event.matches && isOpen()) setOpen(false);
   });
+}
+
+function initHeaderScroll() {
+  const header = document.querySelector('.site-header');
+  if (!header) return;
+
+  header.classList.add('has-scroll-enhance');
+
+  const onScroll = () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 80);
+  };
+
+  onScroll();
+  window.addEventListener('scroll', onScroll, { passive: true });
 }
 
 function initStickyCtaBar() {
@@ -65,6 +70,7 @@ function initStickyCtaBar() {
 
   if (!bar || !heroCta || !('IntersectionObserver' in window)) return;
 
+  // Progressive enhancement: hide while hero CTA is visible; CSS transitions slide.
   const observer = new IntersectionObserver(
     ([entry]) => {
       bar.classList.toggle('is-hidden', entry.isIntersecting);

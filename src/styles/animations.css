@@ -1,9 +1,19 @@
 /* ==========================================================================
-   animations.css — CSS-side motion (hover/focus transitions only)
+   animations.css — CSS-side motion (hover/focus + sticky/header helpers)
    Spec: docs/ANIMATION_SYSTEM.md (dur-micro 150–200ms; no bounce/elastic).
-   GSAP animations are JS-driven (Phase 6) — this file holds only CSS
-   transitions; the global reduced-motion kill switch lives in reset.css.
+   GSAP timelines/reveals are JS-driven (Phase 6). Global reduced-motion
+   kill switch lives in reset.css.
    ========================================================================== */
+
+/* Instrument panel: CSS 3D tilt via custom props (hero-visual.js) — composes with GSAP intro */
+.instrument-panel.has-tilt {
+  transform:
+    perspective(800px)
+    rotateX(var(--tilt-x, 0deg))
+    rotateY(var(--tilt-y, 0deg));
+  transform-style: preserve-3d;
+  will-change: transform;
+}
 
 /* Hover/fokus mikro-tranzicije (dur-micro) — samo transform/boje, bez layout-a */
 

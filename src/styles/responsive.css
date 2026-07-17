@@ -198,7 +198,8 @@
 
   .hero__visual {
     width: 100%;
-    transform: scale(0.92); /* laptop: instrument ~85–92% */
+    --hero-scale: 0.92; /* laptop: instrument ~85–92% */
+    transform: scale(var(--hero-scale)) translate3d(0, var(--parallax-y, 0px), 0);
     transform-origin: center;
   }
 
@@ -220,7 +221,7 @@
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* Koraci: horizontalna linija od 4 koraka (timeline) */
+  /* Koraci: horizontalna linija od 4 koraka (timeline) + scrub fill */
   .steps {
     grid-template-columns: repeat(4, 1fr);
     position: relative;
@@ -236,6 +237,17 @@
     width: auto;
     height: 2px;
     background: linear-gradient(90deg, var(--color-accent-deep), var(--color-accent));
+  }
+
+  .steps__progress {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: var(--space-2);
+    right: var(--space-2);
+    z-index: 1;
+    height: 2px;
+    overflow: hidden;
   }
 
   /* Poređenje: lista 7 / aside 5 */
@@ -278,7 +290,7 @@
   }
 
   .hero__visual {
-    transform: none;
+    --hero-scale: 1;
   }
 
   /* Instrument blago prelazi desnu ivicu kontejnera */

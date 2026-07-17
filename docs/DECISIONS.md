@@ -76,6 +76,16 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 47 | Sticky mobilni CTA bar: vidljiv bez JS-a; sa JS-om `IntersectionObserver` ga skriva dok je hero CTA u viewportu | Progressive enhancement + CONTENT.md 15.13; slide animacija pojavljivanja ostaje za Fazu 6 | Bar uvek vidljiv (dvostruki CTA u hero viewportu) |
 | 48 | Placeholder fotografije = tamni paneli sa mono oznakom `Foto // {{PHOTO_*}}` i opisom iz CLIENT_DATA.md | DESIGN_SYSTEM.md §11; zabranjen stock | Generičke stock fotografije |
 
+## Faza 6 (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 49 | GSAP + ScrollTrigger registruju se jednom u `animations.js` (entry modul); `hero-visual.js` koristi isti GSAP import bez ponovne registracije | ANIMATION_SYSTEM.md §5 — jedna registracija, čist lifecycle sa `gsap.matchMedia()` | Registracija u više modula; dinamički import GSAP-a (odloženo do Faze 9 ako budžet traži) |
+| 50 | Hero H1 podeljen u dva `.hero__title-line` span-a (isti copy); initial hide/show postavlja JS, ne CSS | ANIMATION_SYSTEM.md §3 — ulazak po linijama; no-JS posetioci vide kompletan H1 odmah | SplitText plugin (Club GSAP); CSS `opacity: 0` na H1 |
+| 51 | Idle petlje (mikro-drhtaj kazaljke, strujnice) i CSS 3D tilt (CSS varijable `--tilt-x/y`, ≤4°) samo ≥768px + fine pointer; pauza preko IntersectionObserver + `visibilitychange` | ANIMATION_SYSTEM.md §3, §6, §8; baterija i touch UX | Tilt preko GSAP transform (sukob sa CSS scale); idle na mobilnom |
+| 52 | Scrub samo na desktopu (≥1024): `.steps__progress-fill` (`scaleX`) + blagi hero parallax (`--parallax-y` CSS var); pin zabranjen | Odluka #30; CSS var parallax čuva `--hero-scale` na laptopu | Scrub na touch; pin storytelling; Lenis |
+| 53 | Sticky CTA slide = CSS `transform` transition (350ms) na `.is-hidden`; header `has-scroll-enhance` / `is-scrolled` posle 80px | ANIMATION_SYSTEM.md §4; progressive enhancement (bez JS bara ostaje vidljiv, header solidan) | GSAP timeline za sticky bar; uvek-transparentan header |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

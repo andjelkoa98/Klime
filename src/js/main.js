@@ -5,16 +5,16 @@
  * stays styled and readable without JavaScript (progressive enhancement).
  *
  * Module responsibilities:
- *  - navigation.js  → mobile menu, header scroll state (Phase 5/7)
- *  - hero-visual.js → SVG diagnostic panel behavior (Phase 5/6)
- *  - animations.js  → GSAP + ScrollTrigger motion system (Phase 6)
+ *  - navigation.js  → mobile menu, header scroll state, sticky CTA
+ *  - animations.js  → GSAP + ScrollTrigger registration (once) + scroll motion
+ *  - hero-visual.js → hero intro, idle loops, CSS 3D tilt
  *  - utils.js       → shared helpers (media queries, reduced motion)
  */
 
 import { initNavigation } from './modules/navigation.js';
-import { initHeroVisual } from './modules/hero-visual.js';
 import { initAnimations } from './modules/animations.js';
+import { initHeroVisual } from './modules/hero-visual.js';
 
 initNavigation();
-initHeroVisual();
 initAnimations();
+initHeroVisual();
