@@ -34,12 +34,16 @@
 
 - Odluka #71: readout traka vidljiva i na 360px Android uređajima; #57 povučena
 
+### Deploy (2026-07-18)
+
+- Push `1442a86` → `origin/master` → GitHub Actions **success**
+- Javni URL: https://andjelkoa98.github.io/Klime/
+- Workflow: https://github.com/andjelkoa98/Klime/actions/runs/29638599183
+
 ### Šta NIJE završeno (namerno — publish checklist)
 
-- Kreiranje GitHub repo-a **Klime** + `git remote add` + prvi push
-- Zamena svih obaveznih `{{PLACEHOLDER}}` (FINAL_QA.md §10)
+- Eventualna zamena preostalih `{{PLACEHOLDER}}` ako ih još ima (FINAL_QA.md §10)
 - Prave fotografije, Google recenzije, GBP, analytics
-- Redeploy posle ovog CSS fix-a (kad remote postoji)
 
 ### Poznati problemi / otvorena pitanja
 
