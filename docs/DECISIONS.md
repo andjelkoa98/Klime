@@ -114,6 +114,15 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 65 | Vite: `cssCodeSplit: false`, `modulePreload.polyfill: false`, `manualChunks` za `gsap` + `motion` | Manji entry, jedan CSS fajl, bez polyfill bajtova na es2020 targetu | Dodatne biblioteke za compress/image pipeline (nema pravih fotografija još) |
 | 66 | Bez `content-visibility` na sekcijama sa ScrollTrigger reveal-ima | Rizik od pogrešnih trigger/visina merenja; budžet već ispunjen font+JS optimizacijom | `content-visibility: auto` na svim below-fold sekcijama |
 
+## Faza 10 (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 67 | Finalni QA živi u `docs/FINAL_QA.md` (checklist + rezultati build/preview + deploy koraci + spisak placeholdera za klijenta) | Trajni zapis prolaza/otvorenih stavki pre objave; AGENTS/ROADMAP zahtev Faze 10 | Ad-hoc QA samo u chatu bez fajla |
+| 68 | Git push / GitHub Pages deploy **nije** izvršen u ovoj fazi — dokumentovani su tačni koraci (Actions ili `gh-pages`); remote još ne postoji | Nema `git remote`; zabranjeno forsirati push i izmišljati `{{GITHUB_USERNAME}}` | Lažni remote / hardkodovan github.io nalog |
+| 69 | Javna objava blokirana dok klijent ne zameni obavezne placeholdere (telefon, WhatsApp, Viber, email, radno vreme, gas, struja, GitHub username); recenzije ostaju `hidden` bez stvarnih tekstova | Odluka #10/#18; quality rules — bez izmišljenih podataka i bez fake recenzija | Objava sa vidljivim `{{PLACEHOLDER}}` vrednostima |
+| 70 | Preporučen deploy put: GitHub Actions → `actions/upload-pages-artifact` + `deploy-pages` iz `dist/` posle `npm run build` | Standard za Vite + Pages; ne zahteva ručno commitovanje `dist/` | Commit `dist/` na `master` |
+
 ## Šta se više ne sme samostalno menjati
 
 - Tehnološki stack (Vite + vanilla JS + GSAP; bez React/Next)

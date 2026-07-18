@@ -15,7 +15,7 @@ Status: ⬜ nije počelo · 🔄 u toku · ✅ završeno
 | 7 | Responsive, pristupačnost i interakcije | ✅ | Fokus trap, sticky spacing, FAQ exclusive accordion |
 | 8 | SEO i lokalna optimizacija | ✅ | Meta/OG/JSON-LD/robots/sitemap/cookie; GBP samo kao preporuka u docs |
 | 9 | Performance optimizacija | ✅ | Lighthouse mobile 98 / A11y 96 / BP 100 / SEO 100; font subset + GSAP chunk |
-| 10 | Finalni QA i priprema za objavljivanje | ⬜ | FINAL_QA.md, deploy na GitHub Pages |
+| 10 | Finalni QA i priprema za objavljivanje | ✅ | FINAL_QA.md; deploy koraci dokumentovani; remote još nije povezan |
 
 ## Šta blokira koje faze
 

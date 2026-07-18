@@ -5,100 +5,75 @@
 
 ---
 
-## Poslednji chat: Faza 9 (2026-07-18)
+## Poslednji chat: Faza 10 (2026-07-18)
 
 ### Šta je završeno
 
-- Font glyph subset (`scripts/subset-fonts.mjs`, `npm run fonts:subset`):
-  6 woff2 → ~63 KB zbirno (cilj ≤160 KB); `font-display: swap` + preload ATF fontova
-- GSAP/motion code-split: entry JS ~4 KB; `gsap` + `motion` async chunk-ovi
-- Vite build: `cssCodeSplit: false`, bez modulepreload polyfill-a, manualChunks
-- CLS provera: photo placeholderi sa `aspect-ratio` + `width: 100%`; pipeline napomena
-  za buduće slike (`width`/`height`, `loading="lazy"` ispod fold-a)
-- Bez blokirajućih eksternih resursa (sve lokalno)
-- Lighthouse mobile (`vite preview` `/Klime/`): Performance **98**, Accessibility **96**,
-  Best Practices **100**, SEO **100**; network ~132 KiB
-- Copy i vizuelni dizajn nisu menjani
+- Kreiran `docs/FINAL_QA.md` — checklist (funkcionalnost, a11y, SEO, performance,
+  placeholderi, breakpointi) + rezultati provere na `vite preview` `/Klime/`
+- QA na build/preview: meni (open/lock/Escape/link/≥1024), sticky CTA, FAQ exclusive,
+  cookie consent, anchori, overflow na 320/375/768/1024/1920, asseti 200
+- Deploy na GitHub Pages **pripremljen dokumentacijom** (Opcija A: Actions, Opcija B:
+  `gh-pages`) — **bez push-a** (nema `git remote`)
+- Placeholderi **nisu** zamenjeni izmišljenim katalogom; nabrojan obavezni spisak
+  za klijenta u FINAL_QA.md §10
+- Copy, dizajn i motion nisu menjani
 
 ### Fajlovi kreirani
 
-- `scripts/subset-fonts.mjs`
+- `docs/FINAL_QA.md`
 
 ### Fajlovi izmenjeni
 
-- `src/assets/fonts/*.woff2` — glyph subset
-- `src/js/main.js` — dinamički import motion/GSAP
-- `vite.config.js` — chunking + build opcije
-- `src/styles/typography.css` — napomena o subset pipeline-u
-- `src/styles/components.css` — CLS napomena na photo placeholder
-- `index.html` — komentari (preload / bez CDN)
-- `package.json` — `0.9.0`, skripta `fonts:subset`, devDep `subset-font`
-- `package-lock.json`
-- `docs/SEO_PERFORMANCE.md` — status + mereni rezultati
-- `docs/DECISIONS.md` — odluke Faze 9 (#63–66)
-- `docs/ROADMAP.md` — Faza 9 ✅
+- `docs/DECISIONS.md` — odluke Faze 10 (#67–70)
+- `docs/ROADMAP.md` — Faza 10 ✅
 - `docs/HANDOFF.md` — ovaj dokument
+- `package.json` — verzija `1.0.0` (publish-prep milestone)
 
-### Ključne odluke Faze 9
+### Ključne odluke Faze 10
 
-- Glyph subset umesto skidanja težina fontova (odluka #63)
-- Dinamički import GSAP/motion, bez idle odlaganja intro-a (odluka #64)
-- Vite chunk/CSS/modulePreload podešavanja (odluka #65)
-- Bez `content-visibility` zbog ScrollTrigger (odluka #66)
+- FINAL_QA.md kao trajni QA zapis (odluka #67)
+- Bez forsiranog push-a dok remote/repo nisu spremni (odluka #68)
+- Javna objava blokirana dok obavezni placeholderi nisu popunjeni (odluka #69)
+- Preporučen GitHub Actions deploy iz `dist/` (odluka #70)
 
-### Šta NIJE završeno (namerno — pripada narednim fazama)
+### Šta NIJE završeno (namerno — posle Faze 10 / vlasnik + klijent)
 
-- Finalni QA, `FINAL_QA.md`, deploy na GitHub Pages (Faza 10)
-- Zamena svih `{{PLACEHOLDER}}` (telefon, gas, radno vreme, GitHub username, …)
-- Prave fotografije (AVIF/WebP + `srcset`) i OG od `{{PHOTO_HERO_TECHNICIAN}}`
-- Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
-- Ručno kreiranje Google Business Profile (van koda)
+- Kreiranje GitHub repo-a **Klime** + `git remote add` + prvi push
+- Zamena svih obaveznih `{{PLACEHOLDER}}` (FINAL_QA.md §10)
+- Prave fotografije (AVIF/WebP) i eventualni OG od terenske fotke
+- Uklanjanje `hidden` sa `#recenzije` tek sa stvarnim `{{GOOGLE_REVIEWS}}`
+- Ručno Google Business Profile
+- Povezivanje analytics alata posle cookie pristanka
+- Potvrda konačnog logo/wordmark-a sa vlasnikom
 
 ### Poznati problemi / otvorena pitanja
 
-- Lighthouse color-contrast na dekorativnim `aria-hidden` mono oznakama u readout
-  traci (`--color-text-faint` na panel pozadini, 4.21:1); A11y skor i dalje 96+
-- Posle izmene copy-ja / novih karaktera: ponovo `npm run fonts:subset`
-  (izvor za pun re-subset: `tmp-fonts/` gwfh zip-ovi ako treba restore)
-- Svi `{{PLACEHOLDER}}` čekaju stvarne vrednosti (CONTENT.md sekcija 21)
-- `{{GITHUB_USERNAME}}` mora biti zamenjen u HTML + robots + sitemap pre objave
-- Recenzije sekcija i dalje `hidden` dok ne stignu `{{GOOGLE_REVIEWS}}`
-- GitHub repo još nije kreiran/povezan — ime mora biti **Klime** (`base: '/Klime/'`)
-- Service-card ikone: scale/fade umesto pravog SVG stroke line-draw (sprite `<use>`)
-- Konačan logo potvrditi sa vlasnikom pre Faze 10
-- FAQ `name` exclusive: stariji browseri zadržavaju multi-open (prihvatljiv fallback)
-- Cookie banner zahteva JS za dismiss; bez JS ostaje sakriven — prihvatljivo
+- Nema git remote — deploy čeka vlasnika (koraci u FINAL_QA.md §9)
+- Lighthouse color-contrast na dekorativnim `aria-hidden` mono oznakama (A11y 96)
+- Posle izmene copy-ja: ponovo `npm run fonts:subset`
+- Service-card ikone: scale/fade umesto pravog SVG stroke line-draw
+- FAQ `name` exclusive: stariji browseri zadržavaju multi-open (prihvatljivo)
+- Cookie banner zahteva JS za dismiss
 
 ### Sledeća faza
 
-**Faza 10 — Finalni QA i priprema za objavljivanje**
+**Nema naredne roadmap faze.** Projekat je u stanju „spreman za klijentske podatke
++ GitHub Pages objavu“. Sledeći chat = publish checklist (placeholderi → build →
+remote → deploy), ne nova razvojna faza.
 
-### Prompt za sledeći chat
+### Prompt za sledeći chat (publish)
 
 ```
-Pročitaj sledeće fajlove pre bilo kakve izmene:
+Pročitaj AGENTS.md i docs/FINAL_QA.md (sekcije 9–10), docs/CLIENT_DATA.md,
+docs/HANDOFF.md.
 
-- AGENTS.md
-- docs/PROJECT_CONTEXT.md
-- docs/CLIENT_DATA.md
-- docs/CONTENT.md
-- docs/DESIGN_SYSTEM.md
-- docs/ANIMATION_SYSTEM.md
-- docs/SEO_PERFORMANCE.md
-- docs/ROADMAP.md
-- docs/DECISIONS.md
-- docs/HANDOFF.md
-
-Trenutna faza je Faza 10: Finalni QA i priprema za objavljivanje.
-
-Zadaci:
-1. Napravi docs/FINAL_QA.md sa checklistom (funkcionalnost, a11y, SEO, performance,
-   placeholderi, pregled na breakpointima).
-2. Prođi QA checklistu na build/preview verziji; zabeleži prolaze i otvorene stavke.
-3. Pripremi deploy na GitHub Pages (Vite base '/Klime/' već podešen) — bez forsiranja
-   push-a ako repo/remote još nije spreman; dokumentuj tačne korake.
-4. Ne zamenjuj {{PLACEHOLDER}} izmišljenim podacima; nabroji šta klijent mora da
-   popuni pre javnog objavljivanja.
-5. Ažuriraj docs/DECISIONS.md i docs/HANDOFF.md. Na kraju git commit:
-   git commit -am "phase 10: final QA and publish prep"
+Zadaci (samo kad vlasnik/klijent dostavi podatke):
+1. Zameni obavezne {{PLACEHOLDER}} stvarnim vrednostima iz CLIENT_DATA.md
+   (telefon, WhatsApp, Viber, email, radno vreme, POWER_REQUIREMENT, GAS_TYPES,
+   GITHUB_USERNAME u index.html + public/robots.txt + public/sitemap.xml).
+2. Ako stignu Google recenzije — popuni #recenzije i skini hidden.
+3. Poveži git remote na https://github.com/<user>/Klime.git (repo ime mora biti Klime).
+4. npm run build; deploy preko GitHub Actions ili dokumentovane Opcije B.
+5. Ne izmišljaj podatke koji i dalje nedostaju.
 ```
