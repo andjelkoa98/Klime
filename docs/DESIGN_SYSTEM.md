@@ -324,7 +324,7 @@ Sadržaj vizuala (slojevi, sve SVG + CSS/GSAP):
 | **1024–1439px (laptop)** | Ista podela, instrument skaliran ~85%; strujnice skraćene; ~85vh |
 | **768–1023px (tablet)** | Tekst i CTA gore (pune širine), instrument tabla ispod teksta, centrirana, ~70% širine; oba CTA vidljiva bez skrola |
 | **≤767px (mobilni)** | H1 + supporting + oba CTA imaju apsolutni prioritet i staju u prvi viewport; instrument sveden na **kompaktnu readout traku** (manometar mini + temp odbrojavanje) između kickera i H1 ili odmah ispod CTA — bez strujnica, bez mreže; visina trake ≤96px |
-| **320–374px (mali mobilni)** | Kao mobilni; readout traka može da se izostavi ako ugrožava above-the-fold CTA; font skala na donjoj granici clamp opsega |
+| **320–374px (mali mobilni)** | Kao mobilni; readout traka **ostaje vidljiva** (kompaktniji padding/gap — Galaxy S23 = 360 CSS px); status linije od ≥360px; font skala na donjoj granici clamp opsega; CTA i dalje prioritet kroz smanjen hero ritam |
 
 Pravila: tekst nikad preko instrumenta; instrument je `aria-hidden` (poruka
 postoji u tekstu); H1 se renderuje odmah (bez čekanja na JS/animaciju);

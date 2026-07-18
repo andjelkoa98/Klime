@@ -5,12 +5,20 @@
    375 / 430 / 768 / 1024 (desktop nav) / 1280 / 1440.
    ========================================================================== */
 
-/* --- 320–374px (mali mobilni) — spreči overflow i čuvaj above-the-fold CTA -- */
+/* --- 320–374px (mali mobilni) — kompaktan ritam, CTA prioritet ------------- */
+/* Napomena: Galaxy S23/S23+ = 360 CSS px — readout traka MORA ostati vidljiva
+   (brand HUD). Ne sakrivati ispod 375px; umesto toga smanjiti padding/gap. */
 
 @media (max-width: 374px) {
-  /* DESIGN_SYSTEM.md §12: readout traka se izostavlja ako ugrožava CTA */
+  /* Kompaktna traka umesto display:none — čuva wow signal na 360px uređajima */
   .hero__readout-strip {
-    display: none;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+    padding: var(--space-2) var(--space-3);
+  }
+
+  .readout-strip__value {
+    font-size: var(--text-xl);
   }
 
   /* Kompaktniji hero ritam da oba CTA stanu u prvi viewport (CONTENT.md 15.2) */
@@ -83,9 +91,9 @@
   overflow-wrap: anywhere;
 }
 
-/* --- ≥375px (standardni mobilni) ------------------------------------------- */
+/* --- ≥360px (S23 i većina Androida) — status linije u readout traci -------- */
 
-@media (min-width: 375px) {
+@media (min-width: 360px) {
   .hero__readout-strip .readout-strip__status {
     display: flex;
   }

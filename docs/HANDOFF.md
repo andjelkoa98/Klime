@@ -5,62 +5,52 @@
 
 ---
 
-## Poslednji chat: Faza 10 (2026-07-18)
+## Poslednji chat: Post-Faza 10 bugfix — S23 readout (2026-07-18)
 
 ### Šta je završeno
 
-- Kreiran `docs/FINAL_QA.md` — checklist (funkcionalnost, a11y, SEO, performance,
-  placeholderi, breakpointi) + rezultati provere na `vite preview` `/Klime/`
-- QA na build/preview: meni (open/lock/Escape/link/≥1024), sticky CTA, FAQ exclusive,
-  cookie consent, anchori, overflow na 320/375/768/1024/1920, asseti 200
-- Deploy na GitHub Pages **pripremljen dokumentacijom** (Opcija A: Actions, Opcija B:
-  `gh-pages`) — **bez push-a** (nema `git remote`)
-- Placeholderi **nisu** zamenjeni izmišljenim katalogom; nabrojan obavezni spisak
-  za klijenta u FINAL_QA.md §10
-- Copy, dizajn i motion nisu menjani
+- Dijagnostikovan bug: hero readout traka (manometar + 18°C + statusi) se
+  **nije prikazivala** na Samsung Galaxy S23
+- Uzrok: `@media (max-width: 374px) { .hero__readout-strip { display: none } }`
+  — S23/S23+ imaju CSS širinu **360px**, pa je traka bila sakrivena; na telefonima
+  ≥375px (npr. mnogi iPhone) bila je vidljiva
+- Fix: traka ostaje vidljiva na svim mobilnim širinama; na ≤374px kompaktniji
+  padding/gap; status linije od ≥360px
+- Ažurirani DESIGN_SYSTEM.md §12, DECISIONS.md (#71), ovaj HANDOFF
 
 ### Fajlovi kreirani
 
-- `docs/FINAL_QA.md`
+- (nema)
 
 ### Fajlovi izmenjeni
 
-- `docs/DECISIONS.md` — odluke Faze 10 (#67–70)
-- `docs/ROADMAP.md` — Faza 10 ✅
+- `src/styles/responsive.css` — uklonjen `display: none` na readout traci ≤374px;
+  status breakpoint 375→360
+- `docs/DESIGN_SYSTEM.md` — §12 red za 320–374px
+- `docs/DECISIONS.md` — odluka #71; #57 označena kao zamenjena
 - `docs/HANDOFF.md` — ovaj dokument
-- `package.json` — verzija `1.0.0` (publish-prep milestone)
 
-### Ključne odluke Faze 10
+### Ključne odluke
 
-- FINAL_QA.md kao trajni QA zapis (odluka #67)
-- Bez forsiranog push-a dok remote/repo nisu spremni (odluka #68)
-- Javna objava blokirana dok obavezni placeholderi nisu popunjeni (odluka #69)
-- Preporučen GitHub Actions deploy iz `dist/` (odluka #70)
+- Odluka #71: readout traka vidljiva i na 360px Android uređajima; #57 povučena
 
-### Šta NIJE završeno (namerno — posle Faze 10 / vlasnik + klijent)
+### Šta NIJE završeno (namerno — publish checklist)
 
 - Kreiranje GitHub repo-a **Klime** + `git remote add` + prvi push
 - Zamena svih obaveznih `{{PLACEHOLDER}}` (FINAL_QA.md §10)
-- Prave fotografije (AVIF/WebP) i eventualni OG od terenske fotke
-- Uklanjanje `hidden` sa `#recenzije` tek sa stvarnim `{{GOOGLE_REVIEWS}}`
-- Ručno Google Business Profile
-- Povezivanje analytics alata posle cookie pristanka
-- Potvrda konačnog logo/wordmark-a sa vlasnikom
+- Prave fotografije, Google recenzije, GBP, analytics
+- Redeploy posle ovog CSS fix-a (kad remote postoji)
 
 ### Poznati problemi / otvorena pitanja
 
-- Nema git remote — deploy čeka vlasnika (koraci u FINAL_QA.md §9)
-- Lighthouse color-contrast na dekorativnim `aria-hidden` mono oznakama (A11y 96)
-- Posle izmene copy-ja: ponovo `npm run fonts:subset`
-- Service-card ikone: scale/fade umesto pravog SVG stroke line-draw
-- FAQ `name` exclusive: stariji browseri zadržavaju multi-open (prihvatljivo)
-- Cookie banner zahteva JS za dismiss
+- Isto kao posle Faze 10 (remote, placeholderi, Lighthouse contrast na mono oznakama)
+- Na ekstremno uskim 320px ekranima status linije u traci su i dalje sakrivene
+  (&lt;360px) — namerno radi prostora
 
 ### Sledeća faza
 
-**Nema naredne roadmap faze.** Projekat je u stanju „spreman za klijentske podatke
-+ GitHub Pages objavu“. Sledeći chat = publish checklist (placeholderi → build →
-remote → deploy), ne nova razvojna faza.
+**Nema naredne roadmap faze.** Sledeći chat = publish checklist ili dodatni
+bugfix po potrebi.
 
 ### Prompt za sledeći chat (publish)
 
@@ -76,4 +66,6 @@ Zadaci (samo kad vlasnik/klijent dostavi podatke):
 3. Poveži git remote na https://github.com/<user>/Klime.git (repo ime mora biti Klime).
 4. npm run build; deploy preko GitHub Actions ili dokumentovane Opcije B.
 5. Ne izmišljaj podatke koji i dalje nedostaju.
+6. Posle deploy-a: na Galaxy S23 (360 CSS px) potvrdi da je hero readout traka
+   vidljiva (odluka #71).
 ```

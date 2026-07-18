@@ -93,7 +93,7 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 54 | Mobilni meni: fokus trap (Tab ciklus kroz nav + tel ikonu + toggle); `inert` na `main` / footer / sticky; wordmark `tabindex="-1"` dok je otvoren; Escape i zatvaranje linkom vraćaju fokus na toggle | CONTENT.md 15.1 + quality rules; sprečava fokus da „pobegne" u pozadinu dok je panel otvoren | Fokus trap biblioteka; dialog `role="dialog"` (meni nije modal dijalog) |
 | 55 | FAQ: nativni exclusive accordion preko `name="faq"` na svim `<details>`; veći tap target (min 52px) + hover/fokus stilovi — bez izmene copy-ja | Progressive enhancement (radi bez JS-a u modernim browserima); odluka #36 ostaje; bolji UX jednog otvorenog odgovora | Custom JS accordion; accordion bez exclusive ponašanja |
 | 56 | Sticky CTA je `<nav aria-label="Brzi kontakt">`; `body` padding-bottom 80px + `scroll-padding` na `html` (top 72 / bottom 80 mobilno) | Landmark za brzi kontakt; sticky bar ne prekriva kritičan tekst ni anchor skokove | Floating dugme van navigacionog landmarka |
-| 57 | Na ≤374px: readout traka sakrivena + kompaktniji hero ritam (manji H1 clamp, kraći lead/CTA razmaci) da oba CTA stanu above the fold | DESIGN_SYSTEM.md §12 + CONTENT.md 15.2; verifikovano na 320×568 | Sakrivanje supporting teksta ili skraćivanje copy-ja |
+| 57 | ~~Na ≤374px: readout traka sakrivena + kompaktniji hero ritam~~ — **zamenjeno odlukom #71** | (stari) DESIGN_SYSTEM.md §12 + CONTENT.md 15.2 | Sakrivanje supporting teksta |
 
 ## Faza 8 (2026-07-18)
 
@@ -122,6 +122,12 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 68 | Git push / GitHub Pages deploy **nije** izvršen u ovoj fazi — dokumentovani su tačni koraci (Actions ili `gh-pages`); remote još ne postoji | Nema `git remote`; zabranjeno forsirati push i izmišljati `{{GITHUB_USERNAME}}` | Lažni remote / hardkodovan github.io nalog |
 | 69 | Javna objava blokirana dok klijent ne zameni obavezne placeholdere (telefon, WhatsApp, Viber, email, radno vreme, gas, struja, GitHub username); recenzije ostaju `hidden` bez stvarnih tekstova | Odluka #10/#18; quality rules — bez izmišljenih podataka i bez fake recenzija | Objava sa vidljivim `{{PLACEHOLDER}}` vrednostima |
 | 70 | Preporučen deploy put: GitHub Actions → `actions/upload-pages-artifact` + `deploy-pages` iz `dist/` posle `npm run build` | Standard za Vite + Pages; ne zahteva ručno commitovanje `dist/` | Commit `dist/` na `master` |
+
+## Post-Faza 10 — bugfix (2026-07-18)
+
+| # | Odluka | Razlog | Odbijeno |
+|---|---|---|---|
+| 71 | Readout traka (`.hero__readout-strip`) **ostaje vidljiva** na 320–374px; umesto `display: none` koristi se kompaktniji padding/gap/tipografija. Status linije u traci od **≥360px** (ne ≥375px). Odluka #57 (sakrivanje) je povučena. | Galaxy S23/S23+ ima CSS viewport **360px** — stara granica 374px je sakrivala brand HUD na uobičajenom Android flagship-u, dok se na ≥375px (npr. iPhone) prikazivao. DESIGN_SYSTEM.md §12 dozvoljava izostavljanje samo ako CTA trpi; kompaktan ritam čuva CTA bez gubitka „wow" signala. | Zadržavanje `display: none` ≤374px; puna desktop instrument tabla na mobilnom |
 
 ## Šta se više ne sme samostalno menjati
 
