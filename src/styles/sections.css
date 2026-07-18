@@ -479,6 +479,19 @@ body.nav-locked {
 .area-layout {
   display: grid;
   gap: var(--space-6);
+  /* Mobilno: lista → mapa → CTA (lista ima prioritet, mapa ostaje vidljiva) */
+  grid-template-areas:
+    'copy'
+    'map'
+    'actions';
+}
+
+.area-text {
+  grid-area: copy;
+}
+
+.area-actions {
+  grid-area: actions;
 }
 
 .area-places {
@@ -488,11 +501,16 @@ body.nav-locked {
   margin-block: var(--space-5);
 }
 
-.area-text > p:last-of-type {
+.area-actions > p {
   color: var(--color-text-muted);
 }
 
+.area-actions .cta-row {
+  margin-top: var(--space-5);
+}
+
 .area-map {
+  grid-area: map;
   position: relative;
   padding: var(--space-5);
   background-color: var(--color-panel);

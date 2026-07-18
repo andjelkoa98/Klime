@@ -89,17 +89,16 @@ Nepotvrđeno (⬜ — ne navoditi kao činjenicu dok se ne potvrdi):
 
 ## Fotografije
 
-Nijedna stvarna fotografija još ne postoji. Do dobijanja pravih fotografija koriste se
-placeholder fajlovi sa opisom šta na slici treba da bude:
+| Placeholder | Fajl / status | Opis |
+|---|---|---|
+| `{{PHOTO_HERO_TECHNICIAN}}` | ⬜ još nema (hero je SVG HUD) | Majstor pored servisnog vozila sa mašinom, dnevno svetlo |
+| `{{PHOTO_EQUIPMENT}}` | ✅ `public/images/oprema-manometri.{avif,webp}` | Krupan kadar manometara + plava servisna mašina |
+| `{{PHOTO_WORK_1}}` | ⬜ još nema (nema sekcije u HTML-u) | Majstor priključuje creva (otvorena hauba) |
+| `{{PHOTO_WORK_2}}` | ✅ `public/images/dijagnostika-na-terenu.{avif,webp}` | Majstor meri pritisak na terenu, kombi u pozadini |
+| `{{PHOTO_VEHICLE}}` | ✅ `public/images/servisno-vozilo-teren.{avif,webp}` | Otvoren servisni kombi sa opremom pored vozila |
+| `{{PHOTO_DISINFECTION}}` | ⬜ još nema | Dezinfekcija sistema ventilacije |
 
-| Placeholder | Šta treba da bude na stvarnoj fotografiji |
-|---|---|
-| `{{PHOTO_HERO_TECHNICIAN}}` | Majstor u radnoj odeći pored servisnog vozila, sa mašinom za klimu, dnevno svetlo, autentično okruženje (ulica/dvorište), bez stock poziranja |
-| `{{PHOTO_EQUIPMENT}}` | Krupan kadar profesionalne mašine za servis klime (manometri, creva, displej) |
-| `{{PHOTO_WORK_1}}` | Majstor priključuje creva na klima sistem vozila (otvorena hauba) |
-| `{{PHOTO_WORK_2}}` | Merenje pritiska / očitavanje dijagnostike tokom rada |
-| `{{PHOTO_VEHICLE}}` | Servisno vozilo brenda na terenu, prepoznatljivo ali bez tablica |
-| `{{PHOTO_DISINFECTION}}` | Postupak dezinfekcije ventilacionog sistema |
+Optimizacija: max širina 1024px, AVIF (~33–55 KB) + WebP fallback (~57–99 KB).
 
 ## Zakazivanje
 

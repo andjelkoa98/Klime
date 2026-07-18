@@ -434,13 +434,21 @@
                 Zahtevaju majstora sa pravom opremom, a on može da dođe kod vas.
               </p>
             </div>
-            <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_WORK_2}}) -->
-            <div class="photo-placeholder section-split__media">
-              <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_WORK_2}}</span>
-              <p class="photo-placeholder__desc">
-                Merenje pritiska / očitavanje dijagnostike tokom rada
-              </p>
-            </div>
+            <figure class="photo-frame section-split__media">
+              <picture>
+                <source type="image/avif" srcset="/images/dijagnostika-na-terenu.avif" />
+                <source type="image/webp" srcset="/images/dijagnostika-na-terenu.webp" />
+                <img
+                  src="/images/dijagnostika-na-terenu.webp"
+                  alt="Merenje pritiska u klima sistemu tokom dijagnostike"
+                  width="1024"
+                  height="768"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="mono-label photo-frame__tag">Na terenu // dijagnostika</figcaption>
+            </figure>
           </div>
 
           <ul role="list" class="problem-pairs">
@@ -504,13 +512,21 @@
                 Sve usluge obavljamo na vašoj adresi, profesionalnom servisnom opremom.
               </p>
             </div>
-            <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_EQUIPMENT}}) -->
-            <div class="photo-placeholder section-split__media">
-              <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_EQUIPMENT}}</span>
-              <p class="photo-placeholder__desc">
-                Krupan kadar profesionalne mašine za servis klime (manometri, creva, displej)
-              </p>
-            </div>
+            <figure class="photo-frame section-split__media">
+              <picture>
+                <source type="image/avif" srcset="/images/oprema-manometri.avif" />
+                <source type="image/webp" srcset="/images/oprema-manometri.webp" />
+                <img
+                  src="/images/oprema-manometri.webp"
+                  alt="Profesionalna mašina za servis auto-klime sa manometrima i crevima"
+                  width="1024"
+                  height="768"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+              <figcaption class="mono-label photo-frame__tag">Oprema // manometri</figcaption>
+            </figure>
           </div>
 
           <ul role="list" class="services-grid">
@@ -703,13 +719,21 @@
             </ul>
 
             <div class="compare-aside">
-              <!-- Placeholder do prave fotografije (CLIENT_DATA.md: {{PHOTO_VEHICLE}}) -->
-              <div class="photo-placeholder">
-                <span class="mono-label photo-placeholder__tag">Foto // {{PHOTO_VEHICLE}}</span>
-                <p class="photo-placeholder__desc">
-                  Servisno vozilo brenda na terenu, prepoznatljivo ali bez tablica
-                </p>
-              </div>
+              <figure class="photo-frame">
+                <picture>
+                  <source type="image/avif" srcset="/images/servisno-vozilo-teren.avif" />
+                  <source type="image/webp" srcset="/images/servisno-vozilo-teren.webp" />
+                  <img
+                    src="/images/servisno-vozilo-teren.webp"
+                    alt="Servisno vozilo MobilKlime na terenu sa opremom za servis auto-klime"
+                    width="1024"
+                    height="768"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <figcaption class="mono-label photo-frame__tag">Na terenu // vozilo</figcaption>
+              </figure>
               <p class="compare-closing">
                 Mobilni servis nije improvizacija - ista servisna tehnologija, samo
                 na vašoj adresi.
@@ -749,17 +773,9 @@
                   Lajkovac
                 </li>
               </ul>
-              <p>
-                Niste na spisku ili ste negde između? Pozovite ili pošaljite poruku sa
-                lokacijom, odmah ćete znati da li dolazimo.
-              </p>
-              <div class="cta-row">
-                <a class="button button--primary" href="tel:+381631234567">Proverite da li dolazimo kod vas</a>
-                <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
-              </div>
             </div>
 
-            <!-- Stilizovana mapa (dekorativna - sva mesta postoje kao tekst levo) -->
+            <!-- Stilizovana mapa (dekorativna — mesta postoje i kao tekst u listi) -->
             <div class="area-map" aria-hidden="true">
               <svg viewBox="0 0 400 320" focusable="false">
                 <circle class="area-map__range" cx="262" cy="48" r="70" />
@@ -797,6 +813,17 @@
                 </g>
               </svg>
               <span class="mono-label area-map__caption">Područje dolaska // 5 mesta</span>
+            </div>
+
+            <div class="area-actions">
+              <p>
+                Niste na spisku ili ste negde između? Pozovite ili pošaljite poruku sa
+                lokacijom, odmah ćete znati da li dolazimo.
+              </p>
+              <div class="cta-row">
+                <a class="button button--primary" href="tel:+381631234567">Proverite da li dolazimo kod vas</a>
+                <a class="button button--secondary" href="#kontakt">Pošaljite poruku</a>
+              </div>
             </div>
           </div>
         </div>

@@ -5,71 +5,43 @@
 
 ---
 
-## Poslednji chat: Post-Faza 10 bugfix — S23 readout (2026-07-18)
+## Poslednji chat: Terenske fotografije + mapa na mobilnom (2026-07-18)
 
 ### Šta je završeno
 
-- Dijagnostikovan bug: hero readout traka (manometar + 18°C + statusi) se
-  **nije prikazivala** na Samsung Galaxy S23
-- Uzrok: `@media (max-width: 374px) { .hero__readout-strip { display: none } }`
-  — S23/S23+ imaju CSS širinu **360px**, pa je traka bila sakrivena; na telefonima
-  ≥375px (npr. mnogi iPhone) bila je vidljiva
-- Fix: traka ostaje vidljiva na svim mobilnim širinama; na ≤374px kompaktniji
-  padding/gap; status linije od ≥360px
-- Ažurirani DESIGN_SYSTEM.md §12, DECISIONS.md (#71), ovaj HANDOFF
+1. **SVG mapa područja na mobilnom** (odluka #72) — lista → mapa → CTA
+2. **Tri terenske fotografije** umesto placeholder panela (odluka #73):
+   - `dijagnostika-na-terenu` → sekcija Problem (`PHOTO_WORK_2`)
+   - `oprema-manometri` → sekcija Usluge (`PHOTO_EQUIPMENT`)
+   - `servisno-vozilo-teren` → sekcija Prednosti (`PHOTO_VEHICLE`)
+3. Optimizacija: AVIF + WebP, max 1024px, ~33–99 KB po fajlu
+4. Semantički nazivi (bez ChatGPT generičkih imena) u `public/images/`
 
 ### Fajlovi kreirani
 
-- (nema)
+- `public/images/dijagnostika-na-terenu.{avif,webp}`
+- `public/images/oprema-manometri.{avif,webp}`
+- `public/images/servisno-vozilo-teren.{avif,webp}`
+- `scripts/optimize-photos.mjs`
 
 ### Fajlovi izmenjeni
 
-- `src/styles/responsive.css` — uklonjen `display: none` na readout traci ≤374px;
-  status breakpoint 375→360
-- `docs/DESIGN_SYSTEM.md` — §12 red za 320–374px
-- `docs/DECISIONS.md` — odluka #71; #57 označena kao zamenjena
-- `docs/HANDOFF.md` — ovaj dokument
+- `index.html` — `<picture>` umesto placeholder panela; area-actions layout
+- `src/styles/components.css` — `.photo-frame`
+- `src/styles/sections.css`, `src/styles/responsive.css` — mapa + area grid
+- `docs/CLIENT_DATA.md`, `docs/CONTENT.md`, `docs/DECISIONS.md` (#72–73), ovaj HANDOFF
 
 ### Ključne odluke
 
-- Odluka #71: readout traka vidljiva i na 360px Android uređajima; #57 povučena
+- #72 mapa na mobilnom; #73 mapiranje i optimizacija fotki
 
-### Deploy (2026-07-18)
+### Deploy
 
-- Push `1442a86` → `origin/master` → GitHub Actions **success**
-- Javni URL: https://andjelkoa98.github.io/Klime/
-- Workflow: https://github.com/andjelkoa98/Klime/actions/runs/29638599183
+- S23 readout fix je uživo na https://andjelkoa98.github.io/Klime/
+- **Mapa + fotke još nisu push-ovane** — čeka commit + deploy
 
-### Šta NIJE završeno (namerno — publish checklist)
+### Šta NIJE završeno
 
-- Eventualna zamena preostalih `{{PLACEHOLDER}}` ako ih još ima (FINAL_QA.md §10)
-- Prave fotografije, Google recenzije, GBP, analytics
-
-### Poznati problemi / otvorena pitanja
-
-- Isto kao posle Faze 10 (remote, placeholderi, Lighthouse contrast na mono oznakama)
-- Na ekstremno uskim 320px ekranima status linije u traci su i dalje sakrivene
-  (&lt;360px) — namerno radi prostora
-
-### Sledeća faza
-
-**Nema naredne roadmap faze.** Sledeći chat = publish checklist ili dodatni
-bugfix po potrebi.
-
-### Prompt za sledeći chat (publish)
-
-```
-Pročitaj AGENTS.md i docs/FINAL_QA.md (sekcije 9–10), docs/CLIENT_DATA.md,
-docs/HANDOFF.md.
-
-Zadaci (samo kad vlasnik/klijent dostavi podatke):
-1. Zameni obavezne {{PLACEHOLDER}} stvarnim vrednostima iz CLIENT_DATA.md
-   (telefon, WhatsApp, Viber, email, radno vreme, POWER_REQUIREMENT, GAS_TYPES,
-   GITHUB_USERNAME u index.html + public/robots.txt + public/sitemap.xml).
-2. Ako stignu Google recenzije — popuni #recenzije i skini hidden.
-3. Poveži git remote na https://github.com/<user>/Klime.git (repo ime mora biti Klime).
-4. npm run build; deploy preko GitHub Actions ili dokumentovane Opcije B.
-5. Ne izmišljaj podatke koji i dalje nedostaju.
-6. Posle deploy-a: na Galaxy S23 (360 CSS px) potvrdi da je hero readout traka
-   vidljiva (odluka #71).
-```
+- `PHOTO_HERO_TECHNICIAN`, `PHOTO_WORK_1`, `PHOTO_DISINFECTION`
+- Deploy (push master)
+- Google recenzije, GBP, analytics

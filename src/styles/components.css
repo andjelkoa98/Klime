@@ -402,11 +402,55 @@
   color: var(--color-accent);
 }
 
-/* --- Photo placeholder (DESIGN_SYSTEM.md section 11) --------------------------
-   Tamni panel sa mono opisom budućeg snimka — bez stock materijala. */
+/* --- Photo frame (DESIGN_SYSTEM.md §11) — prave fotke + eventualni placeholder --- */
 
-/* Placeholder reserves space (aspect-ratio) to avoid CLS; real photos must use
-   <picture> + width/height + loading="lazy" decoding="async" below the fold. */
+.photo-frame {
+  position: relative;
+  margin: 0;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  border: var(--border-panel);
+  background-color: var(--color-panel);
+  box-shadow: var(--shadow-sm);
+}
+
+.photo-frame picture,
+.photo-frame img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  /* Blaga hladna gradacija da sedi u grafitnoj paleti */
+  filter: saturate(0.92) hue-rotate(8deg);
+}
+
+.photo-frame::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    165deg,
+    rgba(11, 15, 20, 0) 40%,
+    rgba(11, 15, 20, 0.45) 100%
+  );
+}
+
+.photo-frame__tag {
+  position: absolute;
+  left: var(--space-4);
+  bottom: var(--space-4);
+  z-index: 1;
+  margin: 0;
+  padding: var(--space-1) var(--space-2);
+  color: var(--color-text);
+  background-color: rgba(11, 15, 20, 0.72);
+  border-radius: var(--radius-sm);
+}
+
+/* Placeholder rezerviše prostor dok nema prave fotke */
 .photo-placeholder {
   display: flex;
   flex-direction: column;

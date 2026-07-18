@@ -72,7 +72,7 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | 43 | Header desktop CTA koristi `button--tint` (ne primary); hero i sticky zadržavaju primary | DESIGN_SYSTEM.md §8: u jednom viewport-u najviše jedan primary; header CTA mora ostati vidljiv ali ne konkurisati hero dugmetu | Primary i u header-u i u hero-u istovremeno |
 | 44 | SVG ikone: stroke atributi (`currentColor`, 1.75, round) na geometriji unutar `<symbol>`, ne na `<use>` | `<use>` klonovi pouzdano nasleđuju presentation atribute; CSS na `use` nije konzistentan po browserima | Icon font ili eksterna biblioteka |
 | 45 | Hero instrument: statično idle stanje (18°C, kazaljka u OK zoni, statusi); bez GSAP | Faza 5 je statički dizajn; animacije su Faza 6 (ANIMATION_SYSTEM.md) | Delimični CSS keyframes za kazaljku (duplira posao Faze 6) |
-| 46 | Stilizovana SVG mapa područja sakrivena ispod 768px; lista mesta uvek vidljiva | CONTENT.md 15.8: na mobilnom lista ima prioritet; mapa je dekorativna (`aria-hidden`) | Google Maps embed; mapa obavezna na mobilnom |
+| 46 | ~~Stilizovana SVG mapa područja sakrivena ispod 768px~~ — **zamenjeno odlukom #72** | (stari) CONTENT.md 15.8 lista prioritet | Google Maps embed |
 | 47 | Sticky mobilni CTA bar: vidljiv bez JS-a; sa JS-om `IntersectionObserver` ga skriva dok je hero CTA u viewportu | Progressive enhancement + CONTENT.md 15.13; slide animacija pojavljivanja ostaje za Fazu 6 | Bar uvek vidljiv (dvostruki CTA u hero viewportu) |
 | 48 | Placeholder fotografije = tamni paneli sa mono oznakom `Foto // {{PHOTO_*}}` i opisom iz CLIENT_DATA.md | DESIGN_SYSTEM.md §11; zabranjen stock | Generičke stock fotografije |
 
@@ -128,6 +128,8 @@ projekta i novi zapis (stara odluka se precrtava, ne briše).
 | # | Odluka | Razlog | Odbijeno |
 |---|---|---|---|
 | 71 | Readout traka (`.hero__readout-strip`) **ostaje vidljiva** na 320–374px; umesto `display: none` koristi se kompaktniji padding/gap/tipografija. Status linije u traci od **≥360px** (ne ≥375px). Odluka #57 (sakrivanje) je povučena. | Galaxy S23/S23+ ima CSS viewport **360px** — stara granica 374px je sakrivala brand HUD na uobičajenom Android flagship-u, dok se na ≥375px (npr. iPhone) prikazivao. DESIGN_SYSTEM.md §12 dozvoljava izostavljanje samo ako CTA trpi; kompaktan ritam čuva CTA bez gubitka „wow" signala. | Zadržavanje `display: none` ≤374px; puna desktop instrument tabla na mobilnom |
+| 72 | SVG mapa područja (`.area-map`) **vidljiva i na mobilnom** (&lt;768px); redosled: lista → mapa → CTA. Kompaktniji padding i manji label font na mobilnom. Desktop: tekst+CTA levo / mapa desno (`grid-template-areas`). Odluka #46 (sakrivanje) je povučena. | Zahtev vlasnika — vizuelna „ruta 5 mesta" ne sme biti samo desktop; mapa je lagan SVG (`aria-hidden`), lista ostaje tekstualni izvor istine. CONTENT.md 15.8 dozvoljava „pojednostavljena" umesto izostavljena. | Google Maps embed; sakrivanje mape na mobilnom |
+| 73 | Tri terenske fotografije zamenjuju placeholdere: `dijagnostika-na-terenu` → Problem (`PHOTO_WORK_2`); `oprema-manometri` → Usluge (`PHOTO_EQUIPMENT`); `servisno-vozilo-teren` → Prednosti (`PHOTO_VEHICLE`). Format AVIF+WebP u `public/images/`, lazy, width/height, mono potpis. | Dostavljene slike; mapiranje po sadržaju kadra; performance budžet (≤100 KB WebP po slici). | Zadržavanje placeholder panela; JPG bez optimizacije; ChatGPT generički nazivi fajlova |
 
 ## Šta se više ne sme samostalno menjati
 

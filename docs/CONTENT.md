@@ -323,7 +323,8 @@ na licu mesta — bez vožnje, bez čekanja, bez izgubljenog dana.
 - **Vizuali:** stilizovana mapa područja (SVG, definiše Faza 3) — ne Google Maps embed
   (performance); mesta označena tekstom, ne samo tačkama.
 - **Desktop:** mapa + lista mesta jedno pored drugog.
-- **Mobilno:** lista mesta ima prioritet; mapa pojednostavljena ili izostavljena.
+- **Mobilno:** lista mesta ima prioritet; stilizovana SVG mapa ostaje vidljiva
+  odmah ispod liste (pre CTA), kompaktnija (odluka #72).
 
 ### 15.9 Recenzije
 

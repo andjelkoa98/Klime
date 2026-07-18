@@ -113,12 +113,21 @@
   }
 }
 
-/* --- ≥768px (tablet portret) -------------------------------------------------- */
+/* --- Mobilno: kompaktna mapa područja (vidljiva; lista i dalje ima prioritet) -- */
 
-/* Mapa: lista mesta ima prioritet na mobilnom (CONTENT.md 15.8) */
 .area-map {
-  display: none;
+  padding: var(--space-4);
 }
+
+.area-map__labels text {
+  font-size: 11px;
+}
+
+.area-map__caption {
+  margin-top: var(--space-2);
+}
+
+/* --- ≥768px (tablet portret) -------------------------------------------------- */
 
 @media (min-width: 768px) {
   /* Hero: tekst gore pune širine, instrument tabla ispod, centrirana ~70% */
@@ -137,7 +146,15 @@
   }
 
   .area-map {
-    display: block;
+    padding: var(--space-5);
+  }
+
+  .area-map__labels text {
+    font-size: 13px;
+  }
+
+  .area-map__caption {
+    margin-top: var(--space-3);
   }
 
   .section-split {
@@ -343,11 +360,18 @@
     gap: var(--space-7);
   }
 
-  /* Područje: tekst i mapa jedno pored drugog (5/7 u korist mape) */
+  /* Područje: tekst+CTA levo, mapa desno (span 2 reda) */
   .area-layout {
     grid-template-columns: 6fr 6fr;
-    align-items: center;
+    grid-template-areas:
+      'copy map'
+      'actions map';
+    align-items: start;
     gap: var(--space-7);
+  }
+
+  .area-map {
+    align-self: center;
   }
 
   .site-footer__grid {
