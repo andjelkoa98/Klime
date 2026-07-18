@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Replace {{GITHUB_USERNAME}} before publish (see docs/CLIENT_DATA.md). -->
   <url>
-    <loc>https://{{GITHUB_USERNAME}}.github.io/Klime/</loc>
+    <loc>https://andjelkoa98.github.io/Klime/</loc>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>

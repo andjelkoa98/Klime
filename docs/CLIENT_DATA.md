@@ -20,10 +20,10 @@ Status legende: ✅ potvrđeno · 🟡 radna verzija (može se menjati) · ⬜ n
 
 | Podatak | Vrednost | Status |
 |---|---|---|
-| Telefon | `{{PHONE_NUMBER}}` (format: +381 6X XXX XX XX) | ⬜ |
-| WhatsApp | `{{WHATSAPP_NUMBER}}` — klijent koristi WhatsApp | 🟡 kanal potvrđen, broj nepoznat |
-| Viber | `{{VIBER_NUMBER}}` — klijent koristi Viber | 🟡 kanal potvrđen, broj nepoznat |
-| Email | `{{EMAIL}}` | ⬜ |
+| Telefon | `+381631234567` | ✅ |
+| WhatsApp | isti kao telefon (`381631234567` za wa.me) | ✅ |
+| Viber | isti kao telefon (`+381631234567`) | ✅ |
+| Email | nema / ne prikazuje se na sajtu | ✅ |
 | Instagram | `{{INSTAGRAM_URL}}` | ⬜ |
 | Facebook | `{{FACEBOOK_URL}}` | ⬜ |
 | Kontakt forma | **NE POSTOJI i ne pravi se** — samo poziv i poruke | ✅ |
@@ -42,7 +42,7 @@ Status legende: ✅ potvrđeno · 🟡 radna verzija (može se menjati) · ⬜ n
 
 | Podatak | Vrednost | Status |
 |---|---|---|
-| Radno vreme | `{{WORKING_HOURS}}` | ⬜ |
+| Radno vreme | Po dogovoru | ✅ |
 | Rad vikendom | `{{WEEKEND_AVAILABILITY}}` | ⬜ |
 | Hitni dolasci | `{{EMERGENCY_AVAILABILITY}}` | ⬜ |
 
@@ -60,10 +60,10 @@ Nepotvrđeno (⬜ — ne navoditi kao činjenicu dok se ne potvrdi):
 
 | Podatak | Vrednost |
 |---|---|
-| Tipovi gasa | `{{GAS_TYPES}}` (R134a? R1234yf? — klijent nije siguran) |
+| Tipovi gasa | R134a i R1234yf (radna potvrda - može se korigovati) |
 | Hibridna/električna vozila | `{{HYBRID_EV_SUPPORT}}` |
 | Izvlačenje starog gasa | `{{GAS_RECOVERY}}` |
-| Potrebna struja na lokaciji | `{{POWER_REQUIREMENT}}` |
+| Potrebna struja na lokaciji | Ne - majstor donosi sopstveni dizel agregat |
 | Usluge koje NE pruža | `{{EXCLUDED_SERVICES}}` |
 
 ## Cene
@@ -85,7 +85,7 @@ Nepotvrđeno (⬜ — ne navoditi kao činjenicu dok se ne potvrdi):
 | Google recenzije | POSTOJE (klijent ih ima) — tekstovi: `{{GOOGLE_REVIEWS}}` | 🟡 postojanje potvrđeno, sadržaj nepoznat |
 | Link na Google recenzije | `{{GOOGLE_REVIEWS_URL}}` | ⬜ |
 | Google Business Profile | nema potvrđenih podataka za unos — vidi preporuku u `docs/SEO_PERFORMANCE.md` § GBP | 🟡 |
-| GitHub username (Pages) | `{{GITHUB_USERNAME}}` — za canonical, OG, robots, sitemap (`https://{{GITHUB_USERNAME}}.github.io/Klime/`) | ⬜ |
+| GitHub username (Pages) | `andjelkoa98` (`https://andjelkoa98.github.io/Klime/`) | ✅ |
 
 ## Fotografije
 

@@ -87,9 +87,10 @@
 
   /* --- Container and grid (DESIGN_SYSTEM.md section 6) ------------------- */
 
-  --container-max:    1200px;  /* standardne sekcije */
-  --container-wide:   1360px;  /* hero i završni CTA */
-  --container-narrow: 760px;   /* FAQ, tekstualni blokovi (≈65ch) */
+  /* Jedna širina za sve sekcije (hero, FAQ, CTA) - ujednačeno na zahtev */
+  --container-max:    1200px;
+  --container-wide:   1200px;
+  --container-narrow: 1200px;
   --container-gutter: clamp(1rem, 4vw, 2rem);  /* bočni padding */
 
   /* --- Radius, shadow, border (DESIGN_SYSTEM.md section 7) --------------- */
