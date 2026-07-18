@@ -35,10 +35,12 @@
 
 - #72 mapa na mobilnom; #73 mapiranje i optimizacija fotki
 
-### Deploy
+### Deploy (2026-07-18)
 
-- S23 readout fix je uživo na https://andjelkoa98.github.io/Klime/
-- **Mapa + fotke još nisu push-ovane** — čeka commit + deploy
+- Push `2ea8f62` → Actions success
+- Javni URL: https://andjelkoa98.github.io/Klime/
+- Workflow: https://github.com/andjelkoa98/Klime/actions/runs/29638994226
+- Uživo: mapa na mobilnom + 3 terenske fotografije
 
 ### Šta NIJE završeno
 
